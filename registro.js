@@ -1,7 +1,7 @@
-import firebase from "firebase/compat/app";
-
-import "firebase/firestore";
+import { initializeApp } from "firebase/app";
 import { getFirestore, collection, addDoc } from "firebase/firestore";
+
+
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
@@ -18,6 +18,8 @@ const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
 // Esta función se ejecutará cuando se haga clic en el botón "Guardar"
+button.addEvenListener("click", guardar)
+
 function guardar() {
     // Obtener los valores de los campos de texto
     const nombre = document.getElementById("nombre").value;
