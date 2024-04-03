@@ -7,7 +7,9 @@
   <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
-    <div class="d-flex justify-content-center">
+    <div class="container">
+        <div class="row">
+ 
   <h4>Registrar cambio</h4>
 
   <form id="formulario" action="procesar_formulario.php" method="POST">
@@ -19,13 +21,17 @@
 
     <label for="telefono">Teléfono:</label>
     <input type="tel" id="telefono" name="telefono"><br><br>
-
-    <label for="mensaje">Mensaje:</label><br>
-    <textarea id="mensaje" name="mensaje" rows="4" cols="50"></textarea><br><br>
-
-    <input type="submit" value="Enviar">
+   
   </form>
+  <button class="btn btn-outline-primary" onclick="guardar()">Confirmar</button>  
     </div>
+</div>
+
+    <script src="https://www.gstatic.com/firebasejs/10.9.0/firebase.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.9.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.9.0/firebase-firestore-compat.js"></script>
+    <script type="module" src="firebase.js"></script>
+   <script src="guardar.js"></script>
 
 </body>
 </html>
