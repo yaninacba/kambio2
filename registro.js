@@ -1,20 +1,9 @@
-import { initializeApp } from "firebase/app";
-import { getFirestore, collection, addDoc } from "firebase/firestore";
+// Importa la instancia de la aplicación Firebase
+import app from "./firebaseConfig";
 
+// Ahora puedes usar la instancia de la aplicación Firebase donde la necesites en este archivo
+// Por ejemplo, si necesitas acceder a la base de datos Firestore, puedes hacerlo aquí
 
-
-// Your web app's Firebase configuration
-const firebaseConfig = {
-  apiKey: "AIzaSyDukGl-6c2HfKaKie0FGJzWGeCBF-5hjsU",
-  authDomain: "kambio-67f17.firebaseapp.com",
-  projectId: "kambio-67f17",
-  storageBucket: "kambio-67f17.appspot.com",
-  messagingSenderId: "205221704558",
-  appId: "1:205221704558:web:191ca7e10328d6abb9077f"
-};
-
-// Initialize Firebase
-const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
 // Esta función se ejecutará cuando se haga clic en el botón "Guardar"
