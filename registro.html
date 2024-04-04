@@ -27,9 +27,44 @@
  </div>
 </div>
 
-<script type="module" src="registro.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.9.0/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.9.0/firebase-firestore-compat.js"></script>
+<script>
+  
+
+const db = getFirestore(app);
+
+
+button.addEvenListener("click", guardar)
+
+function guardar() {
+    // Obtener los valores de los campos de texto
+    const nombre = document.getElementById("nombre").value;
+    const apellido = document.getElementById("apellido").value;
+    const telefono = document.getElementById("telefono").value;
+
+    // Verificar si los campos están vacíos
+    if (nombre === '' || apellido === '' || telefono === '') {
+        alert("Por favor, complete todos los campos");
+        return; // Salir de la función si algún campo está vacío
+    }
+
+    // Agregar el documento a la colección "Usuario" en Firestore
+    addDoc(collection(db, "Usuario"), {
+        Nombre: nombre,
+        Apellido: apellido,
+        Telefono: telefono
+    })
+    .then(() => {
+        alert("Registrado exitosamente");
+    })
+    .catch((error) => {
+        alert("No pudimos registrar la información, intenta nuevamente");
+        console.error("Error al guardar documento: ", error);
+    });
+}
+
+</script>
 
   
 </body>
