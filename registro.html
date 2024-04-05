@@ -8,6 +8,7 @@
 </head>
 <body>
     <form id="inicio" class="w-25 m-4">
+        <h2>Registrar</h2>
     <div class="form-floating mb-3">
         <input type="text" class="form-control" id="nombre" placeholder="name@example.com">
         <label for="floatingInput">Nombre</label>
@@ -26,9 +27,9 @@
 
 
     <script type="module">
-       import { initializeApp } from "https://www.gstatic.com/firebasejs/10.10.0/firebase-app.js";
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.10.0/firebase-app.js";
         import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.10.0/firebase-analytics.js";
-     
+        import {getDatabase, set, ref} from "https://www.gstatic.com/firebasejs/10.10.0/firebase-database.js";
         const firebaseConfig = {
           apiKey: "AIzaSyDlLngo2i5bBqXrF7uWh9Rk7LBetyvHth0",
           authDomain: "boris-f276f.firebaseapp.com",
@@ -41,6 +42,14 @@
 
         const app = initializeApp(firebaseConfig);
         const analytics = getAnalytics(app);
+        const db= getDatabase();
+
+        let nombre= document.getElementById('nombre');
+        let apellido= document.getElementById('apellido');
+        let telefono= document.getElementById('telefono');
+        let inicio= document.getElementById('inicio');
+
+
       </script>
   
 </body>
