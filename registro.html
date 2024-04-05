@@ -7,65 +7,41 @@
   <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
-    <div class="container">
-        <div class="row">
- 
-  <h4>Registrar cambio</h4>
+    <form id="inicio">
+    <div class="form-floating mb-3">
+        <input type="text" class="form-control" id="nombre" placeholder="name@example.com">
+        <label for="floatingInput">Nombre</label>
+      </div>
+      <div class="form-floating">
+        <input type="text" class="form-control" id="apellido" placeholder="Password">
+        <label for="floatingPassword">Apellido</label>
+      </div>
+      <div class="form-floating">
+        <input type="number" class="form-control" id="telefono" placeholder="Password">
+        <label for="floatingPassword">Telefono</label>
+      </div>
 
-  <form id="formulario" >
-    <label for="nombre">Nombre:</label>
-    <input type="text" id="nombre" name="nombre" required><br><br>
-
-    <label for="apellido">Apellido:</label>
-    <input type="text" id="apellido" name="apellido" required><br><br>
-
-    <label for="telefono">Teléfono:</label>
-    <input type="tel" id="telefono" name="telefono"><br><br>
-
-  </form>
-  <button id="guardar" class="btn btn-outline-primary" >Confirmar</button>
- </div>
-</div>
-
-<script src="https://www.gstatic.com/firebasejs/10.9.0/firebase-app-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/10.9.0/firebase-firestore-compat.js"></script>
-<script>
-  
-
- const db = firebase.firestore();
+      <button  type="submit" class="btn btn-outline-primary" >Confirmar</button>
+    </form>
 
 
-button.addEvenListener("click", guardar)
+    <script type="module">
+       import { initializeApp } from "https://www.gstatic.com/firebasejs/10.10.0/firebase-app.js";
+        import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.10.0/firebase-analytics.js";
+     
+        const firebaseConfig = {
+          apiKey: "AIzaSyDlLngo2i5bBqXrF7uWh9Rk7LBetyvHth0",
+          authDomain: "boris-f276f.firebaseapp.com",
+          projectId: "boris-f276f",
+          storageBucket: "boris-f276f.appspot.com",
+          messagingSenderId: "277241048439",
+          appId: "1:277241048439:web:c3c73d6263c6eeb5204572",
+          measurementId: "G-0EJS7NMRLK"
+        };
 
-function guardar() {
-    // Obtener los valores de los campos de texto
-    const nombre = document.getElementById("nombre").value;
-    const apellido = document.getElementById("apellido").value;
-    const telefono = document.getElementById("telefono").value;
-
-    // Verificar si los campos están vacíos
-    if (nombre === '' || apellido === '' || telefono === '') {
-        alert("Por favor, complete todos los campos");
-        return; // Salir de la función si algún campo está vacío
-    }
-
-    // Agregar el documento a la colección "Usuario" en Firestore
-    addDoc(collection(db, "Usuario"), {
-        Nombre: nombre,
-        Apellido: apellido,
-        Telefono: telefono
-    })
-    .then(() => {
-        alert("Registrado exitosamente");
-    })
-    .catch((error) => {
-        alert("No pudimos registrar la información, intenta nuevamente");
-        console.error("Error al guardar documento: ", error);
-    });
-}
-
-</script>
-
+        const app = initializeApp(firebaseConfig);
+        const analytics = getAnalytics(app);
+      </script>
   
 </body>
 </html>
