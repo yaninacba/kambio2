@@ -25,13 +25,11 @@
       <button id="confirmar" type="submit" class="btn btn-outline-primary" style="float: right;" onclick="guardar">Confirmar</button>
     </form>
 
-
+ 
+    <script src="https://www.gstatic.com/firebasejs/10.9.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.9.0/firebase-firestore-compat.js"></script>
     <script type="module">
-       import { initializeApp } from "firebase/app";
-import { getAnalytics } from "firebase/analytics";
-import firebase from "firebase/compat/app";
-// Required for side-effects
-import "firebase/firestore";
+
         const firebaseConfig = {
           apiKey: "AIzaSyDlLngo2i5bBqXrF7uWh9Rk7LBetyvHth0",
           authDomain: "boris-f276f.firebaseapp.com",
@@ -45,9 +43,7 @@ import "firebase/firestore";
       const app = initializeApp(firebaseConfig);
      
       </script>
-      
-      <script src="https://www.gstatic.com/firebasejs/10.9.0/firebase-app-compat.js"></script>
-      <script src="https://www.gstatic.com/firebasejs/10.9.0/firebase-firestore-compat.js"></script>
+     
   
     <script>
       function guardar() {
