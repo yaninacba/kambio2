@@ -11,15 +11,15 @@
         <h2>Registrar</h2>
     <div class="form-floating mb-3">
         <input type="text" class="form-control" id="nombre" placeholder="name@example.com">
-        <label for="floatingInput">Nombre</label>
+        <label for="nombre">Nombre</label>
       </div>
       <div class="form-floating mb-3" >
         <input type="text" class="form-control" id="apellido" placeholder="Password">
-        <label for="floatingPassword">Apellido</label>
+        <label for="apellido">Apellido</label>
       </div>
       <div class="form-floating mb-3">
         <input type="number" class="form-control" id="telefono" placeholder="Password">
-        <label for="floatingPassword">Telefono</label>
+        <label for="telefono">Telefono</label>
       </div>
 
       <button id="confirmar" type="submit" class="btn btn-outline-primary" style="float: right;" onclick="guardar()">Confirmar</button>
@@ -28,9 +28,8 @@
  
     
     <script type="module">
-    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.10.0/firebase-app.js";
-import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.10.0/firebase-analytics.js";
-import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/10.10.0/firebase-firestore.js";
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-app-compat.js";
+    import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-firestore-compat.js";
 
   const firebaseConfig = {
           apiKey: "AIzaSyDlLngo2i5bBqXrF7uWh9Rk7LBetyvHth0",
