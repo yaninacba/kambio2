@@ -22,14 +22,13 @@
         <label for="floatingPassword">Telefono</label>
       </div>
 
-      <button  type="submit" class="btn btn-outline-primary" style="float: right;" >Confirmar</button>
+      <button id="confirmar" type="submit" class="btn btn-outline-primary" style="float: right;" >Confirmar</button>
     </form>
 
 
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.10.0/firebase-app.js";
         import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.10.0/firebase-analytics.js";
-        import {getDatabase, set, ref} from "https://www.gstatic.com/firebasejs/10.10.0/firebase-database.js";
         const firebaseConfig = {
           apiKey: "AIzaSyDlLngo2i5bBqXrF7uWh9Rk7LBetyvHth0",
           authDomain: "boris-f276f.firebaseapp.com",
@@ -40,17 +39,41 @@
           measurementId: "G-0EJS7NMRLK"
         };
 
-        const app = initializeApp(firebaseConfig);
-        const analytics = getAnalytics(app);
-        const db= getDatabase();
+      const app = initializeApp(firebaseConfig);
+     
+      </script>
+      
+      <script src="https://www.gstatic.com/firebasejs/10.9.0/firebase-app-compat.js"></script>
+      <script src="https://www.gstatic.com/firebasejs/10.9.0/firebase-firestore-compat.js"></script>
+  
+    <script>
+      function guardar() {
+    let db = firebase.firestore();
+    let nombre = document.getElementById('nombre').value;
+    let apellido = document.getElementById('apellido').value;
+    let telefono = document.getElementById('telefono').value;
 
-        let nombre= document.getElementById('nombre');
-        let apellido= document.getElementById('apellido');
-        let telefono= document.getElementById('telefono');
-        let inicio= document.getElementById('inicio');
-
+    db.collection("usuario").add({
+        nombre: nombre,
+        apellido: apellido,
+        telefono: telefono
+    })
+    .then((docRef) => {
+        console.log("Document written with ID: ", docRef.id);
+        // Aquí podrías agregar cualquier lógica adicional que desees realizar después de guardar los datos
+    })
+    .catch((error) => {
+        console.error("Error adding document: ", error);
+    });
+}
 
       </script>
-  
+      <script>
+        document.getElementById('confirmar').addEventListener('click', function(event) {
+            event.preventDefault(); // Para prevenir el comportamiento predeterminado del formulario (por si acaso)
+            guardar(); // Llama a la función guardar() cuando se haga clic en el botón
+        });
+    </script>
+    
 </body>
 </html>
