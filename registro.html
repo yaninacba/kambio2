@@ -22,7 +22,7 @@
         <label for="floatingPassword">Telefono</label>
       </div>
 
-      <button id="confirmar" type="submit" class="btn btn-outline-primary" style="float: right;" onclick="guardar">Confirmar</button>
+      <button id="confirmar" type="submit" class="btn btn-outline-primary" style="float: right;" onclick="guardar()">Confirmar</button>
     </form>
 
  
@@ -33,7 +33,8 @@
        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.10.0/firebase-app.js";
   import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.10.0/firebase-analytics.js";
   import { getFirestore } from "https://www.gstatic.com/firebasejs/10.10.0/firebase-firestore.js";
-        const firebaseConfig = {
+  import { collection, addDoc } from "firebase/firestore";       
+  const firebaseConfig = {
           apiKey: "AIzaSyDlLngo2i5bBqXrF7uWh9Rk7LBetyvHth0",
           authDomain: "boris-f276f.firebaseapp.com",
           projectId: "boris-f276f",
@@ -49,24 +50,21 @@
      
   
     <script>
-      function guardar() {
-    let db = firebase.firestore();
+      async function guardar() {
     let nombre = document.getElementById('nombre').value;
     let apellido = document.getElementById('apellido').value;
     let telefono = document.getElementById('telefono').value;
 
-    db.collection("usuario").add({
-        nombre: nombre,
-        apellido: apellido,
-        telefono: telefono
-    })
-    .then((docRef) => {
-        console.log("Document written with ID: ", docRef.id);
-        // Aquí podrías agregar cualquier lógica adicional que desees realizar después de guardar los datos
-    })
-    .catch((error) => {
-        console.error("Error adding document: ", error);
-    });
+    try {
+        const docRef = await addDoc(collection(db, "users"), {
+            nombre: nombre,
+            apellido: apellido,
+            telefono: telefono
+        });
+        console.log("Documento agregado con ID: ", docRef.id);
+    } catch (e) {
+        console.error("Error al agregar el documento: ", e);
+    }
 }
 
       </script>
