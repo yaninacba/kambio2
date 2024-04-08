@@ -22,13 +22,16 @@
         <label for="floatingPassword">Telefono</label>
       </div>
 
-      <button id="confirmar" type="submit" class="btn btn-outline-primary" style="float: right;" >Confirmar</button>
+      <button id="confirmar" type="submit" class="btn btn-outline-primary" style="float: right;" onclick="guardar">Confirmar</button>
     </form>
 
 
     <script type="module">
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.10.0/firebase-app.js";
-        import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.10.0/firebase-analytics.js";
+       import { initializeApp } from "firebase/app";
+import { getAnalytics } from "firebase/analytics";
+import firebase from "firebase/compat/app";
+// Required for side-effects
+import "firebase/firestore";
         const firebaseConfig = {
           apiKey: "AIzaSyDlLngo2i5bBqXrF7uWh9Rk7LBetyvHth0",
           authDomain: "boris-f276f.firebaseapp.com",
@@ -68,12 +71,6 @@
 }
 
       </script>
-      <script>
-        document.getElementById('confirmar').addEventListener('click', function(guardar) {
-            event.preventDefault(); // Para prevenir el comportamiento predeterminado del formulario (por si acaso)
-            guardar(); // Llama a la función guardar() cuando se haga clic en el botón
-        });
-    </script>
-    
+     
 </body>
 </html>
