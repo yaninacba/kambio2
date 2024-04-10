@@ -22,51 +22,9 @@
         <label for="telefono">Telefono</label>
       </div>
 
-      <button id="confirmar" type="submit" class="btn btn-outline-primary" style="float: right;" onclick="guardar()">Confirmar</button>
+      <button id="confirmar" type="submit" class="btn btn-outline-primary" style="float: right;" onclick="agregarDocumento()">Confirmar</button>
     </form>
 
- 
-    
-    <script type="module">
-    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-app-compat.js";
-
-    import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-firestore.js";  
-  const firebaseConfig = {
-          apiKey: "AIzaSyDlLngo2i5bBqXrF7uWh9Rk7LBetyvHth0",
-          authDomain: "boris-f276f.firebaseapp.com",
-          projectId: "boris-f276f",
-          storageBucket: "boris-f276f.appspot.com",
-          messagingSenderId: "277241048439",
-          appId: "1:277241048439:web:c3c73d6263c6eeb5204572",
-          measurementId: "G-0EJS7NMRLK"
-        };
-
-      const app = initializeApp(firebaseConfig);
-      const db = getFirestore(app);
-
-     
-      </script>
-     
-  
-    <script>
-      async function guardar() {
-    let nombre = document.getElementById('nombre').value;
-    let apellido = document.getElementById('apellido').value;
-    let telefono = document.getElementById('telefono').value;
-
-    try {
-        const docRef = await addDoc(collection(db, "usuario"), {
-            nombre: nombre,
-            apellido: apellido,
-            telefono: telefono
-        });
-        console.log("Documento agregado con ID: ", docRef.id);
-    } catch (e) {
-        console.error("Error al agregar el documento: ", e);
-    }
-}
-
-      </script>
-     
+  <script src="/registro.js"></script>
 </body>
 </html>
