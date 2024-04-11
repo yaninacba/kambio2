@@ -1,9 +1,5 @@
-import { initializeApp } from "https://cdn.jsdelivr.net/npm/firebase@10.10.0/firebase-app.js";
-import { addDoc, collection, getFirestore } from "https://cdn.jsdelivr.net/npm/firebase@10.10.0/firebase-firestore.js";
-
-
-//conf funciona import { initializeApp } from "https://www.gstatic.com/firebasejs/10.10.0/firebase-app.js";
-// comentar import { addDoc, collection, getFirestore } from "https://www.gstatic.com/firebasejs/10.10.0/firebase-firestore.js";
+ import { initializeApp } from "https://www.gstatic.com/firebasejs/10.10.0/firebase-app.js";
+ import { addDoc, collection, getFirestore } from "https://www.gstatic.com/firebasejs/10.10.0/firebase-firestore.js";
 
 const firebaseConfig = {
   apiKey: "AIzaSyDlLngo2i5bBqXrF7uWh9Rk7LBetyvHth0",
