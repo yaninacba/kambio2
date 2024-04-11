@@ -10,6 +10,7 @@ const firebaseConfig = initializeApp( {
     appId: "1:277241048439:web:c3c73d6263c6eeb5204572",
     measurementId: "G-0EJS7NMRLK"
   });
+  const app = initializeApp(firebaseConfig);
   const db = getFirestore(app);
   console.log('hola probando');
   
