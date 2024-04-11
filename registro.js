@@ -1,5 +1,5 @@
 import { initializeApp } from "firebase/app";
-import { addDoc, getFirestore } from "firebase/firestore";
+import { addDoc, collection, getFirestore } from "firebase/firestore";
 
 const firebaseConfig = initializeApp( {
     apiKey: "AIzaSyDlLngo2i5bBqXrF7uWh9Rk7LBetyvHth0",
@@ -12,12 +12,25 @@ const firebaseConfig = initializeApp( {
   });
   const db = getFirestore(app);
   console.log('hola probando');
-  const usuarioColec = collection(db, "usuario");
+  
+  
+
+ 
  
   async function agregarDoumento(){
-    const nuevoDoc= addDoc(usuarioColec, {
-        nombre: document.getElementById('nombre');
-        apellido: document.getElementById('apellido');
-        telefono: document.getElementById('telefono');
-    });
-  }
+    try {
+    const nombre = document.getElementById('nombre').value;
+    const apellido = document.getElementById('apellido').value;
+    const telefono = document.getElementById('telefono').value;
+  
+    const docRef = await addDoc(collection(db, "usuario"), {
+    nombre: nombre,
+    apellido: apellido,
+    telefono: telefono
+  });
+  console.log("Document written with ID: ", docRef.id);
+} catch (e) {
+  console.error("Error adding document: ", e);
+}
+}    
+
