@@ -15,10 +15,7 @@ const firebaseConfig = {
   console.log('hola probando');
   
   
-
- 
- 
-  async function agregarDoumento(){
+  async function agregarDocumento(){
     try {
     const nombre = document.getElementById('nombre').value;
     const apellido = document.getElementById('apellido').value;
