@@ -33,6 +33,8 @@ console.error("Error adding document: ", e);
 }    
 
 
-document.getElementById("confirmar").addEventListener("click", agregarDocumento);
+document.getElementById("confirmar").addEventListener("click", function() {
+  agregarDocumento();
+  console.log("Cambio cargado ");
+});
 
-  
