@@ -14,18 +14,21 @@ const firebaseConfig = {
   const db = getFirestore(app);
   console.log('hola probando');
 
-  
+     document.getElementById("confirmar").addEventListener("click", function() {
+      agregarDocumento();
     const nombre = document.getElementById('nombre').value;
     const apellido = document.getElementById('apellido').value;
     const telefono = document.getElementById('telefono').value;
     agregarDocumento(nombre, apellido, telefono);
+    console.log("Cambio cargado ");
+  });
   
     async function agregarDocumento(nombre,apellido,telefono){
     try {
- const docRef = await addDoc(collection(db, "usuario"), {
-  nombre: nombre,
-  apellido: apellido,
-  telefono: telefono
+   const docRef = await addDoc(collection(db, "usuario"), {
+   nombre: nombre,
+   apellido: apellido,
+    telefono: telefono
 });
 console.log("Document written with ID: ", docRef.id);
 } catch (e) {
@@ -34,8 +37,5 @@ console.error("Error adding document: ", e);
 }    
 
 
-document.getElementById("confirmar").addEventListener("click", function() {
-  agregarDocumento();
-  console.log("Cambio cargado ");
-});
+
 
