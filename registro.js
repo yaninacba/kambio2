@@ -23,7 +23,7 @@ const firebaseConfig = {
 });
 
   
-    async function agregarDocumento(apellid,nombre,telefono){
+    async function agregarDocumento(apellido,nombre,telefono){
     try {
    const docRef = await addDoc(collection(db, "usuario"), {
     apellido: apellido,
