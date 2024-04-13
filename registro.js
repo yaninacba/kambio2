@@ -18,8 +18,9 @@ const firebaseConfig = {
     const nombre = document.getElementById('nombre').value;
     const apellido = document.getElementById('apellido').value;
     const telefono = document.getElementById('telefono').value;
+    agregarDocumento(nombre, apellido, telefono);
   
-    async function agregarDocumento(){
+    async function agregarDocumento(nombre,apellido,telefono){
     try {
  const docRef = await addDoc(collection(db, "usuario"), {
   nombre: nombre,
