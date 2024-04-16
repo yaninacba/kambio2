@@ -6,9 +6,21 @@
   <title>Formulario de Registro</title>
   <!-- Agrega los enlaces a Bootstrap CSS -->
   <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+  body, html {
+      height: 100%;
+      margin: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+  }
+</style>
 </head>
 <body>
+  <div class="d-flex justify-content-center">
+ <h2>Cambio de Horario</h2>
 
+  </div>
     <div class="d-flex justify-content-center">
     <div class="btn-group btn-group-lg" role="group" aria-label="Large button group">
         <button type="button" id="registrarBtn" class="btn btn-outline-primary">Registrar</button>
@@ -18,15 +30,13 @@
       <br>
   </div>
 
-  <!-- Agrega los enlaces a los scripts de Bootstrap y jQuery (opcional) -->
+  <!-- Estilo-->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
   <script>
-    // Aquí puedes agregar scripts para manejar eventos de los botones, como
-    // abrir un formulario de registro cuando se hace clic en el botón "Registrar",
-    // o redirigir a una página de búsqueda cuando se hace clic en el botón "Buscar".
+    
     document.getElementById("registrarBtn").addEventListener("click", function() {
        window.location.href = "registro.html";
       console.log("Botón Registrar clickeado");
