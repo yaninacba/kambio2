@@ -1,6 +1,11 @@
 import { collection, query, where, getDocs, getFirestore} from "https://www.gstatic.com/firebasejs/10.10.0/firebase-firestore.js";
+const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
-document.getElementById("buscar").addEventListener("click", function() {
+
+
+//funcion para leer
+document.getElementById("buscar").addEvent
+Listener("click", function() {
     mostrarDatos();
    console.log("Botón buscar clickeado");
  });
