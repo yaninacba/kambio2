@@ -1,12 +1,14 @@
-
-#inicio {
+inicio {
     height: 100vh; /* Para ocupar el 100% del viewport */
     display: flex;
-    flex-direction: column; /* Para apilar los elementos verticalmente */
     justify-content: center;
-    align-items: center;
+    align-items: flex-start; /* Alineación de los elementos en la parte superior */
+    flex-direction: column; /* Para apilar los elementos verticalmente */
 }
 
 #inicio h2 {
     margin-bottom: 20px; /* Espacio entre el título y los botones */
 }
+
+
+
