@@ -1,5 +1,5 @@
  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.10.0/firebase-app.js";
- import { addDoc, collection, getFirestore } from "https://www.gstatic.com/firebasejs/10.10.0/firebase-firestore.js";
+ import {getDocs, addDoc, collection, getFirestore } from "https://www.gstatic.com/firebasejs/10.10.0/firebase-firestore.js";
 
 const firebaseConfig = {
   apiKey: "AIzaSyDlLngo2i5bBqXrF7uWh9Rk7LBetyvHth0",
@@ -37,6 +37,24 @@ console.log("Document written with ID: ", docRef.id);
 console.error("Error adding document: ", e);
 }
 }    
+
+//funcion para leer
+document.getElementById("buscar").addEvent
+Listener("click", function() {
+    mostrarDatos();
+   console.log("Botón buscar clickeado");
+ });
+
+async function mostrarDatos() {
+    try {
+      const querySnapshot = await getDocs(collection(db, "usuario"));
+      querySnapshot.forEach((doc) => {
+        console.log(doc.id, " => ", doc.data());
+      });
+    } catch (error) {
+      console.error("Error al recuperar datos:", error);
+    }
+  }
 
 
 
