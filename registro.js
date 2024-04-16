@@ -18,7 +18,8 @@ const firebaseConfig = {
     const nombre = document.getElementById('nombre').value;
     const apellido = document.getElementById('apellido').value;
     const telefono = document.getElementById('telefono').value;
-    agregarDocumento(nombre,apellido,telefono);
+    const isla = document.getElementById('isla').value;
+    agregarDocumento(nombre,apellido,telefono,isla);
     console.log("Cambio cargado ");
 });
 
@@ -28,7 +29,8 @@ const firebaseConfig = {
    const docRef = await addDoc(collection(db, "usuario"), {
     nombre: nombre,
     apellido: apellido,
-   telefono: telefono
+    telefono: telefono,
+    isla: isla
 });
 console.log("Document written with ID: ", docRef.id);
 } catch (e) {
