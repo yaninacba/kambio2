@@ -1,7 +1,7 @@
-#inicio {
-    height: 100%;
-    margin: 0;
+inicio {
+    height: 100vh; /* Para ocupar el 100% del viewport */
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: flex-start; /* Alineación de los elementos en la parte superior */
+    flex-direction: column; /* Para apilar los elementos verticalmente */
 }
