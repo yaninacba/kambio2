@@ -16,10 +16,9 @@ const firebaseConfig = {
 
 
 //funcion para leer
-document.getElementById("buscar").addEvent
-Listener("click", function() {
+document.getElementById("mostrar").addEventListener("click", function() {
     mostrarDatos();
-   console.log("Botón buscar clickeado");
+   console.log("Botón mostrar clickeado");
  });
 
 async function mostrarDatos() {
