@@ -7,7 +7,7 @@
   <!-- Agrega los enlaces a Bootstrap CSS -->
   <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" href="index.css">
-  <script type="module" src="registro.js"></script>
+  
 </head>
 <body>
   <div id="inicio" class="d-flex flex-column align-items-center">
@@ -30,6 +30,10 @@
     
     document.getElementById("registrarBtn").addEventListener("click", function() {
        window.location.href = "registro.html";
+      console.log("Botón Registrar clickeado");
+    });
+    document.getElementById("buscar").addEventListener("click", function() {
+       window.location.href = "buscar.html";
       console.log("Botón Registrar clickeado");
     });
 
