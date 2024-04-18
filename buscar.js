@@ -27,6 +27,7 @@ document.getElementById("mostrar").addEventListener("click", function() {
       const querySnapshot = await getDocs(collection(db, "usuario"));
       querySnapshot.forEach((doc) => {
           const datosDiv = document.createElement('div');
+          datosDiv.classList.add('dato'); 
           datosDiv.textContent = `${doc.id} => ${JSON.stringify(doc.data())}`;
           datosContainer.appendChild(datosDiv);
       });
