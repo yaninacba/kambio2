@@ -23,10 +23,19 @@ document.getElementById("botonFlow").addEventListener("click", function() {
 
  async function mostrarDatos() {
   try {
-      const q = query(collection(db, "usuario"), where("isla", "==", flow));
+      // Obtener el elemento select por su id
+      const selectElement = document.getElementById('isla');
+
+      // Obtener el valor seleccionado del elemento select
+      const selectedValue = selectElement.value;
+
+      // Crear la consulta utilizando el valor seleccionado
+      const q = query(collection(db, "usuario"), where("isla", "==", selectedValue));
       const querySnapshot = await getDocs(q);
 
+      // Manejar los resultados de la consulta
       const datosContainer = document.getElementById('datosContainer');
+      datosContainer.innerHTML = ''; // Limpiar contenido previo
 
       querySnapshot.forEach((doc) => {
           const datosDiv = document.createElement('div');
@@ -37,11 +46,3 @@ document.getElementById("botonFlow").addEventListener("click", function() {
       console.error("Error al recuperar datos:", error);
   }
 }
-
-
-
-
-
-  
-
-  
