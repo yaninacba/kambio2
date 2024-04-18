@@ -81,7 +81,7 @@ try {
 
     querySnapshot.forEach((doc) => {
         const datosDiv = document.createElement('div');
-        datosDiv.textContent = `${doc.id} => ${doc.data().nombreCampo}`;
+        datosDiv.textContent = `${doc.id} => ${doc.data().isla}`;
         datosDiv.classList.add('dato');
         datosContainer.appendChild(datosDiv);
     });
