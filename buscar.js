@@ -16,24 +16,16 @@ const firebaseConfig = {
 
 
 //funcion para leer
-document.getElementById("botonFlow").addEventListener("click", function() {
+document.getElementById("botonHfc").addEventListener("click", function() {
     mostrarDatos();
    console.log("Botón mostrar clickeado");
  });
 
  async function mostrarDatos() {
   try {
-      // Obtener el elemento select por su id
-      const selectElement = document.getElementById('flow');
-
-      // Obtener el valor seleccionado del elemento select
-      const selectedValue = selectElement.value;
-
-      // Crear la consulta utilizando el valor seleccionado
-      const q = query(collection(db, "usuario"), where("isla", "==", selectedValue));
+      const q = query(collection(db, "usuario"), where("isla", "==", "hfc"));
       const querySnapshot = await getDocs(q);
 
-      // Manejar los resultados de la consulta
       const datosContainer = document.getElementById('datosContainer');
       datosContainer.innerHTML = ''; // Limpiar contenido previo
 
@@ -46,3 +38,5 @@ document.getElementById("botonFlow").addEventListener("click", function() {
       console.error("Error al recuperar datos:", error);
   }
 }
+
+
