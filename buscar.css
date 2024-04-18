@@ -1,0 +1,15 @@
+.btn-container {
+    display: flex;
+}
+
+.btn-container button {
+    margin-right: 10px; /* Espacio entre botones */
+}
+
+.dato {
+    margin-bottom: 10px;
+    padding: 10px;
+    background-color: #f0f0f0;
+    border: 1px solid #60899c;
+    border-radius: 5px;
+}
