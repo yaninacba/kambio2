@@ -23,13 +23,20 @@ document.getElementById("botonFlow").addEventListener("click", function() {
 
  async function mostrarDatos() {
   try {
-const q = query(collection(db, "usuario"), where("isla", "==", flow));
+      const q = query(collection(db, "usuario"), where("isla", "==", flow));
+      const querySnapshot = await getDocs(q);
 
-const querySnapshot = await getDocs(q);
-querySnapshot.forEach((doc) => {
-// doc.data() is never undefined for query doc snapshots
-console.log(doc.id, " => ", doc.data());
-});
+      const datosContainer = document.getElementById('datosContainer');
+
+      querySnapshot.forEach((doc) => {
+          const datosDiv = document.createElement('div');
+          datosDiv.textContent = `${doc.id} => ${JSON.stringify(doc.data())}`;
+          datosContainer.appendChild(datosDiv);
+      });
+  } catch (error) {
+      console.error("Error al recuperar datos:", error);
+  }
+}
 
 
 
