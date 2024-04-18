@@ -24,7 +24,7 @@ document.getElementById("botonFlow").addEventListener("click", function() {
  async function mostrarDatos() {
   try {
       // Obtener el elemento select por su id
-      const selectElement = document.getElementById('isla');
+      const selectElement = document.getElementById('flow');
 
       // Obtener el valor seleccionado del elemento select
       const selectedValue = selectElement.value;
