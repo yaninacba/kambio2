@@ -15,13 +15,13 @@ const firebaseConfig = {
  const db = getFirestore(app);
 
 
-//funcion para leer
+//funcion para leer hfc
 document.getElementById("botonHfc").addEventListener("click", function() {
-    mostrarDatos();
+    mostrarHfc();
    console.log("Botón mostrar clickeado");
  });
 
- async function mostrarDatos() {
+ async function mostrarHfc() {
   try {
       const q = query(collection(db, "usuario"), where("isla", "==", "hfc"));
       const querySnapshot = await getDocs(q);
@@ -32,11 +32,94 @@ document.getElementById("botonHfc").addEventListener("click", function() {
       querySnapshot.forEach((doc) => {
           const datosDiv = document.createElement('div');
           datosDiv.textContent = `${doc.id} => ${JSON.stringify(doc.data())}`;
+          datosDiv.classList.add('dato');
           datosContainer.appendChild(datosDiv);
       });
   } catch (error) {
       console.error("Error al recuperar datos:", error);
   }
 }
+
+//funcion para leer flow
+document.getElementById("botonFlow").addEventListener("click", function() {
+  mostrarFlow();
+ console.log("Botón mostrar clickeado");
+});
+
+async function mostrarFlow() {
+try {
+    const q = query(collection(db, "usuario"), where("isla", "==", "flow"));
+    const querySnapshot = await getDocs(q);
+
+    const datosContainer = document.getElementById('datosContainer');
+    datosContainer.innerHTML = ''; // Limpiar contenido previo
+
+    querySnapshot.forEach((doc) => {
+        const datosDiv = document.createElement('div');
+        datosDiv.textContent = `${doc.id} => ${JSON.stringify(doc.data())}`;
+        datosDiv.classList.add('dato');
+        datosContainer.appendChild(datosDiv);
+    });
+} catch (error) {
+    console.error("Error al recuperar datos:", error);
+}
+}
+
+//funcion para leer cattv
+document.getElementById("botonCattv").addEventListener("click", function() {
+  mostrarCattv();
+ console.log("Botón mostrar clickeado");
+});
+
+async function mostrarCattv() {
+try {
+    const q = query(collection(db, "usuario"), where("isla", "==", "cattv"));
+    const querySnapshot = await getDocs(q);
+
+    const datosContainer = document.getElementById('datosContainer');
+    datosContainer.innerHTML = ''; // Limpiar contenido previo
+
+    querySnapshot.forEach((doc) => {
+        const datosDiv = document.createElement('div');
+        datosDiv.textContent = `${doc.id} => ${JSON.stringify(doc.data())}`;
+        datosDiv.classList.add('dato');
+        datosContainer.appendChild(datosDiv);
+    });
+} catch (error) {
+    console.error("Error al recuperar datos:", error);
+}
+}
+
+//funcion para leer movil
+document.getElementById("botonMovil").addEventListener("click", function() {
+  mostrarMovil();
+ console.log("Botón mostrar clickeado");
+});
+
+async function mostrarMovil() {
+try {
+    const q = query(collection(db, "usuario"), where("isla", "==", "movil"));
+    const querySnapshot = await getDocs(q);
+
+    const datosContainer = document.getElementById('datosContainer');
+    datosContainer.innerHTML = ''; // Limpiar contenido previo
+
+    querySnapshot.forEach((doc) => {
+        const datosDiv = document.createElement('div');
+        datosDiv.textContent = `${doc.id} => ${JSON.stringify(doc.data())}`;
+        datosDiv.classList.add('dato');
+        datosContainer.appendChild(datosDiv);
+    });
+} catch (error) {
+    console.error("Error al recuperar datos:", error);
+}
+}
+
+
+
+
+
+
+
 
 
