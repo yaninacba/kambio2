@@ -21,16 +21,19 @@ document.getElementById("mostrar").addEventListener("click", function() {
    console.log("Botón mostrar clickeado");
  });
 
-async function mostrarDatos() {
-    try {
+ async function mostrarDatos() {
+  const datosContainer = document.getElementById('datosContainer');
+  try {
       const querySnapshot = await getDocs(collection(db, "usuario"));
       querySnapshot.forEach((doc) => {
-        console.log(doc.id, " => ", doc.data());
+          const datosDiv = document.createElement('div');
+          datosDiv.textContent = `${doc.id} => ${JSON.stringify(doc.data())}`;
+          datosContainer.appendChild(datosDiv);
       });
-    } catch (error) {
+  } catch (error) {
       console.error("Error al recuperar datos:", error);
-    }
   }
+}
 
 
 
