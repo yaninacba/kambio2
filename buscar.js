@@ -16,25 +16,20 @@ const firebaseConfig = {
 
 
 //funcion para leer
-document.getElementById("mostrar").addEventListener("click", function() {
+document.getElementById("botonFlow").addEventListener("click", function() {
     mostrarDatos();
    console.log("Botón mostrar clickeado");
  });
 
  async function mostrarDatos() {
-  const datosContainer = document.getElementById('datosContainer');
   try {
-      const querySnapshot = await getDocs(collection(db, "usuario"));
-      querySnapshot.forEach((doc) => {
-          const datosDiv = document.createElement('div');
-          datosDiv.classList.add('dato'); 
-          datosDiv.textContent = `${doc.id} => ${JSON.stringify(doc.data())}`;
-          datosContainer.appendChild(datosDiv);
-      });
-  } catch (error) {
-      console.error("Error al recuperar datos:", error);
-  }
-}
+const q = query(collection(db, "usuario"), where("isla", "==", flow));
+
+const querySnapshot = await getDocs(q);
+querySnapshot.forEach((doc) => {
+// doc.data() is never undefined for query doc snapshots
+console.log(doc.id, " => ", doc.data());
+});
 
 
 
