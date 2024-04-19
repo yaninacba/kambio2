@@ -34,9 +34,17 @@ const firebaseConfig = {
 });
 console.log("Document written with ID: ", docRef.id);
 alert("Cambio agregado exitosamente" + docRef.id);
+limpiarCampos();
 } catch (e) {
 console.error("Error adding document: ", e);
 alert("Error al cargar los datos"+ docRef.id);
 }
 }    
 
+function limpiarCampos() {
+  // queda en blanco
+  document.getElementById("nombreInput").value = "";
+  document.getElementById("apellidoInput").value = "";
+  document.getElementById("telefonoInput").value = "";
+  document.getElementById("islaInput").value = "";
+}
