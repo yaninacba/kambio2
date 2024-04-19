@@ -77,7 +77,7 @@ try {
     const querySnapshot = await getDocs(q);
 
     const datosContainer = document.getElementById('datosContainer');
-    datosContainer.innerHTML = ''; // Limpiar contenido previo
+    datosContainer.innerHTML = ''; 
 
     querySnapshot.forEach((doc) => {
         const datosDiv = document.createElement('div');
