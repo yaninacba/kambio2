@@ -34,9 +34,21 @@ document.getElementById("botonHfc").addEventListener("click", function() {
          
           datosDiv.textContent = `Nombre: ${doc.data().nombre}\n
                                   Apellido: ${doc.data().apellido}\n
-                                  Teléfono: ${doc.data().telefono}\n
                                   Isla: ${doc.data().isla}`;
           datosDiv.classList.add('dato');
+          const confirmButton = document.createElement('button');
+          confirmButton.textContent = 'Confirmar';
+          confirmButton.classList.add('btn', 'btn btn-success');
+          confirmButton.type = 'button'; // Para asegurarse de que no sea un botón de envío de formulario
+          confirmButton.addEventListener('click', () => {
+              // Aquí puedes agregar la lógica para manejar la confirmación
+              // Por ejemplo, podrías hacer una acción adicional o simplemente eliminar el botón y el texto
+              datosDiv.removeChild(confirmButton);
+              datosDiv.removeChild(text);
+          });
+  
+          // Agrego boton a fila de datos
+          datosDiv.appendChild(confirmButton);
           datosContainer.appendChild(datosDiv);
       });
   } catch (error) {
@@ -63,9 +75,23 @@ try {
         
         datosDiv.textContent = `Nombre: ${doc.data().nombre}\n
                                 Apellido: ${doc.data().apellido}\n
-                                Teléfono: ${doc.data().telefono}\n
                                 Isla: ${doc.data().isla}`;
         datosDiv.classList.add('dato');
+        const confirmButton = document.createElement('button');
+        confirmButton.textContent = 'Confirmar';
+        confirmButton.classList.add('btn', 'btn btn-success');
+        confirmButton.type = 'button'; // Para asegurarse de que no sea un botón de envío de formulario
+        confirmButton.addEventListener('click', () => {
+            // Aquí puedes agregar la lógica para manejar la confirmación
+            // Por ejemplo, podrías hacer una acción adicional o simplemente eliminar el botón y el texto
+            datosDiv.removeChild(confirmButton);
+            datosDiv.removeChild(text);
+        });
+
+        // Agregar el botón de confirmación al div de datos
+        datosDiv.appendChild(confirmButton);
+
+        // Agregar el div de datos al contenedor
         datosContainer.appendChild(datosDiv);
     });
 } catch (error) {
@@ -92,9 +118,23 @@ async function mostrarCattv() {
            
             datosDiv.textContent = `Nombre: ${doc.data().nombre}\n
                                     Apellido: ${doc.data().apellido}\n
-                                    Teléfono: ${doc.data().telefono}\n
                                     Isla: ${doc.data().isla}`;
             datosDiv.classList.add('dato');
+            const confirmButton = document.createElement('button');
+            confirmButton.textContent = 'Confirmar';
+            confirmButton.classList.add('btn', 'btn btn-success');
+            confirmButton.type = 'button'; // Para asegurarse de que no sea un botón de envío de formulario
+            confirmButton.addEventListener('click', () => {
+                // Aquí puedes agregar la lógica para manejar la confirmación
+                // Por ejemplo, podrías hacer una acción adicional o simplemente eliminar el botón y el texto
+                datosDiv.removeChild(confirmButton);
+                datosDiv.removeChild(text);
+            });
+    
+            // Agregar el botón de confirmación al div de datos
+            datosDiv.appendChild(confirmButton);
+    
+            // Agregar el div de datos al contenedor
             datosContainer.appendChild(datosDiv);
         });
     } catch (error) {
@@ -108,42 +148,52 @@ document.getElementById("botonMovil").addEventListener("click", function() {
 });
 
 async function mostrarMovil() {
-try {
-    const q = query(collection(db, "usuario"), where("isla", "==", "movil"));
-    const querySnapshot = await getDocs(q);
+    try {
+        const q = query(collection(db, "usuario"), where("isla", "==", "movil"));
+        const querySnapshot = await getDocs(q);
 
-    const datosContainer = document.getElementById('datosContainer');
-    datosContainer.innerHTML = ''; // Limpiar contenido previo
+        const datosContainer = document.getElementById('datosContainer');
+        datosContainer.innerHTML = ''; // Limpiar contenido previo
 
-    querySnapshot.forEach((doc) => {
-        const datosDiv = document.createElement('div');
-        
-        datosDiv.textContent = `Nombre: ${doc.data().nombre}\n
-                                 Apellido: ${doc.data().apellido}\n
-                                 Teléfono: ${doc.data().telefono}\n
-                                Isla: ${doc.data().isla}`;
-        datosDiv.classList.add('dato');
-        const confirmButton = document.createElement('button');
-        confirmButton.textContent = 'Confirmar';
-        confirmButton.classList.add('btn', 'btn-outline-success');
-        confirmButton.type = 'button'; // Para asegurarse de que no sea un botón de envío de formulario
-        confirmButton.addEventListener('click', () => {
-            // Aquí puedes agregar la lógica para manejar la confirmación
-            // Por ejemplo, podrías hacer una acción adicional o simplemente eliminar el botón y el texto
-            datosDiv.removeChild(confirmButton);
-            datosDiv.removeChild(text);
+        querySnapshot.forEach((doc) => {
+            const datosDiv = document.createElement('div');
+            
+            datosDiv.textContent = `Nombre: ${doc.data().nombre}\n
+                                    Apellido: ${doc.data().apellido}\n
+                                    Isla: ${doc.data().isla}`;
+            datosDiv.classList.add('dato');
+            
+            const confirmButton = document.createElement('button');
+            confirmButton.textContent = 'Confirmar';
+            confirmButton.classList.add('btn', 'btn-success');
+            confirmButton.type = 'button'; // Para asegurarse de que no sea un botón de envío de formulario
+            
+            confirmButton.addEventListener('click', () => {
+                const telefono = doc.data().telefono;
+                if (telefono) {
+                    // mensaje automatico
+                    const mensaje = encodeURIComponent("Hola, confirmas el cambio?");
+                    const enlaceWhatsApp = `https://wa.me/${telefono}?text=${mensaje}`;
+                    window.open(enlaceWhatsApp, '_blank');
+                    
+                    // Eliminar el botón de confirmación del datosDiv
+                    datosDiv.removeChild(confirmButton);
+                } else {
+                    console.error("El documento no contiene un número de teléfono válido.");
+                }
+            });
+
+            // Agregar el botón de confirmación al div de datos
+            datosDiv.appendChild(confirmButton);
+
+            // Agregar el div de datos al contenedor
+            datosContainer.appendChild(datosDiv);
         });
-
-        // Agregar el botón de confirmación al div de datos
-        datosDiv.appendChild(confirmButton);
-
-        // Agregar el div de datos al contenedor
-        datosContainer.appendChild(datosDiv);
-    });
-} catch (error) {
-    console.error("Error al recuperar datos:", error);
+    } catch (error) {
+        console.error("Error al recuperar datos:", error);
+    }
 }
-}
+
 
 
 
