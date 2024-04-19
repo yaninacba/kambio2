@@ -72,24 +72,27 @@ document.getElementById("botonCattv").addEventListener("click", function() {
 });
 
 async function mostrarCattv() {
-try {
-    const q = query(collection(db, "usuario"), where("isla", "==", "cattv"));
-    const querySnapshot = await getDocs(q);
+    try {
+        const q = query(collection(db, "usuario"), where("isla", "==", "cattv"));
+        const querySnapshot = await getDocs(q);
 
-    const datosContainer = document.getElementById('datosContainer');
-    datosContainer.innerHTML = ''; 
+        const datosContainer = document.getElementById('datosContainer');
+        datosContainer.innerHTML = ''; 
 
-    querySnapshot.forEach((doc) => {
-        const datosDiv = document.createElement('div');
-        datosDiv.textContent = `${doc.id} => ${doc.data().isla}`;
-        datosDiv.classList.add('dato');
-        datosContainer.appendChild(datosDiv);
-    });
-} catch (error) {
-    console.error("Error al recuperar datos:", error);
+        querySnapshot.forEach((doc) => {
+            const datosDiv = document.createElement('div');
+           
+            datosDiv.textContent = `Nombre: ${doc.data().nombre}\n
+                                    Apellido: ${doc.data().apellido}\n
+                                    Teléfono: ${doc.data().telefono}\n
+                                    Isla: ${doc.data().isla}`;
+            datosDiv.classList.add('dato');
+            datosContainer.appendChild(datosDiv);
+        });
+    } catch (error) {
+        console.error("Error al recuperar datos:", error);
+    }
 }
-}
-
 //funcion para leer movil
 document.getElementById("botonMovil").addEventListener("click", function() {
   mostrarMovil();
