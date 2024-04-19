@@ -31,7 +31,11 @@ document.getElementById("botonHfc").addEventListener("click", function() {
 
       querySnapshot.forEach((doc) => {
           const datosDiv = document.createElement('div');
-          datosDiv.textContent = `${doc.id} => ${JSON.stringify(doc.data())}`;
+         
+          datosDiv.textContent = `Nombre: ${doc.data().nombre}\n
+                                  Apellido: ${doc.data().apellido}\n
+                                  Teléfono: ${doc.data().telefono}\n
+                                  Isla: ${doc.data().isla}`;
           datosDiv.classList.add('dato');
           datosContainer.appendChild(datosDiv);
       });
@@ -56,7 +60,11 @@ try {
 
     querySnapshot.forEach((doc) => {
         const datosDiv = document.createElement('div');
-        datosDiv.textContent = `${doc.id} => ${JSON.stringify(doc.data())}`;
+        
+        datosDiv.textContent = `Nombre: ${doc.data().nombre}\n
+                                Apellido: ${doc.data().apellido}\n
+                                Teléfono: ${doc.data().telefono}\n
+                                Isla: ${doc.data().isla}`;
         datosDiv.classList.add('dato');
         datosContainer.appendChild(datosDiv);
     });
@@ -109,7 +117,11 @@ try {
 
     querySnapshot.forEach((doc) => {
         const datosDiv = document.createElement('div');
-        datosDiv.textContent = `${doc.id} => ${JSON.stringify(doc.data())}`;
+        
+        datosDiv.textContent = `Nombre: ${doc.data().nombre}\n
+                                 Apellido: ${doc.data().apellido}\n
+                                 Teléfono: ${doc.data().telefono}\n
+                                Isla: ${doc.data().isla}`;
         datosDiv.classList.add('dato');
         datosContainer.appendChild(datosDiv);
     });
