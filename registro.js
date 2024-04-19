@@ -33,29 +33,10 @@ const firebaseConfig = {
     isla: isla
 });
 console.log("Document written with ID: ", docRef.id);
+alert("Cambio agregado exitosamente" + docRef.id);
 } catch (e) {
 console.error("Error adding document: ", e);
+alert("Error al cargar los datos"+ docRef.id);
 }
 }    
-
-//funcion para leer
-document.getElementById("buscar").addEvent
-Listener("click", function() {
-    mostrarDatos();
-   console.log("Botón buscar clickeado");
- });
-
-async function mostrarDatos() {
-    try {
-      const querySnapshot = await getDocs(collection(db, "usuario"));
-      querySnapshot.forEach((doc) => {
-        console.log(doc.id, " => ", doc.data());
-      });
-    } catch (error) {
-      console.error("Error al recuperar datos:", error);
-    }
-  }
-
-
-
 
