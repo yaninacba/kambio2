@@ -38,23 +38,35 @@ document.getElementById("botonHfc").addEventListener("click", function() {
           datosDiv.classList.add('dato');
           const confirmButton = document.createElement('button');
           confirmButton.textContent = 'Confirmar';
-          confirmButton.classList.add('btn', 'btn btn-success');
+          confirmButton.classList.add('btn', 'btn-success');
           confirmButton.type = 'button'; // Para asegurarse de que no sea un botón de envío de formulario
+          
           confirmButton.addEventListener('click', () => {
-              // Aquí puedes agregar la lógica para manejar la confirmación
-              // Por ejemplo, podrías hacer una acción adicional o simplemente eliminar el botón y el texto
-              datosDiv.removeChild(confirmButton);
-              datosDiv.removeChild(text);
+              const telefono = doc.data().telefono;
+              if (telefono) {
+                  // mensaje automatico
+                  const mensaje = encodeURIComponent("Hola, confirmas el cambio?");
+                  const enlaceWhatsApp = `https://wa.me/${telefono}?text=${mensaje}`;
+                  window.open(enlaceWhatsApp, '_blank');
+                  
+                  // Eliminar el botón de confirmación del datosDiv
+                  datosDiv.removeChild(confirmButton);
+              } else {
+                  console.error("El documento no contiene un número de teléfono válido.");
+              }
           });
-  
-          // Agrego boton a fila de datos
+
+          // Agregar el botón de confirmación al div de datos
           datosDiv.appendChild(confirmButton);
+
+          // Agregar el div de datos al contenedor
           datosContainer.appendChild(datosDiv);
       });
   } catch (error) {
       console.error("Error al recuperar datos:", error);
   }
 }
+
 
 //funcion para leer flow
 document.getElementById("botonFlow").addEventListener("click", function() {
@@ -79,13 +91,22 @@ try {
         datosDiv.classList.add('dato');
         const confirmButton = document.createElement('button');
         confirmButton.textContent = 'Confirmar';
-        confirmButton.classList.add('btn', 'btn btn-success');
+        confirmButton.classList.add('btn', 'btn-success');
         confirmButton.type = 'button'; // Para asegurarse de que no sea un botón de envío de formulario
+        
         confirmButton.addEventListener('click', () => {
-            // Aquí puedes agregar la lógica para manejar la confirmación
-            // Por ejemplo, podrías hacer una acción adicional o simplemente eliminar el botón y el texto
-            datosDiv.removeChild(confirmButton);
-            datosDiv.removeChild(text);
+            const telefono = doc.data().telefono;
+            if (telefono) {
+                // mensaje automatico
+                const mensaje = encodeURIComponent("Hola, confirmas el cambio?");
+                const enlaceWhatsApp = `https://wa.me/${telefono}?text=${mensaje}`;
+                window.open(enlaceWhatsApp, '_blank');
+                
+                // Eliminar el botón de confirmación del datosDiv
+                datosDiv.removeChild(confirmButton);
+            } else {
+                console.error("El documento no contiene un número de teléfono válido.");
+            }
         });
 
         // Agregar el botón de confirmación al div de datos
@@ -98,6 +119,7 @@ try {
     console.error("Error al recuperar datos:", error);
 }
 }
+
 
 //funcion para leer cattv
 document.getElementById("botonCattv").addEventListener("click", function() {
@@ -122,18 +144,27 @@ async function mostrarCattv() {
             datosDiv.classList.add('dato');
             const confirmButton = document.createElement('button');
             confirmButton.textContent = 'Confirmar';
-            confirmButton.classList.add('btn', 'btn btn-success');
+            confirmButton.classList.add('btn', 'btn-success');
             confirmButton.type = 'button'; // Para asegurarse de que no sea un botón de envío de formulario
+            
             confirmButton.addEventListener('click', () => {
-                // Aquí puedes agregar la lógica para manejar la confirmación
-                // Por ejemplo, podrías hacer una acción adicional o simplemente eliminar el botón y el texto
-                datosDiv.removeChild(confirmButton);
-                datosDiv.removeChild(text);
+                const telefono = doc.data().telefono;
+                if (telefono) {
+                    // mensaje automatico
+                    const mensaje = encodeURIComponent("Hola, confirmas el cambio?");
+                    const enlaceWhatsApp = `https://wa.me/${telefono}?text=${mensaje}`;
+                    window.open(enlaceWhatsApp, '_blank');
+                    
+                    // Eliminar el botón de confirmación del datosDiv
+                    datosDiv.removeChild(confirmButton);
+                } else {
+                    console.error("El documento no contiene un número de teléfono válido.");
+                }
             });
-    
+
             // Agregar el botón de confirmación al div de datos
             datosDiv.appendChild(confirmButton);
-    
+
             // Agregar el div de datos al contenedor
             datosContainer.appendChild(datosDiv);
         });
@@ -141,6 +172,7 @@ async function mostrarCattv() {
         console.error("Error al recuperar datos:", error);
     }
 }
+
 //funcion para leer movil
 document.getElementById("botonMovil").addEventListener("click", function() {
   mostrarMovil();
