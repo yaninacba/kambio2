@@ -123,6 +123,21 @@ try {
                                  Teléfono: ${doc.data().telefono}\n
                                 Isla: ${doc.data().isla}`;
         datosDiv.classList.add('dato');
+        const confirmButton = document.createElement('button');
+        confirmButton.textContent = 'Confirmar';
+        confirmButton.classList.add('btn', 'btn-outline-success');
+        confirmButton.type = 'button'; // Para asegurarse de que no sea un botón de envío de formulario
+        confirmButton.addEventListener('click', () => {
+            // Aquí puedes agregar la lógica para manejar la confirmación
+            // Por ejemplo, podrías hacer una acción adicional o simplemente eliminar el botón y el texto
+            datosDiv.removeChild(confirmButton);
+            datosDiv.removeChild(text);
+        });
+
+        // Agregar el botón de confirmación al div de datos
+        datosDiv.appendChild(confirmButton);
+
+        // Agregar el div de datos al contenedor
         datosContainer.appendChild(datosDiv);
     });
 } catch (error) {
