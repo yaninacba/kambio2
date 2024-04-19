@@ -43,8 +43,8 @@ alert("Error al cargar los datos"+ docRef.id);
 
 function limpiarCampos() {
   // queda en blanco
-  document.getElementById("nombreInput").value = "";
-  document.getElementById("apellidoInput").value = "";
-  document.getElementById("telefonoInput").value = "";
-  document.getElementById("islaInput").value = "";
+  document.getElementById("nombre").value = "";
+  document.getElementById("apellido").value = "";
+  document.getElementById("telefono").value = "";
+  document.getElementById("isla").value = "";
 }
