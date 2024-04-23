@@ -1,7 +1,6 @@
  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.10.0/firebase-app.js";
  import {getDocs, addDoc, collection, getFirestore } from "https://www.gstatic.com/firebasejs/10.10.0/firebase-firestore.js";
- import { Calendar } from '@fullcalendar/core';
- import dayGridPlugin from '@fullcalendar/daygrid';
+
 
 
 const firebaseConfig = {
