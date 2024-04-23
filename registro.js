@@ -67,14 +67,14 @@ document.addEventListener('DOMContentLoaded', function() {
   });
 
   // Al hacer clic en el botón, mostrar el calendario
-  btnCalendario.addEventListener('click', function() {
+  calendarioBoton.addEventListener('click', function() {
       calendar.render();
       calendarEl.style.display = 'block';
   });
 
   // Asegurarse de que el calendario se oculte si se hace clic fuera de él
   document.addEventListener('click', function(e) {
-      if (e.target !== btnCalendario && !calendarEl.contains(e.target)) {
+      if (e.target !== calendarioBotonario && !calendarEl.contains(e.target)) {
           calendarEl.style.display = 'none';
       }
   });
