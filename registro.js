@@ -50,10 +50,11 @@ function limpiarCampos() {
 }
 
 //mostrar y ocultar el calendario
+//mostrar y ocultar el calendario
 document.addEventListener('DOMContentLoaded', function() {
   var calendarEl = document.getElementById('calendario');
   var inputFecha = document.getElementById('fecha');
-  var btnCalendario = document.getElementById('calendarioBoton');
+  var calendarioBoton = document.getElementById('calendarioBoton');
   var calendar;
 
   // Configuración del calendario
@@ -74,7 +75,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
   // Asegurarse de que el calendario se oculte si se hace clic fuera de él
   document.addEventListener('click', function(e) {
-      if (e.target !== calendarioBotonario && !calendarEl.contains(e.target)) {
+      if (e.target !== calendarioBoton && !calendarEl.contains(e.target)) {
           calendarEl.style.display = 'none';
       }
   });
@@ -90,10 +91,17 @@ document.addEventListener('DOMContentLoaded', function() {
       window.location.href = "registrar.html";
       console.log("Botón reg clickeado ok");
   });
-
-  // Confirmar formulario
-  document.getElementById("confirmar").addEventListener("click", function() {
-      // Aquí puedes agregar la lógica para confirmar el formulario, por ejemplo, enviar datos a través de una solicitud HTTP
-      console.log("Formulario confirmado");
-  });
 });
+
+
+  // Navegar al formulario principal
+  document.getElementById("principal").addEventListener("click", function() {
+      window.location.href = "index.html";
+      console.log("Botón principal clickeado");
+  });
+
+  // Navegar al formulario de registro
+  document.getElementById("reg").addEventListener("click", function() {
+      window.location.href = "registrar.html";
+      console.log("Botón reg clickeado ok");
+  });
