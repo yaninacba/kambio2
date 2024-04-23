@@ -6,6 +6,9 @@
   <title>Registra tu cambio</title>
   <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" href="registro.css">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/5.10.1/main.min.css" rel="stylesheet">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/5.10.1/main.min.js"></script>
   <script type="module" src="registro.js"></script>
 </head>
 <body>
@@ -46,6 +49,13 @@
           <button id="confirmar" type="button" class="btn btn-outline-primary">Confirmar</button>
         </div>
       </div>
+
+      <label for="fecha">Selecciona una fecha:</label>
+        <!-- Campo de entrada de fecha -->
+        <input type="text" id="fecha" name="fecha" readonly>
+        <!-- Botón para abrir el calendario -->
+        <button type="button" id="calendarioBoton">Seleccionar fecha</button>
+        <div id="calendario" style="display: none;"></div>
     </form>
   </div>
 
