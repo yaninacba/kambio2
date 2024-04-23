@@ -48,3 +48,35 @@ function limpiarCampos() {
   document.getElementById("telefono").value = "";
   document.getElementById("isla").value = "";
 }
+
+//mostrar y ocultar el calendario
+document.addEventListener('DOMContentLoaded', function() {
+  var calendarEl = document.getElementById('calendario');
+  var formulario = document.getElementById('inicio');
+  var inputFecha = document.getElementById('fecha');
+  var calendarioBoton = document.getElementById('calendarioBoton');
+
+  var calendar = new FullCalendar.Calendar(calendarEl, {
+      // Configuración del calendario
+      initialView: 'dayGridMonth', // Vista inicial del calendario
+      selectable: true, // Permitir selección de fechas
+      dateClick: function(info) {
+          // Cuando el usuario hace clic en una fecha en el calendario
+          inputFecha.value = info.dateStr; // Establecer el valor del campo de entrada de fecha
+          calendarEl.style.display = 'none'; // Ocultar el calendario
+      }
+  });
+
+  // Al hacer clic en el botón, mostrar el calendario
+  abrirCalendario.addEventListener('click', function() {
+      calendarEl.style.display = 'block'; // Mostrar el calendario
+      calendar.render(); // Renderizar el calendario
+  });
+
+  // Asegurarse de que el calendario se oculte si se hace clic fuera de él
+  document.addEventListener('click', function(e) {
+      if (!formulario.contains(e.target) && e.target !== calendarioBoton) {
+          calendarEl.style.display = 'none'; // Ocultar el calendario
+      }
+  });
+});
