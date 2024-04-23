@@ -52,31 +52,48 @@ function limpiarCampos() {
 //mostrar y ocultar el calendario
 document.addEventListener('DOMContentLoaded', function() {
   var calendarEl = document.getElementById('calendario');
-  var formulario = document.getElementById('inicio');
   var inputFecha = document.getElementById('fecha');
-  var calendarioBoton = document.getElementById('calendarioBoton');
+  var btnCalendario = document.getElementById('calendarioBoton');
+  var calendar;
 
-  var calendar = new FullCalendar.Calendar(calendarEl, {
-      // Configuración del calendario
-      initialView: 'dayGridMonth', // Vista inicial del calendario
-      selectable: true, // Permitir selección de fechas
+  // Configuración del calendario
+  calendar = new FullCalendar.Calendar(calendarEl, {
+      initialView: 'dayGridMonth',
+      selectable: true,
       dateClick: function(info) {
-          // Cuando el usuario hace clic en una fecha en el calendario
-          inputFecha.value = info.dateStr; // Establecer el valor del campo de entrada de fecha
-          calendarEl.style.display = 'none'; // Ocultar el calendario
+          inputFecha.value = info.dateStr;
+          calendarEl.style.display = 'none';
       }
   });
 
   // Al hacer clic en el botón, mostrar el calendario
-  abrirCalendario.addEventListener('click', function() {
-      calendarEl.style.display = 'block'; // Mostrar el calendario
-      calendar.render(); // Renderizar el calendario
+  btnCalendario.addEventListener('click', function() {
+      calendar.render();
+      calendarEl.style.display = 'block';
   });
 
   // Asegurarse de que el calendario se oculte si se hace clic fuera de él
   document.addEventListener('click', function(e) {
-      if (!formulario.contains(e.target) && e.target !== calendarioBoton) {
-          calendarEl.style.display = 'none'; // Ocultar el calendario
+      if (e.target !== btnCalendario && !calendarEl.contains(e.target)) {
+          calendarEl.style.display = 'none';
       }
+  });
+
+  // Navegar al formulario principal
+  document.getElementById("principal").addEventListener("click", function() {
+      window.location.href = "index.html";
+      console.log("Botón principal clickeado");
+  });
+
+  // Navegar al formulario de registro
+  document.getElementById("reg").addEventListener("click", function() {
+      window.location.href = "registrar.html";
+      console.log("Botón reg clickeado ok");
+  });
+
+  // Confirmar formulario
+  document.getElementById("confirmar").addEventListener("click", function() {
+      // Aquí puedes agregar la lógica para confirmar el formulario, por ejemplo, enviar datos a través de una solicitud HTTP
+      console.log("Formulario confirmado");
   });
 });
