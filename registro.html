@@ -10,6 +10,19 @@
   <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-year-calendar/1.1.1/css/bootstrap-year-calendar.css" rel="stylesheet">
 </head>
 <body>
+
+  <ul class="nav justify-content-center">
+    <li class="nav-item">
+      <a class="nav-link active" aria-current="page" href="index.html">Principal</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="registro.html">Registrar</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="buscar.html">Buscar</a>
+    </li>
+    
+  </ul>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/6.1.11/index.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/6.1.11/index.global.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/6.1.11/index.global.min.js"></script>
@@ -65,16 +78,6 @@
     <button  id="principal"  class="btn btn-primary" type="button">Principal</button>
     <button id="reg"  class="btn btn-primary" type="button">Registrar</button>
   </div>
-  <script>
-    document.getElementById("principal").addEventListener("click", function() {
-window.location.href = "index.html";
-console.log("Botón principal clickeado");
-});
-document.getElementById("reg").addEventListener("click", function() {
-window.location.href = "registrar.html";
-console.log("Botón reg clickeado ok");
-});
 
- </script>
 </body>
 </html>
