@@ -54,6 +54,9 @@ function limpiarCampos() {
 //mostrar y ocultar el calendario
 //mostrar y ocultar el calendario
 
+const calendarEl = document.getElementById('calendario'); 
+let calendar;
+
   // Configuración del calendario
   calendar = new FullCalendar.Calendar(calendarEl, {
       initialView: 'dayGridMonth',
@@ -77,18 +80,8 @@ function limpiarCampos() {
       }
   });
 
-  // Navegar al formulario principal
-  document.getElementById("principal").addEventListener("click", function() {
-      window.location.href = "index.html";
-      console.log("Botón principal clickeado");
-  });
 
-  // Navegar al formulario de registro
-  document.getElementById("reg").addEventListener("click", function() {
-      window.location.href = "registrar.html";
-      console.log("Botón reg clickeado ok");
-  });
-});
+
 
 
   // Navegar al formulario principal
