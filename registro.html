@@ -59,13 +59,24 @@
           </select>
         </div>
       </div>
+      <div class="form-group row">
+        <label for="turno" class="col-sm-2 col-form-label">Isla</label>
+        <div class="col-sm-10">
+          <select id="turno" class="form-select">
+            <option value="mañana">MAÑANA</option>
+            <option value="tarde">TARDE</option>
+            <option value="noche">NOCHE</option>
+           
+          </select>
+        </div>
+      </div>
     
       <label for="fecha">Selecciona una fecha:</label>
         <!-- Campo de entrada de fecha -->
         <input type="text" id="fecha" name="fecha" readonly>
         <!-- Botón para abrir el calendario -->
         <button type="button" id="calendarioBoton">Seleccionar fecha</button>
-        <div id="calendario" style="display: none; width: 200px; max-width: 100%;"></div>
+        <div id="calendario" style="display: none; width: 300px; max-width: 100%;"></div>
         <div class="form-group row">
           <div class="col-sm-10 offset-sm-2">
             <button id="confirmar" type="button" class="btn btn-outline-primary">Confirmar</button>
@@ -74,10 +85,6 @@
     </form>
   </div>
 
-  <div class="d-grid gap-2 col-6 mx-auto">
-    <button  id="principal"  class="btn btn-primary" type="button">Principal</button>
-    <button id="reg"  class="btn btn-primary" type="button">Registrar</button>
-  </div>
 
 </body>
 </html>
