@@ -34,7 +34,9 @@ document.getElementById("botonHfc").addEventListener("click", function() {
          
           datosDiv.textContent = `Nombre: ${doc.data().nombre}\n
                                   Apellido: ${doc.data().apellido}\n
-                                  Isla: ${doc.data().isla}`;
+                                  Isla: ${doc.data().isla}\n
+                                  Turno: ${doc.data().turno}\n
+                                  Fecha:${doc.data().fecha} `;
           datosDiv.classList.add('dato');
           const confirmButton = document.createElement('button');
           confirmButton.textContent = 'Confirmar';
@@ -87,7 +89,9 @@ try {
         
         datosDiv.textContent = `Nombre: ${doc.data().nombre}\n
                                 Apellido: ${doc.data().apellido}\n
-                                Isla: ${doc.data().isla}`;
+                                Isla: ${doc.data().isla}\n
+                                Turno: ${doc.data().turno}\n
+                                Fecha:${doc.data().fecha} `;
         datosDiv.classList.add('dato');
         const confirmButton = document.createElement('button');
         confirmButton.textContent = 'Confirmar';
@@ -140,7 +144,9 @@ async function mostrarCattv() {
            
             datosDiv.textContent = `Nombre: ${doc.data().nombre}\n
                                     Apellido: ${doc.data().apellido}\n
-                                    Isla: ${doc.data().isla}`;
+                                    Isla: ${doc.data().isla}\n
+                                    Turno: ${doc.data().turno}\n
+                                    Fecha:${doc.data().fecha} `;
             datosDiv.classList.add('dato');
             const confirmButton = document.createElement('button');
             confirmButton.textContent = 'Confirmar';
@@ -192,7 +198,9 @@ async function mostrarMovil() {
             
             datosDiv.textContent = `Nombre: ${doc.data().nombre}\n
                                     Apellido: ${doc.data().apellido}\n
-                                    Isla: ${doc.data().isla}`;
+                                    Isla: ${doc.data().isla}\n
+                                    Turno: ${doc.data().turno}\n
+                                    Fecha:${doc.data().fecha} `;
             datosDiv.classList.add('dato');
             
             const confirmButton = document.createElement('button');
