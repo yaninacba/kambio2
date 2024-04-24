@@ -53,11 +53,6 @@ function limpiarCampos() {
 
 //mostrar y ocultar el calendario
 //mostrar y ocultar el calendario
-document.addEventListener('DOMContentLoaded', function() {
-  var calendarEl = document.getElementById('calendario');
-  var inputFecha = document.getElementById('fecha');
-  var calendarioBoton = document.getElementById('calendarioBoton');
-  var calendar;
 
   // Configuración del calendario
   calendar = new FullCalendar.Calendar(calendarEl, {
