@@ -1,5 +1,5 @@
  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.10.0/firebase-app.js";
- import {getDocs, addDoc, collection, getFirestore } from "https://www.gstatic.com/firebasejs/10.10.0/firebase-firestore.js";
+ import {getDocs, addDoc, collection, getFirestore, deleteDoc } from "https://www.gstatic.com/firebasejs/10.10.0/firebase-firestore.js";
 
 
 
@@ -68,8 +68,12 @@ let calendar;
       initialView: 'dayGridMonth',
       selectable: true,
       dateClick: function(info) {
-          inputFecha.value = info.dateStr;
-          calendarEl.style.display = 'none';
+        const fechaSeleccionada = new Date(info.dateStr);
+        const dia = fechaSeleccionada.getDate();
+        const mes = fechaSeleccionada.getMonth() + 1; // meses en java de 0 a 11 por eso sumo 1 ojo 
+
+        document.getElementById('fecha').value = `${dia}/${mes}`;
+        calendarEl.style.display = 'none';
       }
   });
 
@@ -89,15 +93,3 @@ let calendar;
 
 
 
-
-  // Navegar al formulario principal
-  document.getElementById("principal").addEventListener("click", function() {
-      window.location.href = "index.html";
-      console.log("Botón principal clickeado");
-  });
-
-  // Navegar al formulario de registro
-  document.getElementById("reg").addEventListener("click", function() {
-      window.location.href = "registrar.html";
-      console.log("Botón reg clickeado ok");
-  });
