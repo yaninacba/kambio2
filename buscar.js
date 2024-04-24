@@ -22,51 +22,61 @@ document.getElementById("botonHfc").addEventListener("click", function() {
  });
 
  async function mostrarHfc() {
-  try {
-      const q = query(collection(db, "usuario"), where("isla", "==", "hfc"));
-      const querySnapshot = await getDocs(q);
+    try {
+        const q = query(collection(db, "usuario"), where("isla", "==", "hfc"));
+        const querySnapshot = await getDocs(q);
 
-      const datosContainer = document.getElementById('datosContainer');
-      datosContainer.innerHTML = ''; // Limpiar contenido previo
+        const datosContainer = document.getElementById('datosContainer');
+        datosContainer.innerHTML = ''; // Limpiar contenido previo
 
-      querySnapshot.forEach((doc) => {
-          const datosDiv = document.createElement('div');
-         
-          datosDiv.textContent = `Nombre: ${doc.data().nombre}\n
-                                  Apellido: ${doc.data().apellido}\n
-                                  Isla: ${doc.data().isla}\n
-                                  Turno: ${doc.data().turno}\n
-                                  Fecha:${doc.data().fecha} `;
-          datosDiv.classList.add('dato');
-          const confirmButton = document.createElement('button');
-          confirmButton.textContent = 'Confirmar';
-          confirmButton.classList.add('btn', 'btn-success');
-          confirmButton.type = 'button'; // Para asegurarse de que no sea un botón de envío de formulario
-          
-          confirmButton.addEventListener('click', () => {
-              const telefono = doc.data().telefono;
-              if (telefono) {
-                  // mensaje automatico
-                  const mensaje = encodeURIComponent("Hola, confirmas el cambio?");
-                  const enlaceWhatsApp = `https://wa.me/${telefono}?text=${mensaje}`;
-                  window.open(enlaceWhatsApp, '_blank');
-                  
-                  // Eliminar el botón de confirmación del datosDiv
-                  datosDiv.removeChild(confirmButton);
-              } else {
-                  console.error("El documento no contiene un número de teléfono válido.");
-              }
-          });
+        querySnapshot.forEach((doc) => {
+            const datosDiv = document.createElement('div');
+            
+            datosDiv.textContent = `Nombre: ${doc.data().nombre}\n
+                                    Apellido: ${doc.data().apellido}\n
+                                    Isla: ${doc.data().isla}\n
+                                    Turno: ${doc.data().turno}\n
+                                    Fecha:${doc.data().fecha} `;
+            datosDiv.classList.add('dato');
+            const confirmButton = document.createElement('button');
+            confirmButton.textContent = 'Confirmar';
+            confirmButton.classList.add('btn', 'btn-success');
+            confirmButton.type = 'button'; // Para asegurarse de que no sea un botón de envío de formulario
+            
+            confirmButton.addEventListener('click', async () => {
+                const telefono = doc.data().telefono;
+                if (telefono) {
+                    // mensaje automatico
+                    const mensaje = encodeURIComponent("Hola, confirmas el cambio?");
+                    const enlaceWhatsApp = `https://wa.me/${telefono}?text=${mensaje}`;
+                    window.open(enlaceWhatsApp, '_blank');
+                    
+                    try {
+                        // Eliminar el documento de Firestore
+                        await deleteDoc(doc(db, "usuario", doc.id));
+                        console.log("Documento eliminado con éxito");
+                        
+                        // Eliminar el div de datosContainer
+                        datosContainer.removeChild(datosDiv);
+                    } catch (error) {
+                        console.error("Error eliminando documento:", error);
+                        alert("Error al eliminar el documento.");
+                    }
+                } else {
+                    console.error("El documento no contiene un número de teléfono válido.");
+                }
+            });
 
-          // Agregar el botón de confirmación al div de datos
-          datosDiv.appendChild(confirmButton);
+            // Agregar el botón de confirmación al div de datos
+            datosDiv.appendChild(confirmButton);
 
-          // Agregar el div de datos al contenedor
-          datosContainer.appendChild(datosDiv);
-      });
-  } catch (error) {
-      console.error("Error al recuperar datos:", error);
-  }
+            // Agregar el div de datos al contenedor
+            datosContainer.appendChild(datosDiv);
+        });
+    } catch (error) {
+        console.error("Error al recuperar datos:", error);
+        alert("Error al recuperar datos.");
+    }
 }
 
 
@@ -77,52 +87,63 @@ document.getElementById("botonFlow").addEventListener("click", function() {
 });
 
 async function mostrarFlow() {
-try {
-    const q = query(collection(db, "usuario"), where("isla", "==", "flow"));
-    const querySnapshot = await getDocs(q);
+    try {
+        const q = query(collection(db, "usuario"), where("isla", "==", "flow"));
+        const querySnapshot = await getDocs(q);
 
-    const datosContainer = document.getElementById('datosContainer');
-    datosContainer.innerHTML = ''; // Limpiar contenido previo
+        const datosContainer = document.getElementById('datosContainer');
+        datosContainer.innerHTML = ''; // Limpiar contenido previo
 
-    querySnapshot.forEach((doc) => {
-        const datosDiv = document.createElement('div');
-        
-        datosDiv.textContent = `Nombre: ${doc.data().nombre}\n
-                                Apellido: ${doc.data().apellido}\n
-                                Isla: ${doc.data().isla}\n
-                                Turno: ${doc.data().turno}\n
-                                Fecha:${doc.data().fecha} `;
-        datosDiv.classList.add('dato');
-        const confirmButton = document.createElement('button');
-        confirmButton.textContent = 'Confirmar';
-        confirmButton.classList.add('btn', 'btn-success');
-        confirmButton.type = 'button'; // Para asegurarse de que no sea un botón de envío de formulario
-        
-        confirmButton.addEventListener('click', () => {
-            const telefono = doc.data().telefono;
-            if (telefono) {
-                // mensaje automatico
-                const mensaje = encodeURIComponent("Hola, confirmas el cambio?");
-                const enlaceWhatsApp = `https://wa.me/${telefono}?text=${mensaje}`;
-                window.open(enlaceWhatsApp, '_blank');
-                
-                // Eliminar el botón de confirmación del datosDiv
-                datosDiv.removeChild(confirmButton);
-            } else {
-                console.error("El documento no contiene un número de teléfono válido.");
-            }
+        querySnapshot.forEach((doc) => {
+            const datosDiv = document.createElement('div');
+            
+            datosDiv.textContent = `Nombre: ${doc.data().nombre}\n
+                                    Apellido: ${doc.data().apellido}\n
+                                    Isla: ${doc.data().isla}\n
+                                    Turno: ${doc.data().turno}\n
+                                    Fecha:${doc.data().fecha} `;
+            datosDiv.classList.add('dato');
+            const confirmButton = document.createElement('button');
+            confirmButton.textContent = 'Confirmar';
+            confirmButton.classList.add('btn', 'btn-success');
+            confirmButton.type = 'button'; // Para asegurarse de que no sea un botón de envío de formulario
+            
+            confirmButton.addEventListener('click', async () => {
+                const telefono = doc.data().telefono;
+                if (telefono) {
+                    // mensaje automatico
+                    const mensaje = encodeURIComponent("Hola, confirmas el cambio?");
+                    const enlaceWhatsApp = `https://wa.me/${telefono}?text=${mensaje}`;
+                    window.open(enlaceWhatsApp, '_blank');
+                    
+                    try {
+                        // Eliminar el documento de Firestore
+                        await deleteDoc(doc(db, "usuario", doc.id));
+                        console.log("Documento eliminado con éxito");
+                        
+                        // Eliminar el div de datosContainer
+                        datosContainer.removeChild(datosDiv);
+                    } catch (error) {
+                        console.error("Error eliminando documento:", error);
+                        alert("Error al eliminar el documento.");
+                    }
+                } else {
+                    console.error("El documento no contiene un número de teléfono válido.");
+                }
+            });
+
+            // botón de confirmación al div de datos
+            datosDiv.appendChild(confirmButton);
+
+            // div de datos al contenedor
+            datosContainer.appendChild(datosDiv);
         });
-
-        // Agregar el botón de confirmación al div de datos
-        datosDiv.appendChild(confirmButton);
-
-        // Agregar el div de datos al contenedor
-        datosContainer.appendChild(datosDiv);
-    });
-} catch (error) {
-    console.error("Error al recuperar datos:", error);
+    } catch (error) {
+        console.error("Error al recuperar datos:", error);
+        alert("Error al recuperar datos.");
+    }
 }
-}
+
 
 
 //funcion para leer cattv
@@ -130,14 +151,13 @@ document.getElementById("botonCattv").addEventListener("click", function() {
   mostrarCattv();
  console.log("Botón mostrar clickeado");
 });
-
 async function mostrarCattv() {
     try {
         const q = query(collection(db, "usuario"), where("isla", "==", "cattv"));
         const querySnapshot = await getDocs(q);
 
         const datosContainer = document.getElementById('datosContainer');
-        datosContainer.innerHTML = ''; 
+        datosContainer.innerHTML = ''; // Limpiar contenido previo
 
         querySnapshot.forEach((doc) => {
             const datosDiv = document.createElement('div');
@@ -153,7 +173,7 @@ async function mostrarCattv() {
             confirmButton.classList.add('btn', 'btn-success');
             confirmButton.type = 'button'; // Para asegurarse de que no sea un botón de envío de formulario
             
-            confirmButton.addEventListener('click', () => {
+            confirmButton.addEventListener('click', async () => {
                 const telefono = doc.data().telefono;
                 if (telefono) {
                     // mensaje automatico
@@ -161,8 +181,17 @@ async function mostrarCattv() {
                     const enlaceWhatsApp = `https://wa.me/${telefono}?text=${mensaje}`;
                     window.open(enlaceWhatsApp, '_blank');
                     
-                    // Eliminar el botón de confirmación del datosDiv
-                    datosDiv.removeChild(confirmButton);
+                    try {
+                        // Eliminar el documento de Firestore
+                        await deleteDoc(doc(db, "usuario", doc.id));
+                        console.log("Documento eliminado con éxito");
+                        
+                        // Eliminar el div de datosContainer
+                        datosContainer.removeChild(datosDiv);
+                    } catch (error) {
+                        console.error("Error eliminando documento:", error);
+                        alert("Error al eliminar el documento.");
+                    }
                 } else {
                     console.error("El documento no contiene un número de teléfono válido.");
                 }
@@ -176,9 +205,13 @@ async function mostrarCattv() {
         });
     } catch (error) {
         console.error("Error al recuperar datos:", error);
+        alert("Error al recuperar datos.");
     }
 }
 
+
+
+            
 //funcion para leer movil
 document.getElementById("botonMovil").addEventListener("click", function() {
   mostrarMovil();
@@ -200,7 +233,7 @@ async function mostrarMovil() {
                                     Apellido: ${doc.data().apellido}\n
                                     Isla: ${doc.data().isla}\n
                                     Turno: ${doc.data().turno}\n
-                                    Fecha:${doc.data().fecha} `;
+                                    Fecha: ${doc.data().fecha} `;
             datosDiv.classList.add('dato');
             
             const confirmButton = document.createElement('button');
@@ -208,7 +241,7 @@ async function mostrarMovil() {
             confirmButton.classList.add('btn', 'btn-success');
             confirmButton.type = 'button'; // Para asegurarse de que no sea un botón de envío de formulario
             
-            confirmButton.addEventListener('click', () => {
+            confirmButton.addEventListener('click', async () => {
                 const telefono = doc.data().telefono;
                 if (telefono) {
                     // mensaje automatico
@@ -216,30 +249,31 @@ async function mostrarMovil() {
                     const enlaceWhatsApp = `https://wa.me/${telefono}?text=${mensaje}`;
                     window.open(enlaceWhatsApp, '_blank');
                     
-                    // Eliminar el botón de confirmación del datosDiv
-                    datosDiv.removeChild(confirmButton);
+                    try {
+                        // Eliminar el documento de Firestore
+                        await deleteDoc(doc(db, "usuario", doc.id));
+                        console.log("Documento eliminado con éxito");
+                        
+                        // Eliminar el div de datosContainer
+                        datosContainer.removeChild(datosDiv);
+                    } catch (error) {
+                        console.error("Error eliminando documento:", error);
+                        alert("Error al eliminar el documento.");
+                    }
                 } else {
                     console.error("El documento no contiene un número de teléfono válido.");
                 }
             });
 
-            // Agregar el botón de confirmación al div de datos
+            //  botón de confirmación al div de datos
             datosDiv.appendChild(confirmButton);
 
-            // Agregar el div de datos al contenedor
+            // div de datos al contenedor
             datosContainer.appendChild(datosDiv);
         });
     } catch (error) {
         console.error("Error al recuperar datos:", error);
+        alert("Error al recuperar datos.");
     }
 }
-
-
-
-
-
-
-
-
-
 
