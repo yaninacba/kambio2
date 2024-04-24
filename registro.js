@@ -21,18 +21,22 @@ const firebaseConfig = {
     const apellido = document.getElementById('apellido').value;
     const telefono = document.getElementById('telefono').value;
     const isla = document.getElementById('isla').value;
-    agregarDocumento(nombre,apellido,telefono,isla);
+    const turno = document.getElementById('turno').value;
+    const fecha = document.getElementById('fecha').value;
+    agregarDocumento(nombre,apellido,telefono,isla,turno,fecha);
     console.log("Cambio cargado ");
 });
 
   
-    async function agregarDocumento(nombre,apellido,telefono,isla){
+    async function agregarDocumento(nombre,apellido,telefono,isla,turno,fecha){
     try {
    const docRef = await addDoc(collection(db, "usuario"), {
     nombre: nombre,
     apellido: apellido,
     telefono: telefono,
-    isla: isla
+    isla: isla,
+    turno: turno,
+    fecha: fecha
 });
 console.log("Document written with ID: ", docRef.id);
 alert("Cambio agregado exitosamente" + docRef.id);
@@ -49,6 +53,8 @@ function limpiarCampos() {
   document.getElementById("apellido").value = "";
   document.getElementById("telefono").value = "";
   document.getElementById("isla").value = "";
+  document.getElementById("turno").value = "";
+  document.getElementById("fecha").value = "";
 }
 
 //mostrar y ocultar el calendario
