@@ -6,3 +6,8 @@
     flex-direction: column; /* Para apilar los elementos verticalmente */
 }
  
+#calendario {
+    position: absolute;
+    top: 50px; /* Ajusta esta propiedad según la altura deseada */
+    left: 0;
+  }
