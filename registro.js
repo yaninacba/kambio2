@@ -22,13 +22,25 @@ const firebaseConfig = {
     const telefono = document.getElementById('telefono').value;
     const isla = document.getElementById('isla').value;
     const turno = document.getElementById('turno').value;
+    const cambiar = document.getElementById('cambiar').value;
     const fecha = document.getElementById('fecha').value;
     agregarDocumento(nombre,apellido,telefono,isla,turno,fecha);
     console.log("Cambio cargado ");
 });
 
+//validar si los campos estan completos
+function validarCampos(nombre, apellido, telefono, isla, turno, cambiar, fecha) {
+  if (!nombre || !apellido || !telefono || !isla || !turno || !fecha) {
+      alert("Por favor, completa todos los campos.");
+      return false;
+  }
+  return true;
+}
   
-    async function agregarDocumento(nombre,apellido,telefono,isla,turno,fecha){
+    async function agregarDocumento(nombre,apellido,telefono,isla,turno,cambiar,fecha){
+      if (!validarCampos(nombre, apellido, telefono, isla, turno, fecha)) {
+        return;
+    }
     try {
    const docRef = await addDoc(collection(db, "usuario"), {
     nombre: nombre,
@@ -36,6 +48,7 @@ const firebaseConfig = {
     telefono: telefono,
     isla: isla,
     turno: turno,
+    cambiar: cambiar,
     fecha: fecha
 });
 console.log("Document written with ID: ", docRef.id);
@@ -54,7 +67,9 @@ function limpiarCampos() {
   document.getElementById("telefono").value = "";
   document.getElementById("isla").value = "";
   document.getElementById("turno").value = "";
+  document.getElementById("cambiar").value = "";
   document.getElementById("fecha").value = "";
+
 }
 
 
