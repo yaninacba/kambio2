@@ -73,37 +73,30 @@ function limpiarCampos() {
 }
 
 
-
 const calendarEl = document.getElementById('calendario'); 
 let calendar;
 
-// Configuración del calendario
 calendar = new FullCalendar.Calendar(calendarEl, {
     initialView: 'dayGridMonth',
     selectable: true,
     dateClick: function(info) {
         const fechaSeleccionada = new Date(info.dateStr);
         const dia = fechaSeleccionada.getDate();
-        const mes = fechaSeleccionada.getMonth() + 1; // meses en java de 0 a 11 por eso sumo 1 ojo 
-        const anio= fechaSeleccionada.getUTCFullYear(); 
+        const mes = fechaSeleccionada.getMonth() + 1;
 
-        document.getElementById('fecha').value = `${dia}/${mes}/${anio}`;
+        document.getElementById('fecha').value = `${dia}/${mes}`;
         calendarEl.style.display = 'none';
     }
 });
 
 // Renderizar el calendario al cargar la página
- document.addEventListener("DOMContentLoaded", function() {
-      calendar.render();
-    });
+calendar.render();
+
+// Mostrar el calendario
+calendarEl.style.display = 'block';
 
 
-// Asegurarse de que el calendario se oculte si se hace clic fuera de él
-document.addEventListener('click', function(e) {
-    if (e.target !== calendarEl && !calendarEl.contains(e.target)) {
-        calendarEl.style.display = 'none';
-    }
-});
+
 
 
 
