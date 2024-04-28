@@ -36,6 +36,7 @@ document.getElementById("botonHfc").addEventListener("click", function() {
                                     Apellido: ${doc.data().apellido}\n
                                     Isla: ${doc.data().isla}\n
                                     Turno: ${doc.data().turno}\n
+                                    Cambio por: ${doc.data().cambiar}\n
                                     Fecha:${doc.data().fecha} `;
             datosDiv.classList.add('dato');
             const confirmButton = document.createElement('button');
@@ -46,21 +47,28 @@ document.getElementById("botonHfc").addEventListener("click", function() {
             confirmButton.addEventListener('click', async () => {
                 const telefono = doc.data().telefono;
                 if (telefono) {
-                    // mensaje automatico
-                    const mensaje = encodeURIComponent("Hola, confirmas el cambio?");
-                    const enlaceWhatsApp = `https://wa.me/${telefono}?text=${mensaje}`;
-                    window.open(enlaceWhatsApp, '_blank');
-                    
-                    try {
-                        // Eliminar el documento de Firestore
-                        await deleteDoc(doc(db, "usuario", doc.id));
-                        console.log("Documento eliminado con éxito");
+                    // Mostrar ventana de confirmación
+                    const mensajeConfirmacion = `¿Estás seguro de que deseas confirmar el cambio, ${doc.data().cambiar}?`;
+                    const confirmarCambio = confirm(mensajeConfirmacion);
+                    if (confirmarCambio) {
+                        // Si el usuario confirma el cambio, entonces proceder con el resto del código
+                        const mensaje = encodeURIComponent("Hola, confirmas el cambio para ?");
+                        const enlaceWhatsApp = `https://wa.me/${telefono}?text=${mensaje}`;
+                        window.open(enlaceWhatsApp, '_blank');
                         
-                        // Eliminar el div de datosContainer
-                        datosContainer.removeChild(datosDiv);
-                    } catch (error) {
-                        console.error("Error eliminando documento:", error);
-                        alert("Error al eliminar el documento.");
+                        try {
+                            // Eliminar el documento de Firestore
+                            await deleteDoc(doc(db, "usuario", doc.id));
+                            console.log("Documento eliminado con éxito");
+                            
+                            // Eliminar el div de datosContainer
+                            datosContainer.removeChild(datosDiv);
+                        } catch (error) {
+                            console.error("Error eliminando documento:", error);
+                            alert("Error al eliminar el documento.");
+                        }
+                    } else {
+                        console.log("La confirmación del cambio ha sido cancelada.");
                     }
                 } else {
                     console.error("El documento no contiene un número de teléfono válido.");
@@ -78,6 +86,7 @@ document.getElementById("botonHfc").addEventListener("click", function() {
         alert("Error al recuperar datos.");
     }
 }
+
 
 
 //funcion para leer flow
@@ -101,6 +110,7 @@ async function mostrarFlow() {
                                     Apellido: ${doc.data().apellido}\n
                                     Isla: ${doc.data().isla}\n
                                     Turno: ${doc.data().turno}\n
+                                    Cambio por: ${doc.data().cambiar}\n
                                     Fecha:${doc.data().fecha} `;
             datosDiv.classList.add('dato');
             const confirmButton = document.createElement('button');
@@ -111,31 +121,38 @@ async function mostrarFlow() {
             confirmButton.addEventListener('click', async () => {
                 const telefono = doc.data().telefono;
                 if (telefono) {
-                    // mensaje automatico
-                    const mensaje = encodeURIComponent("Hola, confirmas el cambio?");
-                    const enlaceWhatsApp = `https://wa.me/${telefono}?text=${mensaje}`;
-                    window.open(enlaceWhatsApp, '_blank');
-                    
-                    try {
-                        // Eliminar el documento de Firestore
-                        await deleteDoc(doc(db, "usuario", doc.id));
-                        console.log("Documento eliminado con éxito");
+                    // Mostrar ventana de confirmación
+                    const mensajeConfirmacion = `¿Estás seguro de que deseas confirmar el cambio, ${doc.data().cambiar}?`;
+                    const confirmarCambio = confirm(mensajeConfirmacion);
+                    if (confirmarCambio) {
+                        // Si el usuario confirma el cambio, entonces proceder con el resto del código
+                        const mensaje = encodeURIComponent("Hola, confirmas el cambio para ?");
+                        const enlaceWhatsApp = `https://wa.me/${telefono}?text=${mensaje}`;
+                        window.open(enlaceWhatsApp, '_blank');
                         
-                        // Eliminar el div de datosContainer
-                        datosContainer.removeChild(datosDiv);
-                    } catch (error) {
-                        console.error("Error eliminando documento:", error);
-                        alert("Error al eliminar el documento.");
+                        try {
+                            // Eliminar el documento de Firestore
+                            await deleteDoc(doc(db, "usuario", doc.id));
+                            console.log("Documento eliminado con éxito");
+                            
+                            // Eliminar el div de datosContainer
+                            datosContainer.removeChild(datosDiv);
+                        } catch (error) {
+                            console.error("Error eliminando documento:", error);
+                            alert("Error al eliminar el documento.");
+                        }
+                    } else {
+                        console.log("La confirmación del cambio ha sido cancelada.");
                     }
                 } else {
                     console.error("El documento no contiene un número de teléfono válido.");
                 }
             });
 
-            // botón de confirmación al div de datos
+            // Agregar el botón de confirmación al div de datos
             datosDiv.appendChild(confirmButton);
 
-            // div de datos al contenedor
+            // Agregar el div de datos al contenedor
             datosContainer.appendChild(datosDiv);
         });
     } catch (error) {
@@ -143,6 +160,7 @@ async function mostrarFlow() {
         alert("Error al recuperar datos.");
     }
 }
+
 
 
 
@@ -166,6 +184,7 @@ async function mostrarCattv() {
                                     Apellido: ${doc.data().apellido}\n
                                     Isla: ${doc.data().isla}\n
                                     Turno: ${doc.data().turno}\n
+                                    Cambio por: ${doc.data().cambiar}\n
                                     Fecha:${doc.data().fecha} `;
             datosDiv.classList.add('dato');
             const confirmButton = document.createElement('button');
@@ -176,21 +195,28 @@ async function mostrarCattv() {
             confirmButton.addEventListener('click', async () => {
                 const telefono = doc.data().telefono;
                 if (telefono) {
-                    // mensaje automatico
-                    const mensaje = encodeURIComponent("Hola, confirmas el cambio?");
-                    const enlaceWhatsApp = `https://wa.me/${telefono}?text=${mensaje}`;
-                    window.open(enlaceWhatsApp, '_blank');
-                    
-                    try {
-                        // Eliminar el documento de Firestore
-                        await deleteDoc(doc(db, "usuario", doc.id));
-                        console.log("Documento eliminado con éxito");
+                    // Mostrar ventana de confirmación
+                    const mensajeConfirmacion = `¿Estás seguro de que deseas confirmar el cambio, ${doc.data().cambiar}?`;
+                    const confirmarCambio = confirm(mensajeConfirmacion);
+                    if (confirmarCambio) {
+                        // Si el usuario confirma el cambio, entonces proceder con el resto del código
+                        const mensaje = encodeURIComponent("Hola, confirmas el cambio para ?");
+                        const enlaceWhatsApp = `https://wa.me/${telefono}?text=${mensaje}`;
+                        window.open(enlaceWhatsApp, '_blank');
                         
-                        // Eliminar el div de datosContainer
-                        datosContainer.removeChild(datosDiv);
-                    } catch (error) {
-                        console.error("Error eliminando documento:", error);
-                        alert("Error al eliminar el documento.");
+                        try {
+                            // Eliminar el documento de Firestore
+                            await deleteDoc(doc(db, "usuario", doc.id));
+                            console.log("Documento eliminado con éxito");
+                            
+                            // Eliminar el div de datosContainer
+                            datosContainer.removeChild(datosDiv);
+                        } catch (error) {
+                            console.error("Error eliminando documento:", error);
+                            alert("Error al eliminar el documento.");
+                        }
+                    } else {
+                        console.log("La confirmación del cambio ha sido cancelada.");
                     }
                 } else {
                     console.error("El documento no contiene un número de teléfono válido.");
@@ -208,6 +234,7 @@ async function mostrarCattv() {
         alert("Error al recuperar datos.");
     }
 }
+
 
 
 
@@ -233,6 +260,7 @@ async function mostrarMovil() {
                                     Apellido: ${doc.data().apellido}\n
                                     Isla: ${doc.data().isla}\n
                                     Turno: ${doc.data().turno}\n
+                                    Cambio por: ${doc.data().cambiar}\n
                                     Fecha: ${doc.data().fecha} `;
             datosDiv.classList.add('dato');
             
@@ -244,31 +272,38 @@ async function mostrarMovil() {
             confirmButton.addEventListener('click', async () => {
                 const telefono = doc.data().telefono;
                 if (telefono) {
-                    // mensaje automatico
-                    const mensaje = encodeURIComponent("Hola, confirmas el cambio?");
-                    const enlaceWhatsApp = `https://wa.me/${telefono}?text=${mensaje}`;
-                    window.open(enlaceWhatsApp, '_blank');
-                    
-                    try {
-                        // Eliminar el documento de Firestore
-                        await deleteDoc(doc(db, "usuario", doc.id));
-                        console.log("Documento eliminado con éxito");
+                    // Mostrar ventana de confirmación
+                    const mensajeConfirmacion = `¿Estás seguro de que deseas confirmar el cambio, ${doc.data().cambiar}?`;
+                    const confirmarCambio = confirm(mensajeConfirmacion);
+                    if (confirmarCambio) {
+                        // Si el usuario confirma el cambio, entonces proceder con el resto del código
+                        const mensaje = encodeURIComponent("Hola, confirmas el cambio para ?");
+                        const enlaceWhatsApp = `https://wa.me/${telefono}?text=${mensaje}`;
+                        window.open(enlaceWhatsApp, '_blank');
                         
-                        // Eliminar el div de datosContainer
-                        datosContainer.removeChild(datosDiv);
-                    } catch (error) {
-                        console.error("Error eliminando documento:", error);
-                        alert("Error al eliminar el documento.");
+                        try {
+                            // Eliminar el documento de Firestore
+                            await deleteDoc(doc(db, "usuario", doc.id));
+                            console.log("Documento eliminado con éxito");
+                            
+                            // Eliminar el div de datosContainer
+                            datosContainer.removeChild(datosDiv);
+                        } catch (error) {
+                            console.error("Error eliminando documento:", error);
+                            alert("Error al eliminar el documento.");
+                        }
+                    } else {
+                        console.log("La confirmación del cambio ha sido cancelada.");
                     }
                 } else {
                     console.error("El documento no contiene un número de teléfono válido.");
                 }
             });
 
-            //  botón de confirmación al div de datos
+            // Agregar el botón de confirmación al div de datos
             datosDiv.appendChild(confirmButton);
 
-            // div de datos al contenedor
+            // Agregar el div de datos al contenedor
             datosContainer.appendChild(datosDiv);
         });
     } catch (error) {
@@ -276,4 +311,3 @@ async function mostrarMovil() {
         alert("Error al recuperar datos.");
     }
 }
-
