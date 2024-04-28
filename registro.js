@@ -30,7 +30,7 @@ const firebaseConfig = {
 
 //validar si los campos estan completos
 function validarCampos(nombre, apellido, telefono, isla, turno, cambiar, fecha) {
-  if (!nombre || !apellido || !telefono || !isla || !turno || !fecha) {
+  if (!nombre || !apellido || !telefono || !isla || !turno || !cambiar|| !fecha) {
       alert("Por favor, completa todos los campos.");
       return false;
   }
@@ -38,7 +38,7 @@ function validarCampos(nombre, apellido, telefono, isla, turno, cambiar, fecha) 
 }
   
     async function agregarDocumento(nombre,apellido,telefono,isla,turno,cambiar,fecha){
-      if (!validarCampos(nombre, apellido, telefono, isla, turno, fecha)) {
+      if (!validarCampos(nombre, apellido, telefono, isla, turno, cambiar, fecha)) {
         return;
     }
     try {
