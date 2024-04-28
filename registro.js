@@ -57,38 +57,36 @@ function limpiarCampos() {
   document.getElementById("fecha").value = "";
 }
 
-//mostrar y ocultar el calendario
-//mostrar y ocultar el calendario
+
 
 const calendarEl = document.getElementById('calendario'); 
 let calendar;
 
-  // Configuración del calendario
-  calendar = new FullCalendar.Calendar(calendarEl, {
-      initialView: 'dayGridMonth',
-      selectable: true,
-      dateClick: function(info) {
+// Configuración del calendario
+calendar = new FullCalendar.Calendar(calendarEl, {
+    initialView: 'dayGridMonth',
+    selectable: true,
+    dateClick: function(info) {
         const fechaSeleccionada = new Date(info.dateStr);
         const dia = fechaSeleccionada.getDate();
         const mes = fechaSeleccionada.getMonth() + 1; // meses en java de 0 a 11 por eso sumo 1 ojo 
+        const anio= fechaSeleccionada.getUTCFullYear(); 
 
-        document.getElementById('fecha').value = `${dia}/${mes}`;
+        document.getElementById('fecha').value = `${dia}/${mes}/${anio}`;
         calendarEl.style.display = 'none';
-      }
-  });
+    }
+});
 
-  // Al hacer clic en el botón, mostrar el calendario
-  calendarioBoton.addEventListener('click', function() {
-      calendar.render();
-      calendarEl.style.display = 'block';
-  });
+// Renderizar el calendario al cargar la página
+calendar.render();
 
-  // Asegurarse de que el calendario se oculte si se hace clic fuera de él
-  document.addEventListener('click', function(e) {
-      if (e.target !== calendarioBoton && !calendarEl.contains(e.target)) {
-          calendarEl.style.display = 'none';
-      }
-  });
+// Asegurarse de que el calendario se oculte si se hace clic fuera de él
+document.addEventListener('click', function(e) {
+    if (e.target !== calendarEl && !calendarEl.contains(e.target)) {
+        calendarEl.style.display = 'none';
+    }
+});
+
 
 
 
