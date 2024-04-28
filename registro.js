@@ -24,7 +24,7 @@ const firebaseConfig = {
     const turno = document.getElementById('turno').value;
     const cambiar = document.getElementById('cambiar').value;
     const fecha = document.getElementById('fecha').value;
-    agregarDocumento(nombre,apellido,telefono,isla,turno,fecha);
+    agregarDocumento(nombre,apellido,telefono,isla,turno,cambiar,fecha);
     console.log("Cambio cargado ");
 });
 
@@ -93,7 +93,10 @@ calendar = new FullCalendar.Calendar(calendarEl, {
 });
 
 // Renderizar el calendario al cargar la página
-calendar.render();
+ document.addEventListener("DOMContentLoaded", function() {
+      calendar.render();
+    });
+
 
 // Asegurarse de que el calendario se oculte si se hace clic fuera de él
 document.addEventListener('click', function(e) {
