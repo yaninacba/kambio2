@@ -37,7 +37,8 @@ document.getElementById("botonHfc").addEventListener("click", function() {
                                     Isla: ${doc.data().isla}\n
                                     Turno: ${doc.data().turno}\n
                                     Cambio por: ${doc.data().cambiar}\n
-                                    Fecha:${doc.data().fecha} `;
+                                    Fecha:${doc.data().fecha} \n
+                                    Id: ${doc.data().id} `;
             datosDiv.classList.add('dato');
             const confirmButton = document.createElement('button');
             confirmButton.textContent = 'Confirmar';
