@@ -52,10 +52,6 @@ document.getElementById("botonHfc").addEventListener("click", function() {
                     const confirmarCambio = confirm(mensajeConfirmacion);
                     if (confirmarCambio) {
                         // Si el usuario confirma el cambio, entonces proceder con el resto del código
-                        const mensaje = encodeURIComponent("Hola, confirmas el cambio para ?");
-                        const enlaceWhatsApp = `https://wa.me/${telefono}?text=${mensaje}`;
-                        window.open(enlaceWhatsApp, '_blank');
-                        
                         try {
                             // Eliminar el documento de Firestore
                             await deleteDoc(doc(db, "usuario", doc.id));
@@ -86,7 +82,6 @@ document.getElementById("botonHfc").addEventListener("click", function() {
         alert("Error al recuperar datos.");
     }
 }
-
 
 
 //funcion para leer flow
