@@ -53,17 +53,19 @@ document.getElementById("botonHfc").addEventListener("click", function() {
                     const confirmarCambio = confirm(mensajeConfirmacion);
                     if (confirmarCambio) {
                         // Si el usuario confirma el cambio, entonces proceder con el resto del código
-                        try {
-                         console.log("ID del documento a eliminar:", doc.id); // línea para imprimir el ID del documento
-                            await deleteDoc(doc(db, "usuario", doc.id));
-                            console.log("Documento eliminado con éxito");
-                            
-                            // Eliminar el div de datosContainer
-                            datosContainer.removeChild(datosDiv);
-                        } catch (error) {
-                            console.error("Error eliminando documento:", error);
-                            alert("Error al eliminar el documento.");
-                        }
+                       try {
+    console.log("ID del documento a eliminar:", doc.id); // Línea para imprimir el ID del documento
+    await deleteDoc(doc(db, "usuario", doc.id));
+    console.log("Documento eliminado con éxito");
+    
+    // Eliminar el div de datosContainer
+    datosContainer.removeChild(datosDiv);
+} catch (error) {
+    console.error("Error eliminando documento:", error);
+    alert("Error al eliminar el documento.");
+}
+ 
+                        
                     } else {
                         console.log("La confirmación del cambio ha sido cancelada.");
                     }
