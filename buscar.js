@@ -55,7 +55,7 @@ document.getElementById("botonHfc").addEventListener("click", function() {
                         // Si el usuario confirma el cambio, entonces proceder con el resto del código
                        try {
     console.log("ID del documento a eliminar:", doc.id); // Línea para imprimir el ID del documento
-    await deleteDoc(doc(db, "usuario", doc.id));
+    await deleteDoc(doc(db, "usuario", doc.data().id));
     console.log("Documento eliminado con éxito");
     
     // Eliminar el div de datosContainer
@@ -109,7 +109,8 @@ async function mostrarFlow() {
                                     Isla: ${doc.data().isla}\n
                                     Turno: ${doc.data().turno}\n
                                     Cambio por: ${doc.data().cambiar}\n
-                                    Fecha:${doc.data().fecha} `;
+                                    Fecha:${doc.data().fecha} \;
+                                    Id: ${doc.data().id} `;
             datosDiv.classList.add('dato');
             const confirmButton = document.createElement('button');
             confirmButton.textContent = 'Confirmar';
