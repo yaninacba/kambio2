@@ -21,7 +21,8 @@ document.getElementById("botonHfc").addEventListener("click", function() {
    console.log("Botón mostrar clickeado");
  });
 
-      async function mostrarHfc() {
+            
+         async function mostrarHfc() {
     try {
         const q = firebase.firestore().collection("usuario").where("isla", "==", "hfc");
         const querySnapshot = await q.get();
@@ -81,9 +82,6 @@ document.getElementById("botonHfc").addEventListener("click", function() {
         console.error("Error obteniendo documentos:", error);
     }
 }
-          
-            
-         
               
 
 
