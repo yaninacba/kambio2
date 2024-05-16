@@ -31,7 +31,7 @@ document.getElementById("botonHfc").addEventListener("click", function() {
 
         querySnapshot.forEach((doc) => {
             const datosDiv = document.createElement('div');
-            const elimina= `${doc.id} => ${JSON.stringify(doc.data())}`;
+            datosDiv.textContent= `${doc.id} => ${JSON.stringify(doc.data())}`;
             datosDiv.textContent = `Nombre: ${doc.data().nombre}\n
                                     Apellido: ${doc.data().apellido}\n
                                     Isla: ${doc.data().isla}\n
