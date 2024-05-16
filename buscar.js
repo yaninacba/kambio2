@@ -21,58 +21,70 @@ document.getElementById("botonHfc").addEventListener("click", function() {
    console.log("Botón mostrar clickeado");
  });
 
- async function mostrarHfc() {
+      async function mostrarHfc() {
     try {
-        const q = query(collection(db, "usuario"), where("isla", "==", "hfc"));
-        const querySnapshot = await getDocs(q);
+        const q = firebase.firestore().collection("usuario").where("isla", "==", "hfc");
+        const querySnapshot = await q.get();
 
         const datosContainer = document.getElementById('datosContainer');
         datosContainer.innerHTML = ''; // Limpiar contenido previo
 
         querySnapshot.forEach((doc) => {
             const datosDiv = document.createElement('div');
-         
-            datosDiv.textContent = `Id:${doc.id} => ${JSON.stringify(doc.data())}\n
-                                    Nombre: ${doc.data().nombre}\n
-                                    Apellido: ${doc.data().apellido}\n
-                                    Isla: ${doc.data().isla}\n
-                                    Turno: ${doc.data().turno}\n
-                                    Cambio por: ${doc.data().cambiar}\n
-                                    Fecha:${doc.data().fecha}`; 
-                                 
+            datosDiv.textContent = `
+                Id: ${doc.id} => ${JSON.stringify(doc.data())}
+                Nombre: ${doc.data().nombre}
+                Apellido: ${doc.data().apellido}
+                Isla: ${doc.data().isla}
+                Turno: ${doc.data().turno}
+                Cambio por: ${doc.data().cambiar}
+                Fecha: ${doc.data().fecha}
+            `;
+
             datosDiv.classList.add('dato');
             const confirmButton = document.createElement('button');
             confirmButton.textContent = 'Confirmar';
             confirmButton.classList.add('btn', 'btn-success');
             confirmButton.type = 'button'; // Para asegurarse de que no sea un botón de envío de formulario
-            
-            confirmButton.addEventListener('click', async () => {
-    const telefono = doc.data().telefono;
-    if (telefono) {
-        // Mostrar ventana de confirmación
-        const mensajeConfirmacion = `¿Estás seguro de que deseas confirmar el cambio, ${doc.data().cambiar}?`;
-        const confirmarCambio = confirm(mensajeConfirmacion);
-        if (confirmarCambio) {
-            // Si el usuario confirma el cambio, entonces proceder con el resto del código
-            try {
-                console.log("ID del documento a eliminar:", doc.id); // Imprimir el ID del documento
-                await deleteDoc(doc.ref); // Utiliza doc.ref para obtener la referencia del documento
-                console.log("Documento eliminado con éxito");
-                
-                // Eliminar el div de datosContainer
-                datosContainer.removeChild(datosDiv);
-            } catch (error) {
-                console.error("Error eliminando documento:", error);
-                alert("Error al eliminar el documento.");
-            }
-        } else {
-            console.log("La confirmación del cambio ha sido cancelada.");
-        }
-    } else {
-        console.error("El documento no contiene un número de teléfono válido.");
-    }
-});
 
+            confirmButton.addEventListener('click', async () => {
+                const telefono = doc.data().telefono;
+                if (telefono) {
+                    // Mostrar ventana de confirmación
+                    const mensajeConfirmacion = `¿Estás seguro de que deseas confirmar el cambio, ${doc.data().cambiar}?`;
+                    const confirmarCambio = confirm(mensajeConfirmacion);
+                    if (confirmarCambio) {
+                        // Si el usuario confirma el cambio, entonces proceder con el resto del código
+                        try {
+                            console.log("ID del documento a eliminar:", doc.id); // Imprimir el ID del documento
+                            await doc.ref.delete(); // Utiliza doc.ref para obtener la referencia del documento
+                            console.log("Documento eliminado con éxito");
+
+                            // Eliminar el div de datosContainer
+                            datosContainer.removeChild(datosDiv);
+                        } catch (error) {
+                            console.error("Error eliminando documento:", error);
+                            alert("Error al eliminar el documento.");
+                        }
+                    } else {
+                        console.log("La confirmación del cambio ha sido cancelada.");
+                    }
+                } else {
+                    console.error("El documento no contiene un número de teléfono válido.");
+                }
+            });
+
+            datosDiv.appendChild(confirmButton);
+            datosContainer.appendChild(datosDiv);
+        });
+    } catch (error) {
+        console.error("Error obteniendo documentos:", error);
+    }
+}
+          
+            
+         
+              
 
 
 //funcion para leer flow
