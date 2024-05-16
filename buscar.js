@@ -31,14 +31,14 @@ document.getElementById("botonHfc").addEventListener("click", function() {
 
         querySnapshot.forEach((doc) => {
             const datosDiv = document.createElement('div');
-            
+            const elimina= `${doc.id} => ${JSON.stringify(doc.data())}`;
             datosDiv.textContent = `Nombre: ${doc.data().nombre}\n
                                     Apellido: ${doc.data().apellido}\n
                                     Isla: ${doc.data().isla}\n
                                     Turno: ${doc.data().turno}\n
                                     Cambio por: ${doc.data().cambiar}\n
-                                    Fecha:${doc.data().fecha} \n
-                                    Id: ${doc.data().id} `;
+                                    Fecha:${doc.data().fecha}`; 
+                                 
             datosDiv.classList.add('dato');
             const confirmButton = document.createElement('button');
             confirmButton.textContent = 'Confirmar';
@@ -54,8 +54,8 @@ document.getElementById("botonHfc").addEventListener("click", function() {
                     if (confirmarCambio) {
                         // Si el usuario confirma el cambio, entonces proceder con el resto del código
                        try {
-    console.log("ID del documento a eliminar:", doc.data().id); // Línea para imprimir el ID del documento
-    await deleteDoc(doc(db, "usuario", doc.data().id));
+    console.log("ID del documento a eliminar:", doc.id); // Línea para imprimir el ID del documento
+    await deleteDoc(doc(db, "usuario", doc.id));
     console.log("Documento eliminado con éxito");
     
     // Eliminar el div de datosContainer
