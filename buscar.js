@@ -26,7 +26,8 @@ document.getElementById("botonHfc").addEventListener("click", function() {
     try {
       
         const q = query(collection(db, "usuario"), where("isla", "==", "hfc"));
-        const querySnapshot = await q.get();
+    
+        const querySnapshot = await getDocs(q);
 
         const datosContainer = document.getElementById('datosContainer');
         datosContainer.innerHTML = ''; // Limpiar contenido previo
