@@ -46,12 +46,31 @@ document.getElementById("botonHfc").addEventListener("click", function() {
 
             datosDiv.classList.add('dato');
             const confirmButton = document.createElement('button');
-            confirmButton.textContent = 'Confirmar';
+            confirmButton.textContent = 'Eliminar';
             confirmButton.classList.add('btn', 'btn-success');
             confirmButton.type = 'button'; // Para asegurarse de que no sea un botón de envío de formulario
-            confirmButton.onclick = function() {
-            borrarDiv(datosDiv.id);
-            };
+            confirmButton.addEventListener('click', async () => {
+               const confirmarCambio = confirm(mensajeConfirmacion);
+                    if (confirmarCambio) {     
+                        try {
+                            // Eliminar el documento de Firestore
+                            await deleteDoc(doc(db, "usuario", doc.id));
+                            console.log("Documento eliminado con éxito");
+                            
+                            // Eliminar el div de datosContainer
+                            datosContainer.removeChild(datosDiv);
+                        } catch (error) {
+                            console.error("Error eliminando documento:", error);
+                            alert("Error al eliminar el documento.");
+                        }
+                    } else {
+                        console.log("La confirmación del cambio ha sido cancelada.");
+                    }
+                } else {
+                    console.error("El documento no contiene un número de teléfono válido.");
+                }
+            });
+       
         
                 
 
