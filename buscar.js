@@ -117,7 +117,7 @@ async function mostrarFlow() {
     }
 }
 
-
+});
 
 
             
@@ -193,8 +193,4 @@ async function mostrarMovil() {
         alert("Error al recuperar datos.");
     }
 }
-
-//eliminar 
-const borrarDiv = async (id)=>{
-    await deleteDoc(doc(db,"usuario",id))
-} 
+});
