@@ -59,9 +59,12 @@ document.getElementById("botonHfc").addEventListener("click", function() {
                     if (confirmarCambio) {
                         // Si el usuario confirma el cambio, entonces proceder con el resto del código
                         try {
+                            db.collection("usuario").doc(doc.id).delete().then(() => {
+                            console.log("Document successfully deleted!");
+                                }).catch((error) => {
+                            console.error("Error removing document: ", error);
+                                });
                           
-                           await deleteDoc(doc(db, "usuario",doc.data().id));
-                            console.log("Documento eliminado con éxito");
 
                             // Eliminar el div de datosContainer
                             datosContainer.removeChild(datosDiv);
