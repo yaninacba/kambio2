@@ -49,45 +49,11 @@ document.getElementById("botonHfc").addEventListener("click", function() {
             confirmButton.textContent = 'Confirmar';
             confirmButton.classList.add('btn', 'btn-success');
             confirmButton.type = 'button'; // Para asegurarse de que no sea un botón de envío de formulario
-
-            confirmButton.addEventListener('click', async () => {
-                const telefono = doc.data().telefono;
-                if (telefono) {
-                    // Mostrar ventana de confirmación
-                    const mensajeConfirmacion = `¿Estás seguro de que deseas confirmar el cambio, ${doc.data().cambiar}?`;
-                    const confirmarCambio = confirm(mensajeConfirmacion);
-                    if (confirmarCambio) {
-                        // Si el usuario confirma el cambio, entonces proceder con el resto del código
-                        try {
-                            db.collection("usuario").doc(id).delete().then(() => {
-                            console.log("Document successfully deleted!");
-                                }).catch((error) => {
-                            console.error("Error removing document: ", error);
-                                });
-                          
-
-                            // Eliminar el div de datosContainer
-                            datosContainer.removeChild(datosDiv);
-                        } catch (error) {
-                            console.error("Error eliminando documento:", error);
-                            alert("Error al eliminar el documento.");
-                        }
-                    } else {
-                        console.log("La confirmación del cambio ha sido cancelada.");
-                    }
-                } else {
-                    console.error("El documento no contiene un número de teléfono válido.");
-                }
-            });
-
-            datosDiv.appendChild(confirmButton);
-            datosContainer.appendChild(datosDiv);
-        });
-    } catch (error) {
-        console.error("Error obteniendo documentos:", error);
-    }
-}
-              
+            confirmButton.onclick = function() {
+            borrarDiv(datosDiv.id);
+            };
+        
+                
 
 
 //funcion para leer flow
@@ -121,35 +87,7 @@ async function mostrarFlow() {
             confirmButton.type = 'button'; // Para asegurarse de que no sea un botón de envío de formulario
             
             confirmButton.addEventListener('click', async () => {
-                const telefono = doc.data().telefono;
-                if (telefono) {
-                    // Mostrar ventana de confirmación
-                    const mensajeConfirmacion = `¿Estás seguro de que deseas confirmar el cambio, ${doc.data().cambiar}?`;
-                    const confirmarCambio = confirm(mensajeConfirmacion);
-                    if (confirmarCambio) {
-                        // Si el usuario confirma el cambio, entonces proceder con el resto del código
-                        const mensaje = encodeURIComponent("Hola, confirmas el cambio para ?");
-                        const enlaceWhatsApp = `https://wa.me/${telefono}?text=${mensaje}`;
-                        window.open(enlaceWhatsApp, '_blank');
-                        
-                        try {
-                            // Eliminar el documento de Firestore
-                            await deleteDoc(doc(db, "usuario", doc.id));
-                            console.log("Documento eliminado con éxito");
-                            
-                            // Eliminar el div de datosContainer
-                            datosContainer.removeChild(datosDiv);
-                        } catch (error) {
-                            console.error("Error eliminando documento:", error);
-                            alert("Error al eliminar el documento.");
-                        }
-                    } else {
-                        console.log("La confirmación del cambio ha sido cancelada.");
-                    }
-                } else {
-                    console.error("El documento no contiene un número de teléfono válido.");
-                }
-            });
+          
 
             // Agregar el botón de confirmación al div de datos
             datosDiv.appendChild(confirmButton);
@@ -239,3 +177,8 @@ async function mostrarMovil() {
         alert("Error al recuperar datos.");
     }
 }
+
+//eliminar 
+const borrarDiv = async (id)=>{
+    await deleteDoc(doc(db,"usuario",id))
+} 
