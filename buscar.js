@@ -60,8 +60,9 @@ document.getElementById("botonHfc").addEventListener("click", function() {
                         window.open(enlaceWhatsApp, '_blank');
                         
                         try {
+                            const eli= doc.id;
                             // Eliminar el documento de Firestore
-                            await deleteDoc(db, "usuario", doc.id);
+                            await deleteDoc(doc(db, "usuario", "eli"));
                             console.log("Documento eliminado con éxito");
                             
                             // Eliminar el div de datosContainer
