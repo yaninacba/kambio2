@@ -103,6 +103,7 @@ async function mostrarFlow() {
             confirmButton.type = 'button'; // Para asegurarse de que no sea un botón de envío de formulario
             
             confirmButton.addEventListener('click', async () => {
+            }
           
 
             // Agregar el botón de confirmación al div de datos
@@ -173,7 +174,6 @@ async function mostrarMovil() {
                 } else {
                     console.error("El documento no contiene un número de teléfono válido.");
                 }
-            });
 
             // Agregar el botón de confirmación al div de datos
             datosDiv.appendChild(confirmButton);
