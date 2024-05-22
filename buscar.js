@@ -102,16 +102,26 @@ async function mostrarFlow() {
             confirmButton.classList.add('btn', 'btn-success');
             confirmButton.type = 'button'; // Para asegurarse de que no sea un botón de envío de formulario
             
-            confirmButton.addEventListener('click', async () => {
-            }
+        confirmButton.addEventListener('click', async () => {
+    const mensajeConfirmacion = `¿Estás seguro de que deseas eliminar este documento?`;
+    const confirmarCambio = confirm(mensajeConfirmacion);
+    if (confirmarCambio) {
+        try {
+            // Eliminar el documento de Firestore
+            await deleteDoc(doc(db, "usuario", doc.id));
+            console.log("Documento eliminado con éxito");
+            
+            // Eliminar el div de datosContainer
+            datosContainer.removeChild(datosDiv);
+        } catch (error) {
+            console.error("Error eliminando documento:", error);
+            alert("Error al eliminar el documento.");
+        }
+    }
+});
           
 
-            // Agregar el botón de confirmación al div de datos
-            datosDiv.appendChild(confirmButton);
 
-            // Agregar el div de datos al contenedor
-            datosContainer.appendChild(datosDiv);
-        });
 
 
             
