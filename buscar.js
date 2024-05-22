@@ -48,16 +48,13 @@ document.getElementById("botonHfc").addEventListener("click", function() {
             confirmButton.classList.add('btn', 'btn-success');
             confirmButton.type = 'button'; // Para asegurarse de que no sea un botón de envío de formulario
             confirmButton.addEventListener('click', async () => {
-                const telefono = doc.data().telefono;
-                if (telefono) {
-                    // Mostrar ventana de confirmación
                     const mensajeConfirmacion = `¿Estás seguro de que deseas confirmar el cambio, ${doc.data().cambiar}?`;
                     const confirmarCambio = confirm(mensajeConfirmacion);
                     if (confirmarCambio) {
                         // Si el usuario confirma el cambio, entonces proceder con el resto del código
                         try {
                             console.log("ID del documento a eliminar:", doc.id); // Imprimir el ID del documento
-                            await doc.ref.delete(); // Utiliza doc.ref para obtener la referencia del documento
+                              await deleteDoc(doc(db, "usuario", doc.id));
                             console.log("Documento eliminado con éxito");
                             // Eliminar el div de datosContainer
                             datosContainer.removeChild(datosDiv);
@@ -65,12 +62,7 @@ document.getElementById("botonHfc").addEventListener("click", function() {
                             console.error("Error eliminando documento:", error);
                             alert("Error al eliminar el documento.");
                         }
-                    } else {
-                        console.log("La confirmación del cambio ha sido cancelada.");
-                    }
-                } else {
-                    console.error("El documento no contiene un número de teléfono válido.");
-                }
+                   
             });
             datosDiv.appendChild(confirmButton);
             datosContainer.appendChild(datosDiv);
