@@ -24,7 +24,7 @@ document.getElementById("botonHfc").addEventListener("click", function() {
             
          async function mostrarHfc() {
     try {
-        const q = firebase.firestore().collection("usuario").where("isla", "==", "hfc");
+       
 
         const q = query(collection(db, "usuario"), where("isla", "==", "hfc"));
         const querySnapshot = await q.get();
