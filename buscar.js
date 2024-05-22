@@ -111,13 +111,6 @@ async function mostrarFlow() {
             // Agregar el div de datos al contenedor
             datosContainer.appendChild(datosDiv);
         });
-    } catch (error) {
-        console.error("Error al recuperar datos:", error);
-        alert("Error al recuperar datos.");
-    }
-}
-
-});
 
 
             
@@ -188,9 +181,4 @@ async function mostrarMovil() {
             // Agregar el div de datos al contenedor
             datosContainer.appendChild(datosDiv);
         });
-    } catch (error) {
-        console.error("Error al recuperar datos:", error);
-        alert("Error al recuperar datos.");
-    }
-}
-});
+
