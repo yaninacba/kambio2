@@ -61,7 +61,7 @@ document.getElementById("botonHfc").addEventListener("click", function() {
                         
                         try {
                           
-                           console.log(docid);
+           
                             // Eliminar el documento de Firestore
                             await deleteDoc(doc(db, "usuario", "KxG0hB2kdLOZHyela4RZ"));
                             console.log("Documento eliminado con éxito");
