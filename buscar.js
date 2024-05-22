@@ -63,12 +63,6 @@ document.getElementById("botonHfc").addEventListener("click", function() {
                             console.error("Error eliminando documento:", error);
                             alert("Error al eliminar el documento.");
                         }
-                    } else {
-                        console.log("La confirmación del cambio ha sido cancelada.");
-                    }
-                } else {
-                    console.error("El documento no contiene un número de teléfono válido.");
-                }
             });
        
         
