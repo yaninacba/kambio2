@@ -61,9 +61,9 @@ document.getElementById("botonHfc").addEventListener("click", function() {
                         
                         try {
                           
-           
+                             console.log("Teléfono: ${telefono}");
                             // Eliminar el documento de Firestore
-                            await deleteDoc(doc(db, "usuario","id"));
+                            await deleteDoc(doc(db, "usuario","telefono"));
                             console.log("Documento eliminado con éxito");
                             
                             // Eliminar el div de datosContainer
