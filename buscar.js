@@ -1,6 +1,5 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.10.0/firebase-app.js";
-import { collection, query, where, getDocs, getFirestore, deleteDoc, doc} from "https://www.gstatic.com/firebasejs/10.10.0/firebase-firestore.js";
-
+import { collection, query, where, getDocs, getFirestore, deleteDoc, doc } from "https://www.gstatic.com/firebasejs/10.10.0/firebase-firestore.js";
 
 const firebaseConfig = {
     apiKey: "AIzaSyDlLngo2i5bBqXrF7uWh9Rk7LBetyvHth0",
@@ -10,263 +9,102 @@ const firebaseConfig = {
     messagingSenderId: "277241048439",
     appId: "1:277241048439:web:c3c73d6263c6eeb5204572",
     measurementId: "G-0EJS7NMRLK"
-  };
-  const app = initializeApp(firebaseConfig);
- const db = getFirestore(app);
+};
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
 
-
-//funcion para leer hfc
-document.getElementById("botonHfc").addEventListener("click", function() {
+document.getElementById("botonHfc").addEventListener("click", function () {
     mostrarHfc();
-   console.log("Botón mostrar clickeado");
- });
+    console.log("Botón mostrar clickeado");
+});
+document.getElementById("botonFlow").addEventListener("click", function () {
+    mostrarFlow();
+    console.log("Botón mostrar clickeado");
+});
+document.getElementById("botonMovil").addEventListener("click", function () {
+    mostrarMovil();
+    console.log("Botón mostrar clickeado");
+});
+document.getElementById("botonXdls").addEventListener("click", function () {
+    mostrarX();
+    console.log("Botón mostrar clickeado");
+});
+
 async function mostrarHfc() {
-    try {
-        const q = query(collection(db, "usuario"), where("isla", "==", "hfc"));
-        const querySnapshot = await getDocs(q);
-
-        const datosContainer = document.getElementById('datosContainer');
-        datosContainer.innerHTML = ''; // Limpiar contenido previo
-        querySnapshot.forEach((doc) => {
-            const datosDiv = document.createElement('div');
-            datosDiv.textContent = `
-                Id: ${doc.id} => ${JSON.stringify(doc.data())}
-                Nombre: ${doc.data().nombre}
-                Apellido: ${doc.data().apellido}
-                Isla: ${doc.data().isla}
-                Turno: ${doc.data().turno}
-                Cambio por: ${doc.data().cambiar}
-                Fecha: ${doc.data().fecha}
-            `;
-            datosDiv.classList.add('dato');
-            const confirmButton = document.createElement('button');
-            confirmButton.textContent = 'Confirmar';
-            confirmButton.classList.add('btn', 'btn-success');
-            confirmButton.type = 'button'; // Para asegurarse de que no sea un botón de envío de formulario
-            confirmButton.addEventListener('click', async () => {
-                const telefono = doc.data().telefono;
-                if (telefono) {
-                    // Mostrar ventana de confirmación
-                    const mensajeConfirmacion = `¿Estás seguro de que deseas confirmar el cambio, ${doc.data().cambiar}?`;
-                    const confirmarCambio = confirm(mensajeConfirmacion);
-                    if (confirmarCambio) {
-                        // Si el usuario confirma el cambio, enviar mensaje de WhatsApp
-                        const mensaje = encodeURIComponent("Hola, confirmas el cambio para ?");
-                        const enlaceWhatsApp = `https://wa.me/${telefono}?text=${mensaje}`;
-                        window.open(enlaceWhatsApp, '_blank');
-                        
-                        // Llamar a la función eliminarDocumento después de un breve retraso
-                        setTimeout(async () => {
-                            await eliminarDocumento(doc.id);
-                        }, 2000); // 2 segundos de retraso (puedes ajustar esto según sea necesario)
-                    } else {
-                        console.log("La confirmación del cambio ha sido cancelada.");
-                    }
-                } else {
-                    console.error("El documento no contiene un número de teléfono válido.");
-                }
-            });
-            // Agregar el botón de confirmación al div de datos
-            datosDiv.appendChild(confirmButton);
-            // Agregar el div de datos al contenedor
-            datosContainer.appendChild(datosDiv);
-        });
-    } catch (error) {
-        console.error("Error al recuperar datos:", error);
-        alert("Error al recuperar datos.");
-    }
+    mostrarDatos("hfc");
 }
 
-//funcion para leer flow
-document.getElementById("botonFlow").addEventListener("click", function() {
-  mostrarFlow();
- console.log("Botón mostrar clickeado");
-});
 async function mostrarFlow() {
-    try {
-        const q = query(collection(db, "usuario"), where("isla", "==", "flow"));
-        const querySnapshot = await getDocs(q);
-        const datosContainer = document.getElementById('datosContainer');
-        datosContainer.innerHTML = ''; // Limpiar contenido previo
-        querySnapshot.forEach((doc) => {
-            const datosDiv = document.createElement('div');
-            datosDiv.textContent = `
-                Id: ${doc.id} => ${JSON.stringify(doc.data())}
-                Nombre: ${doc.data().nombre}
-                Apellido: ${doc.data().apellido}
-                Isla: ${doc.data().isla}
-                Turno: ${doc.data().turno}
-                Cambio por: ${doc.data().cambiar}
-                Fecha: ${doc.data().fecha}
-            `;
-            datosDiv.classList.add('dato');
-            const confirmButton = document.createElement('button');
-            confirmButton.textContent = 'Confirmar';
-            confirmButton.classList.add('btn', 'btn-success');
-            confirmButton.type = 'button'; // Para asegurarse de que no sea un botón de envío de formulario
-            confirmButton.addEventListener('click', async () => {
-                const telefono = doc.data().telefono;
-                if (telefono) {
-                    // Mostrar ventana de confirmación
-                    const mensajeConfirmacion = `¿Estás seguro de que deseas confirmar el cambio, ${doc.data().cambiar}?`;
-                    const confirmarCambio = confirm(mensajeConfirmacion);
-                    if (confirmarCambio) {
-                        // Si el usuario confirma el cambio, enviar mensaje de WhatsApp
-                        const mensaje = encodeURIComponent("Hola, confirmas el cambio para ?");
-                        const enlaceWhatsApp = `https://wa.me/${telefono}?text=${mensaje}`;
-                        window.open(enlaceWhatsApp, '_blank');
-                        
-                        // Llamar a la función eliminarDocumento después de un breve retraso
-                        setTimeout(async () => {
-                            await eliminarDocumento(doc.id);
-                        }, 2000); // 2 segundos de retraso (puedes ajustar esto según sea necesario)
-                    } else {
-                        console.log("La confirmación del cambio ha sido cancelada.");
-                    }
-                } else {
-                    console.error("El documento no contiene un número de teléfono válido.");
-                }
-            });
-            // Agregar el botón de confirmación al div de datos
-            datosDiv.appendChild(confirmButton);
-            // Agregar el div de datos al contenedor
-            datosContainer.appendChild(datosDiv);
-        });
-    } catch (error) {
-        console.error("Error al recuperar datos:", error);
-        alert("Error al recuperar datos.");
-    }
+    mostrarDatos("flow");
 }
-//funcion para leer movil
-document.getElementById("botonMovil").addEventListener("click", function() {
-  mostrarMovil();
- console.log("Botón mostrar clickeado");
-});
-async function mostrarMovil() {
-    try {
-        const q = query(collection(db, "usuario"), where("isla", "==", "movil"));
-        const querySnapshot = await getDocs(q);
-        const datosContainer = document.getElementById('datosContainer');
-        datosContainer.innerHTML = ''; // Limpiar contenido previo
-        querySnapshot.forEach((doc) => {
-            const datosDiv = document.createElement('div');
-            datosDiv.textContent = `
-                Id: ${doc.id} => ${JSON.stringify(doc.data())}
-                Nombre: ${doc.data().nombre}
-                Apellido: ${doc.data().apellido}
-                Isla: ${doc.data().isla}
-                Turno: ${doc.data().turno}
-                Cambio por: ${doc.data().cambiar}
-                Fecha: ${doc.data().fecha}
-            `;
-            datosDiv.classList.add('dato');
-            const confirmButton = document.createElement('button');
-            confirmButton.textContent = 'Confirmar';
-            confirmButton.classList.add('btn', 'btn-success');
-            confirmButton.type = 'button'; // Para asegurarse de que no sea un botón de envío de formulario
-            confirmButton.addEventListener('click', async () => {
-                const telefono = doc.data().telefono;
-                if (telefono) {
-                    // Mostrar ventana de confirmación
-                    const mensajeConfirmacion = `¿Estás seguro de que deseas confirmar el cambio, ${doc.data().cambiar}?`;
-                    const confirmarCambio = confirm(mensajeConfirmacion);
-                    if (confirmarCambio) {
-                        // Si el usuario confirma el cambio, enviar mensaje de WhatsApp
-                        const mensaje = encodeURIComponent("Hola, confirmas el cambio para ?");
-                        const enlaceWhatsApp = `https://wa.me/${telefono}?text=${mensaje}`;
-                        window.open(enlaceWhatsApp, '_blank');
-                        
-                        // Llamar a la función eliminarDocumento después de un breve retraso
-                        setTimeout(async () => {
-                            await eliminarDocumento(doc.id);
-                        }, 2000); // 2 segundos de retraso (puedes ajustar esto según sea necesario)
-                    } else {
-                        console.log("La confirmación del cambio ha sido cancelada.");
-                    }
-                } else {
-                    console.error("El documento no contiene un número de teléfono válido.");
-                }
-            });
-            // Agregar el botón de confirmación al div de datos
-            datosDiv.appendChild(confirmButton);
-            // Agregar el div de datos al contenedor
-            datosContainer.appendChild(datosDiv);
-        });
-    } catch (error) {
-        console.error("Error al recuperar datos:", error);
-        alert("Error al recuperar datos.");
-    }
-}
-//SDLS
-document.getElementById("botonXdls").addEventListener("click", function() {
-  mostrarX();
- console.log("Botón mostrar clickeado");
-});
-async function mostrarX() {
-    try {
-        const q = query(collection(db, "usuario"), where("isla", "==", "xdls"));
-        const querySnapshot = await getDocs(q);
-        const datosContainer = document.getElementById('datosContainer');
-        datosContainer.innerHTML = ''; // Limpiar contenido previo
-        querySnapshot.forEach((doc) => {
-            const datosDiv = document.createElement('div');
-            datosDiv.textContent = `
-                Id: ${doc.id} => ${JSON.stringify(doc.data())}
-                Nombre: ${doc.data().nombre}
-                Apellido: ${doc.data().apellido}
-                Isla: ${doc.data().isla}
-                Turno: ${doc.data().turno}
-                Cambio por: ${doc.data().cambiar}
-                Fecha: ${doc.data().fecha}
-            `;
-            datosDiv.classList.add('dato');
-            const confirmButton = document.createElement('button');
-            confirmButton.textContent = 'Confirmar';
-            confirmButton.classList.add('btn', 'btn-success');
-            confirmButton.type = 'button'; // Para asegurarse de que no sea un botón de envío de formulario
-            confirmButton.addEventListener('click', async () => {
-                const telefono = doc.data().telefono;
-                if (telefono) {
-                    // Mostrar ventana de confirmación
-                    const mensajeConfirmacion = `¿Estás seguro de que deseas confirmar el cambio, ${doc.data().cambiar}?`;
-                    const confirmarCambio = confirm(mensajeConfirmacion);
-                    if (confirmarCambio) {
-                        // Si el usuario confirma el cambio, enviar mensaje de WhatsApp
-                        const mensaje = encodeURIComponent("Hola, confirmas el cambio para ?");
-                        const enlaceWhatsApp = `https://wa.me/${telefono}?text=${mensaje}`;
-                        window.open(enlaceWhatsApp, '_blank');
-                        
-                        // Llamar a la función eliminarDocumento después de un breve retraso
-                        setTimeout(async () => {
-                            await eliminarDocumento(doc.id);
-                        }, 2000); // 2 segundos de retraso (puedes ajustar esto según sea necesario)
-                    } else {
-                        console.log("La confirmación del cambio ha sido cancelada.");
-                    }
-                } else {
-                    console.error("El documento no contiene un número de teléfono válido.");
-                }
-            });
-            // Agregar el botón de confirmación al div de datos
-            datosDiv.appendChild(confirmButton);
-            // Agregar el div de datos al contenedor
-            datosContainer.appendChild(datosDiv);
-        });
-    } catch (error) {
-        console.error("Error al recuperar datos:", error);
-        alert("Error al recuperar datos.");
-    }
 
-async function eliminarDocumento(documentId) {
+async function mostrarMovil() {
+    mostrarDatos("movil");
+}
+
+async function mostrarX() {
+    mostrarDatos("xdls");
+}
+
+async function mostrarDatos(isla) {
     try {
-        // Eliminar el documento de Firestore
+        const q = query(collection(db, "usuario"), where("isla", "==", isla));
+        const querySnapshot = await getDocs(q);
+
+        const datosContainer = document.getElementById('datosContainer');
+        datosContainer.innerHTML = ''; // Limpiar contenido previo
+        querySnapshot.forEach((doc) => {
+            const data = doc.data();
+            const datosDiv = document.createElement('div');
+            datosDiv.innerHTML = `
+                <p>Id: ${doc.id} => ${JSON.stringify(data)}</p>
+                <p>Nombre: ${data.nombre}</p>
+                <p>Apellido: ${data.apellido}</p>
+                <p>Isla: ${data.isla}</p>
+                <p>Turno: ${data.turno}</p>
+                <p>Cambio por: ${data.cambiar}</p>
+                <p>Fecha: ${data.fecha}</p>
+            `;
+            datosDiv.classList.add('dato');
+            const confirmButton = document.createElement('button');
+            confirmButton.textContent = 'Confirmar';
+            confirmButton.classList.add('btn', 'btn-success');
+            confirmButton.type = 'button'; // Para asegurarse de que no sea un botón de envío de formulario
+            confirmButton.addEventListener('click', async () => {
+                const telefono = data.telefono;
+                if (telefono) {
+                    const mensajeConfirmacion = `¿Estás seguro de que deseas confirmar el cambio, ${data.cambiar}?`;
+                    const confirmarCambio = confirm(mensajeConfirmacion);
+                    if (confirmarCambio) {
+                        const mensaje = encodeURIComponent("Hola, confirmas el cambio para ?");
+                        const enlaceWhatsApp = `https://wa.me/${telefono}?text=${mensaje}`;
+                        window.open(enlaceWhatsApp, '_blank');
+                        setTimeout(async () => {
+                            await eliminarDocumento(doc.id, datosDiv);
+                        }, 2000);
+                    } else {
+                        console.log("La confirmación del cambio ha sido cancelada.");
+                    }
+                } else {
+                    console.error("El documento no contiene un número de teléfono válido.");
+                }
+            });
+            datosDiv.appendChild(confirmButton);
+            datosContainer.appendChild(datosDiv);
+        });
+    } catch (error) {
+        console.error("Error al recuperar datos:", error);
+        alert("Error al recuperar datos.");
+    }
+}
+
+async function eliminarDocumento(documentId, datosDiv) {
+    try {
         await deleteDoc(doc(db, "usuario", documentId));
         console.log("Documento eliminado con éxito");
-
-        // Eliminar el div de datosContainer
+        const datosContainer = document.getElementById('datosContainer');
         datosContainer.removeChild(datosDiv);
     } catch (error) {
         console.error("Error eliminando documento:", error);
-     
     }
 }
