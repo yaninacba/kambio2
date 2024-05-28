@@ -87,7 +87,6 @@ async function mostrarFlow() {
         const q = query(collection(db, "usuario"), where("isla", "==", "flow"));
         const querySnapshot = await getDocs(q);
         const datosContainer = document.getElementById('datosContainer');
-        const datosContainer = document.getElementById('datosContainer');
         datosContainer.innerHTML = ''; // Limpiar contenido previo
         querySnapshot.forEach((doc) => {
             const datosDiv = document.createElement('div');
@@ -147,7 +146,6 @@ async function mostrarMovil() {
     try {
         const q = query(collection(db, "usuario"), where("isla", "==", "movil"));
         const querySnapshot = await getDocs(q);
-        const datosContainer = document.getElementById('datosContainer');
         const datosContainer = document.getElementById('datosContainer');
         datosContainer.innerHTML = ''; // Limpiar contenido previo
         querySnapshot.forEach((doc) => {
