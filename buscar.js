@@ -20,8 +20,7 @@ document.getElementById("botonHfc").addEventListener("click", function() {
     mostrarHfc();
    console.log("Botón mostrar clickeado");
  });
-
-     async function mostrarHfc() {
+async function mostrarHfc() {
     try {
         const q = query(collection(db, "usuario"), where("isla", "==", "hfc"));
         const querySnapshot = await getDocs(q);
@@ -51,8 +50,15 @@ document.getElementById("botonHfc").addEventListener("click", function() {
                     const mensajeConfirmacion = `¿Estás seguro de que deseas confirmar el cambio, ${doc.data().cambiar}?`;
                     const confirmarCambio = confirm(mensajeConfirmacion);
                     if (confirmarCambio) {
-                        // Si el usuario confirma el cambio, entonces llamar a la función eliminarDocumento
-                        await eliminarDocumento(doc.id);
+                        // Si el usuario confirma el cambio, enviar mensaje de WhatsApp
+                        const mensaje = encodeURIComponent("Hola, confirmas el cambio para ?");
+                        const enlaceWhatsApp = `https://wa.me/${telefono}?text=${mensaje}`;
+                        window.open(enlaceWhatsApp, '_blank');
+                        
+                        // Llamar a la función eliminarDocumento después de un breve retraso
+                        setTimeout(async () => {
+                            await eliminarDocumento(doc.id);
+                        }, 2000); // 2 segundos de retraso (puedes ajustar esto según sea necesario)
                     } else {
                         console.log("La confirmación del cambio ha sido cancelada.");
                     }
@@ -71,7 +77,6 @@ document.getElementById("botonHfc").addEventListener("click", function() {
     }
 }
 
-              
 //funcion para leer flow
 document.getElementById("botonFlow").addEventListener("click", function() {
   mostrarFlow();
@@ -82,23 +87,24 @@ async function mostrarFlow() {
         const q = query(collection(db, "usuario"), where("isla", "==", "flow"));
         const querySnapshot = await getDocs(q);
         const datosContainer = document.getElementById('datosContainer');
+        const datosContainer = document.getElementById('datosContainer');
         datosContainer.innerHTML = ''; // Limpiar contenido previo
         querySnapshot.forEach((doc) => {
             const datosDiv = document.createElement('div');
-            
-            datosDiv.textContent = `Nombre: ${doc.data().nombre}\n
-                                    Apellido: ${doc.data().apellido}\n
-                                    Isla: ${doc.data().isla}\n
-                                    Turno: ${doc.data().turno}\n
-                                    Cambio por: ${doc.data().cambiar}\n
-                                    Fecha:${doc.data().fecha} \;
-                                    Id: ${doc.data().id} `;
+            datosDiv.textContent = `
+                Id: ${doc.id} => ${JSON.stringify(doc.data())}
+                Nombre: ${doc.data().nombre}
+                Apellido: ${doc.data().apellido}
+                Isla: ${doc.data().isla}
+                Turno: ${doc.data().turno}
+                Cambio por: ${doc.data().cambiar}
+                Fecha: ${doc.data().fecha}
+            `;
             datosDiv.classList.add('dato');
             const confirmButton = document.createElement('button');
             confirmButton.textContent = 'Confirmar';
             confirmButton.classList.add('btn', 'btn-success');
             confirmButton.type = 'button'; // Para asegurarse de que no sea un botón de envío de formulario
-            
             confirmButton.addEventListener('click', async () => {
                 const telefono = doc.data().telefono;
                 if (telefono) {
@@ -106,22 +112,15 @@ async function mostrarFlow() {
                     const mensajeConfirmacion = `¿Estás seguro de que deseas confirmar el cambio, ${doc.data().cambiar}?`;
                     const confirmarCambio = confirm(mensajeConfirmacion);
                     if (confirmarCambio) {
-                        // Si el usuario confirma el cambio, entonces proceder con el resto del código
+                        // Si el usuario confirma el cambio, enviar mensaje de WhatsApp
                         const mensaje = encodeURIComponent("Hola, confirmas el cambio para ?");
                         const enlaceWhatsApp = `https://wa.me/${telefono}?text=${mensaje}`;
                         window.open(enlaceWhatsApp, '_blank');
                         
-                        try {
-                            // Eliminar el documento de Firestore
-                            await deleteDoc(doc(db, "usuario", doc.id));
-                            console.log("Documento eliminado con éxito");
-                            
-                            // Eliminar el div de datosContainer
-                            datosContainer.removeChild(datosDiv);
-                        } catch (error) {
-                            console.error("Error eliminando documento:", error);
-                            alert("Error al eliminar el documento.");
-                        }
+                        // Llamar a la función eliminarDocumento después de un breve retraso
+                        setTimeout(async () => {
+                            await eliminarDocumento(doc.id);
+                        }, 2000); // 2 segundos de retraso (puedes ajustar esto según sea necesario)
                     } else {
                         console.log("La confirmación del cambio ha sido cancelada.");
                     }
@@ -139,7 +138,6 @@ async function mostrarFlow() {
         alert("Error al recuperar datos.");
     }
 }
-            
 //funcion para leer movil
 document.getElementById("botonMovil").addEventListener("click", function() {
   mostrarMovil();
@@ -150,23 +148,24 @@ async function mostrarMovil() {
         const q = query(collection(db, "usuario"), where("isla", "==", "movil"));
         const querySnapshot = await getDocs(q);
         const datosContainer = document.getElementById('datosContainer');
+        const datosContainer = document.getElementById('datosContainer');
         datosContainer.innerHTML = ''; // Limpiar contenido previo
         querySnapshot.forEach((doc) => {
             const datosDiv = document.createElement('div');
-            
-            datosDiv.textContent = `Nombre: ${doc.data().nombre}\n
-                                    Apellido: ${doc.data().apellido}\n
-                                    Isla: ${doc.data().isla}\n
-                                    Turno: ${doc.data().turno}\n
-                                    Cambio por: ${doc.data().cambiar}\n
-                                    Fecha: ${doc.data().fecha} `;
+            datosDiv.textContent = `
+                Id: ${doc.id} => ${JSON.stringify(doc.data())}
+                Nombre: ${doc.data().nombre}
+                Apellido: ${doc.data().apellido}
+                Isla: ${doc.data().isla}
+                Turno: ${doc.data().turno}
+                Cambio por: ${doc.data().cambiar}
+                Fecha: ${doc.data().fecha}
+            `;
             datosDiv.classList.add('dato');
-            
             const confirmButton = document.createElement('button');
             confirmButton.textContent = 'Confirmar';
             confirmButton.classList.add('btn', 'btn-success');
             confirmButton.type = 'button'; // Para asegurarse de que no sea un botón de envío de formulario
-            
             confirmButton.addEventListener('click', async () => {
                 const telefono = doc.data().telefono;
                 if (telefono) {
@@ -174,22 +173,15 @@ async function mostrarMovil() {
                     const mensajeConfirmacion = `¿Estás seguro de que deseas confirmar el cambio, ${doc.data().cambiar}?`;
                     const confirmarCambio = confirm(mensajeConfirmacion);
                     if (confirmarCambio) {
-                        // Si el usuario confirma el cambio, entonces proceder con el resto del código
+                        // Si el usuario confirma el cambio, enviar mensaje de WhatsApp
                         const mensaje = encodeURIComponent("Hola, confirmas el cambio para ?");
                         const enlaceWhatsApp = `https://wa.me/${telefono}?text=${mensaje}`;
                         window.open(enlaceWhatsApp, '_blank');
                         
-                        try {
-                            // Eliminar el documento de Firestore
-                            await deleteDoc(doc(db, "usuario", doc.id));
-                            console.log("Documento eliminado con éxito");
-                            
-                            // Eliminar el div de datosContainer
-                            datosContainer.removeChild(datosDiv);
-                        } catch (error) {
-                            console.error("Error eliminando documento:", error);
-                            alert("Error al eliminar el documento.");
-                        }
+                        // Llamar a la función eliminarDocumento después de un breve retraso
+                        setTimeout(async () => {
+                            await eliminarDocumento(doc.id);
+                        }, 2000); // 2 segundos de retraso (puedes ajustar esto según sea necesario)
                     } else {
                         console.log("La confirmación del cambio ha sido cancelada.");
                     }
@@ -218,6 +210,6 @@ async function eliminarDocumento(documentId) {
         datosContainer.removeChild(datosDiv);
     } catch (error) {
         console.error("Error eliminando documento:", error);
-        alert("Error al eliminar el documento.");
+     
     }
 }
