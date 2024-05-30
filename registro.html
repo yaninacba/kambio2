@@ -86,29 +86,33 @@
         <input type="text" id="fecha" name="fecha" class="form-control" readonly>
     </div>
     <div class="col-sm-4">
-        <button id="seleccionar-fecha" type="button" class="btn btn-outline-primary">Seleccionar fecha</button>
+        <div id="calendario" style="max-width: 100%;"></div>
     </div>
+    <div class="col-sm-2">
+    <button id="seleccionar-fecha" type="button" class="btn btn-outline-primary">Seleccionar fecha</button>
+   </div>
 </div>
 <button id="confirmar" type="button" class="btn btn-outline-primary">Confirmar</button>
 
-</form>
-</div>
-
 <script>
 $(document).ready(function() {
+    // Inicializar el calendario
+    $('#calendario').fullCalendar({
+      // Opciones del calendario aquí
+    });
+
     // Manejar el clic en el botón "Seleccionar fecha"
     $("#seleccionar-fecha").click(function() {
-        // Abre una nueva ventana emergente con el calendario
-        var ventanaEmergente = window.open("calendario.html", "Calendario", "width=600,height=400");
-
-        // Cierra la ventana emergente al cerrar la página principal
-        $(window).on("unload", function() {
-            ventanaEmergente.close();
-        });
+        // Muestra el calendario
+        $('#calendario').show();
     });
 });
 </script>
 
+</form>
+</div>
+
 </body>
 </html>
+
 
