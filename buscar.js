@@ -57,7 +57,6 @@ async function mostrarDatos(isla) {
             const data = doc.data();
             const datosDiv = document.createElement('div');
             datosDiv.innerHTML = `
-                <p>Id: ${doc.id} => ${JSON.stringify(data)}</p>
                 <p>Nombre: ${data.nombre}</p>
                 <p>Apellido: ${data.apellido}</p>
                 <p>Isla: ${data.isla}</p>
