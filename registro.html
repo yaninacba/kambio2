@@ -27,7 +27,7 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/6.1.11/index.global.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/6.1.11/index.global.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/6.1.11/index.js"></script>
-  <div id="formulario" class="d-flex justify-content-center align-items-center vh-100">
+ <div id="formulario" class="d-flex justify-content-center align-items-center" style="height: calc(100vh - 56px);">
     <form id="inicio" class="w-50 m-4">
       <br>
       <h2>Registrar un cambio</h2>
@@ -49,28 +49,35 @@
           <input type="number" class="form-control" id="telefono" placeholder="Teléfono">
             <div class="clarification text-mute">sin el 0 y sin el 15</div>       
         </div>
-    <div class="form-group row">
+   <div class="form-group row">
     <label for="isla" class="col-sm-2 col-form-label">Isla</label>
-    <select id="isla" class="form-select col-sm-4">
-        <option value="hfc">CONECTIVIDAD</option>
-         <option value="xdls">XDLS</option>
-        <option value="flow">FLOW-CATTV</option>
-        <option value="movil">MOVIL</option>
-    </select>
+    <div class="col-sm-4">
+        <select id="isla" class="form-select">
+            <option value="hfc">CONECTIVIDAD</option>
+            <option value="xdls">XDLS</option>
+            <option value="flow">FLOW-CATTV</option>
+            <option value="movil">MOVIL</option>
+        </select>
+    </div>
     <label for="turno" class="col-sm-2 col-form-label">Turno</label>
-    <select id="turno" class="form-select col-sm-4">
-        <option value="mañana">MAÑANA</option>
-        <option value="tarde">TARDE</option>
-        <option value="noche">NOCHE</option>
-    </select>
-    <label for="cambiar" class="col-sm-2 col-form-label">Cambiar por:</label>
-    <select id="cambiar" class="form-select col-sm-4">
-        <option value="mañana">POR MAÑANA</option>
-        <option value="tarde">POR TARDE</option>
-        <option value="noche">POR NOCHE</option>
-    </select>
+    <div class="col-sm-4">
+        <select id="turno" class="form-select">
+            <option value="mañana">MAÑANA</option>
+            <option value="tarde">TARDE</option>
+            <option value="noche">NOCHE</option>
+        </select>
+    </div>
 </div>
-
+<div class="form-group row">
+    <label for="cambiar" class="col-sm-2 col-form-label">Cambiar por:</label>
+    <div class="col-sm-4">
+        <select id="cambiar" class="form-select">
+            <option value="mañana">POR MAÑANA</option>
+            <option value="tarde">POR TARDE</option>
+            <option value="noche">POR NOCHE</option>
+        </select>
+    </div>
+</div>
 
       <div>
         <label for="fecha">Selecciona una fecha:</label>
