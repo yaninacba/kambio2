@@ -96,16 +96,41 @@
 
 <script>
 $(document).ready(function() {
-    // Ocultar 
+    // Ocultar el calendario al cargar la página
     $("#calendario").hide();
 
-    // Manejar el clic e
+    // Manejar el clic en el botón "Seleccionar fecha"
     $("#seleccionar-fecha").click(function() {
-        // Alternar la visibilidad del calendario
-        $("#calendario").toggle();
+        // Abre una nueva ventana emergente con el calendario
+        var ventanaEmergente = window.open("", "Calendario", "width=600,height=400");
+        
+        // Agrega el contenido al cuerpo de la ventana emergente
+        ventanaEmergente.document.write('<!DOCTYPE html>'+
+            '<html lang="es">'+
+            '<head>'+
+                '<meta charset="UTF-8">'+
+                '<meta name="viewport" content="width=device-width, initial-scale=1.0">'+
+                '<title>Calendario</title>'+
+                '<link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">'+
+                '<link href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.9.0/fullcalendar.print.min.css" rel="stylesheet">'+
+            '</head>'+
+            '<body>'+
+                '<div id="calendario" style="max-width: 100%;"></div>'+
+                '<script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/6.1.11/index.min.js"></script>'+
+                '<script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/6.1.11/index.global.js"></script>'+
+                '<script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/6.1.11/index.global.min.js"></script>'+
+                '<script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/6.1.11/index.js"></script>'+
+            '</body>'+
+            '</html>');
+
+        // Cierra la ventana emergente al cerrar la página principal
+        $(window).on("unload", function() {
+            ventanaEmergente.close();
+        });
     });
 });
 </script>
+
     </form>
   </div>
 </body>
