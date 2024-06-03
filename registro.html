@@ -6,9 +6,9 @@
   <title>Registra tu cambio</title>
   <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" href="registro.css">
+  <script type="module" src="registro.js"></script>
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/6.1.11/fullcalendar.min.css" rel="stylesheet">
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/6.1.11/fullcalendar.min.js"></script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.9.0/fullcalendar.print.min.css" rel="stylesheet">
 </head>
 <body>
 
@@ -22,9 +22,13 @@
     <li class="nav-item">
       <a class="nav-link" href="buscar.html">Buscar cambio</a>
     </li>
+    
   </ul>
-  
-  <div id="formulario" class="d-flex justify-content-center align-items-center" style="height: calc(100vh - 56px);">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/6.1.11/index.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/6.1.11/index.global.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/6.1.11/index.global.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/6.1.11/index.js"></script>
+ <div id="formulario" class="d-flex justify-content-center align-items-center" style="height: calc(100vh - 56px);">
     <form id="inicio" class="w-50 m-4">
       <br>
       <h2>Registrar un cambio</h2>
@@ -46,80 +50,67 @@
           <input type="number" class="form-control" id="telefono" placeholder="Teléfono">
             <div class="clarification text-mute">sin el 0 y sin el 15</div>       
         </div>
-      </div>
-      <div class="form-group row">
-        <label for="isla" class="col-sm-2 col-form-label">Isla</label>
-        <div class="col-sm-4">
-            <select id="isla" class="form-select">
-                <option value="hfc">CONECTIVIDAD</option>
-                <option value="xdls">XDLS</option>
-                <option value="flow">FLOW-CATTV</option>
-                <option value="movil">MOVIL</option>
-            </select>
-        </div>
-        <label for="turno" class="col-sm-2 col-form-label">Turno</label>
-        <div class="col-sm-4">
-            <select id="turno" class="form-select">
-                <option value="mañana">MAÑANA</option>
-                <option value="tarde">TARDE</option>
-                <option value="noche">NOCHE</option>
-            </select>
-        </div>
-      </div>
-      <div class="form-group row">
-        <label for="cambiar" class="col-sm-2 col-form-label">Cambiar por:</label>
-        <div class="col-sm-4">
-            <select id="cambiar" class="form-select">
-                <option value="mañana">POR MAÑANA</option>
-                <option value="tarde">POR TARDE</option>
-                <option value="noche">POR NOCHE</option>
-            </select>
-        </div>
-      </div>
-      <div class="form-group row">
-        <label for="fecha" class="col-sm-2 col-form-label">Selecciona una fecha:</label>
-        <div class="col-sm-4">
-            <input type="text" id="fecha" name="fecha" class="form-control" readonly>
-        </div>
-        <div class="col-sm-4">
-            <div id="calendario" style="max-width: 100%;"></div>
-        </div>
-        <div class="col-sm-2">
-          <button id="seleccionar-fecha" type="button" class="btn btn-outline-primary">Seleccionar fecha</button>
-        </div>
-      </div>
-      <button id="confirmar" type="button" class="btn btn-outline-primary">Confirmar</button>
-    </form>
-  </div>
+   <div class="form-group row">
+    <label for="isla" class="col-sm-2 col-form-label">Isla</label>
+    <div class="col-sm-4">
+        <select id="isla" class="form-select">
+            <option value="hfc">CONECTIVIDAD</option>
+            <option value="xdls">XDLS</option>
+            <option value="flow">FLOW-CATTV</option>
+            <option value="movil">MOVIL</option>
+        </select>
+    </div>
+    <label for="turno" class="col-sm-2 col-form-label">Turno</label>
+    <div class="col-sm-4">
+        <select id="turno" class="form-select">
+            <option value="mañana">MAÑANA</option>
+            <option value="tarde">TARDE</option>
+            <option value="noche">NOCHE</option>
+        </select>
+    </div>
+</div>
+<div class="form-group row">
+    <label for="cambiar" class="col-sm-2 col-form-label">Cambiar por:</label>
+    <div class="col-sm-4">
+        <select id="cambiar" class="form-select">
+            <option value="mañana">POR MAÑANA</option>
+            <option value="tarde">POR TARDE</option>
+            <option value="noche">POR NOCHE</option>
+        </select>
+    </div>
+</div>
 
-  <script>
-    $(document).ready(function() {
-        // Inicializar el calendario
-        $('#calendario').fullCalendar({
-            header: {
-                left: 'prev,next today',
-                center: 'title',
-                right: 'month,agendaWeek,agendaDay'
-            },
-            selectable: true,
-            selectHelper: true,
-            select: function(start, end) {
-                $('#fecha').val(start.format('YYYY-MM-DD'));
-                $('#calendario').fullCalendar('unselect');
-                $('#calendario').hide();
-            },
-            editable: true,
-            events: []
-        });
+      <div class="form-group row">
+    <label for="fecha" class="col-sm-2 col-form-label">Selecciona una fecha:</label>
+    <div class="col-sm-4">
+        <input type="text" id="fecha" name="fecha" class="form-control" readonly>
+    </div>
+    <div class="col-sm-4">
+        <div id="calendario" style="max-width: 100%;"></div>
+    </div>
+    <div class="col-sm-2">
+    <button id="seleccionar-fecha" type="button" class="btn btn-outline-primary">Seleccionar fecha</button>
+   </div>
+</div>
+<button id="confirmar" type="button" class="btn btn-outline-primary">Confirmar</button>
 
-        // Mostrar el calendario al hacer clic en el botón
-        $("#seleccionar-fecha").click(function() {
-            $('#calendario').toggle();
-        });
-
-        // Ocultar el calendario por defecto
-        $('#calendario').hide();
+<script>
+$(document).ready(function() {
+    // Inicializar el calendario
+    $('#calendario').fullCalendar({
+      // Opciones del calendario aquí
     });
-  </script>
+
+    // Manejar el clic en el botón "Seleccionar fecha"
+    $("#seleccionar-fecha").click(function() {
+        // Muestra el calendario
+        $('#calendario').show();
+    });
+});
+</script>
+
+</form>
+</div>
+
 </body>
 </html>
