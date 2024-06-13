@@ -108,31 +108,27 @@
         selectable: true,
         selectHelper: true,
         select: function(info) {
-          $('#fecha').val(info.startStr); // Establecer la fecha seleccionada en el campo de texto
-          calendar.unselect();
-          $('#calendario').hide(); // Ocultar el calendario después de seleccionar una fecha
-        },
-        editable: true,
-        events: []
+          $('#fecha').val(info.startStr);
+          $('#calendario').hide();
+        }
       });
       calendar.render();
 
-      $("#seleccionar-fecha").on('click touchend', function() {
-        $('#calendario').toggle(); // Mostrar/ocultar el calendario
+      $('#seleccionar-fecha').on('click', function() {
+        $('#calendario').toggle();
       });
 
-      $('#calendario').hide();
-
-      $(document).on('click touchend', function(event) {
+      $(document).on('click', function(event) {
         if (!$(event.target).closest('#calendario, #seleccionar-fecha').length) {
           $('#calendario').hide();
         }
       });
 
-      // Manejar la selección de fechas correctamente en dispositivos móviles
-      calendar.on('dateClick', function(info) {
-        $('#fecha').val(info.dateStr); // Establecer la fecha seleccionada en el campo de texto
-        $('#calendario').hide(); // Ocultar el calendario después de seleccionar una fecha
+      // Para manejar eventos de toque en dispositivos móviles
+      $(document).on('touchend', function(event) {
+        if (!$(event.target).closest('#calendario, #seleccionar-fecha').length) {
+          $('#calendario').hide();
+        }
       });
     });
   </script>
