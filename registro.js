@@ -95,6 +95,17 @@ calendar.render();
 // Mostrar el calendario
 calendarEl.style.display = 'block';
 
+// Manejar el clic en el botón "Seleccionar fecha"
+      $("#seleccionar-fecha").on('click touchend', function() {
+        $('#calendario').toggle(); // Mostrar/ocultar el calendario
+      });
+
+      // Manejar el evento touchend para dispositivos móviles
+      $(document).on('touchend', function(event) {
+        if (!$(event.target).closest('#calendario, #seleccionar-fecha').length) {
+          $('#calendario').hide();
+        }
+      });
 
 
 
