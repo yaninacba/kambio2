@@ -73,28 +73,6 @@ function limpiarCampos() {
 }
 
 
-const calendarEl = document.getElementById('calendario'); 
-let calendar;
-
-calendar = new FullCalendar.Calendar(calendarEl, {
-    initialView: 'dayGridMonth',
-    selectable: true,
-    dateClick: function(info) {
-        const fechaSeleccionada = new Date(info.dateStr);
-        const dia = fechaSeleccionada.getDate();
-        const mes = fechaSeleccionada.getMonth() + 1;
-
-        document.getElementById('fecha').value = `${dia}/${mes}`;
-        calendarEl.style.display = 'none';
-    }
-});
-
-// Renderizar el calendario al cargar la página
-calendar.render();
-
-// Mostrar el calendario
-calendarEl.style.display = 'block';
-
 
 
 
