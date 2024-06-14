@@ -82,7 +82,7 @@ calendar = new FullCalendar.Calendar(calendarEl, {
     dateClick: function(info) {
         const fechaSeleccionada = new Date(info.dateStr);
         const dia = fechaSeleccionada.getDate();
-        const mes = fechaSeleccionada.getMonth() + 1;
+        const mes = fechaSeleccionada.getMonth() ;
 
         document.getElementById('fecha').value = `${dia}/${mes}`;
         calendarEl.style.display = 'none';
