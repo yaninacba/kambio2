@@ -91,45 +91,6 @@
 <button id="confirmar" type="button" class="btn btn-outline-primary">Confirmar</button>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/6.1.11/index.global.min.js"></script>
-<script>
-  $(document).ready(function() {
-    // Inicializar el calendario
-    var calendarEl = document.getElementById('calendario');
-    var calendar = new FullCalendar.Calendar(calendarEl, {
-      initialView: 'dayGridMonth',
-      headerToolbar: {
-        left: 'prev,next today',
-        center: 'title',
-        right: 'dayGridMonth,timeGridWeek,timeGridDay'
-      },
-      selectable: true,
-      selectHelper: true,
-      select: function(info) {
-        $('#fecha').val(info.startStr); // Establecer la fecha seleccionada en el campo de texto
-        calendar.unselect();
-        $('#calendario').hide(); // Ocultar el calendario después de seleccionar una fecha
-      },
-      editable: true,
-      events: []
-    });
-    calendar.render();
-
-    // Manejar el clic en el botón "Seleccionar fecha"
-    $("#seleccionar-fecha").on('click touchend', function() {
-      $('#calendario').toggle(); // Mostrar/ocultar el calendario
-    });
-
-    // Ocultar el calendario por defecto
-    $('#calendario').hide();
-
-    // Manejar el evento touchend para dispositivos móviles
-    $(document).on('touchend', function(event) {
-      if (!$(event.target).closest('#calendario, #seleccionar-fecha').length) {
-        $('#calendario').hide();
-      }
-    });
-  });
-</script>
 
 
 </body>
