@@ -39,7 +39,7 @@ async function mostrarFlow() {
 }
 
 async function mostrarMovil() {
-    mostrarDatos("movil");
+    mostrarDatos("cattv");
 }
 
 async function mostrarX() {
