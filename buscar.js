@@ -31,7 +31,7 @@ document.getElementById("botonXdls").addEventListener("click", function () {
 });
 
 async function mostrarHfc() {
-    mostrarDatos("hfc");
+    mostrarDatos("conectividad");
 }
 
 async function mostrarFlow() {
