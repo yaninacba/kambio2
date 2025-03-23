@@ -9,11 +9,13 @@
             background-position: center; /* Centra la imagen */
            
         }
-.h2{ 
-  color: white;
- }
+
 .navbar {
     background-color: transparent !important; /* Fondo transparente */
     box-shadow: none !important; /* Elimina la sombra */
 }
 
+.navbar-brand,
+.nav-link {
+    color: white !important;
+}
