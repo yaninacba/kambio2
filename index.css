@@ -7,6 +7,13 @@
             background-image: url("fondonuevo.jpg"); /* Imagen de fondo */
             background-size: cover; /* Ajusta la imagen al tamaño del contenedor */
             background-position: center; /* Centra la imagen */
+           
         }
-
+.h2{ 
+  color: white;
+ }
+.navbar {
+    background-color: transparent !important; /* Fondo transparente */
+    box-shadow: none !important; /* Elimina la sombra */
+}
 
