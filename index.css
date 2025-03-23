@@ -1,6 +1,4 @@
-
-
-      .container {
+ #container {
             display: flex; /* Usa flexbox */
             justify-content: center; /* Centra horizontalmente */
             align-items: flex-start; /* alinea en parte superior */
