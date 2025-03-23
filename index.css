@@ -4,13 +4,22 @@
             align-items: flex-start; /* alinea en parte superior */
             height: 100vh; /* Toma el alto de la pantalla completa */
             flex-direction: column; /* Para apilar los elementos verticalmente */
-            background-image: url("fondonuevo.jpg"); /* Imagen de fondo */
-            background-size: cover; /* Ajusta la imagen al tamaño del contenedor */
-            background-position: center; /* Centra la imagen */
+           
            
         }
-
+.background-image {
+    background-image: url("fondonegro.jpg"); /* Ruta de la imagen */
+    background-size: cover; /* Cubre todo el contenedor */
+    background-position: center; /* Centra la imagen */
+    height: 100vh; /* Altura completa de la pantalla */
+    position: relative; /* Necesario para posicionar el navbar */
+}
 .navbar {
+    position: absolute; /* Superpone el navbar sobre la imagen */
+    top: 0; /* Lo coloca en la parte superior */
+    left: 0; /* Lo coloca en la parte izquierda */
+    width: 100%; /* Ancho completo */
+    z-index: 1000; /* Asegura que esté por encima de otros elementos */
     background-color: transparent !important; /* Fondo transparente */
     box-shadow: none !important; /* Elimina la sombra */
 }
