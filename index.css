@@ -4,7 +4,7 @@
             align-items: flex-start; /* alinea en parte superior */
             height: 100vh; /* Toma el alto de la pantalla completa */
             flex-direction: column; /* Para apilar los elementos verticalmente */
-            background-image: url('/fondoapp.png'); /* Imagen de fondo */
+            background-image: url("fondoapp.png"); /* Imagen de fondo */
             background-size: cover; /* Ajusta la imagen al tamaño del contenedor */
             background-position: center; /* Centra la imagen */
         }
