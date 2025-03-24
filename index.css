@@ -1,7 +1,34 @@
 body {
+  position: relative; /* Necesario para el posicionamiento absoluto de los botones */
   background-image: url("ver.jpg");
-  background-size: 80% auto; /* Achica la imagen al 80% del ancho del contenedor */
+  background-size: 60% auto; /* Achica la imagen al 80% del ancho del contenedor */
   background-position: center; /* Centra la imagen */
   background-repeat: no-repeat; /* Evita que la imagen se repita */
   height: 100vh; /* Altura completa de la pantalla */
+}
+
+/* Div con botones en la parte inferior */
+.botones-inferiores {
+  display: flex;
+  justify-content: center;
+  gap: 10px; /* Espacio entre botones */
+  padding: 20px;
+  background-color: #fff; /* Fondo del div */
+  border-top: 1px solid #ccc; /* Borde superior */
+  width: 100%; /* Ocupa todo el ancho */
+}
+
+/* Estilos para los botones */
+.btn {
+  padding: 10px 20px;
+  background-color: #007bff; /* Color de fondo */
+  color: white; /* Color del texto */
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.btn:hover {
+  background-color: #0056b3; /* Cambia el color al pasar el mouse */
 }
