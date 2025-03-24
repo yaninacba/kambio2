@@ -3,7 +3,7 @@
             justify-content: center; /* Centra horizontalmente */
             align-items: flex-start; /* alinea en parte superior */
             height: 100vh; /* Toma el alto de la pantalla completa */
-            flex-direction: column; /* Para apilar los elementos verticalmente */
+          
            
            
         }
@@ -17,15 +17,7 @@
     margin: 0 auto; /* Centra el contenedor horizontalmente en la página */
     position: relative; /* Necesario si agregas contenido adicional */
 }
-.navbar {
-    position: absolute; /* Superpone el navbar sobre la imagen */
-    top: 0; /* Lo coloca en la parte superior */
-    left: 0; /* Lo coloca en la parte izquierda */
-    width: 100%; /* Ancho completo */
-    z-index: 1000; /* Asegura que esté por encima de otros elementos */
-    background-color: transparent !important; /* Fondo transparente */
-    box-shadow: none !important; /* Elimina la sombra */
-}
+
 
 
 .btn{
