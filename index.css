@@ -24,11 +24,12 @@ body, html {
 /* Mitad superior */
 .superior {
   background-color: white; /* Fondo blanco */
+  background-image: url("ver.jpg");
 }
 
 /* Mitad inferior */
 .inferior {
-  background-image: url("pinta.jpg"); /* Imagen de fondo */
+
   background-size: cover;
   background-position: center;
   color: white;
