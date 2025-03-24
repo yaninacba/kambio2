@@ -16,7 +16,7 @@ body, html {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  border: 2px solid red; /* Borde temporal para verificar el centrado */
+  border: none; /* Borde temporal para verificar el centrado */
 }
 
 .superior {
