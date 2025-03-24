@@ -1,103 +1,26 @@
-/* Reset básico */
-body, html {
-  margin: 0;
-  padding: 0;
-  height: 100%;
-}
-
-/* Contenedor principal */
 .contenedor {
-  display: flex;
-  flex-direction: column;
-  height: 100vh;
+    height: 100vh; /* Altura completa de la pantalla */
+    width: 100%; /* Ancho completo */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative; /* Necesario para posicionar el contenido */
 }
 
-/* Mitades */
-.mitad {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-}
-
-/* Mitad superior */
-.superior {
-  background-color: white; /* Fondo blanco */
-  background-image: url("ver.jpg");
-}
-
-/* Mitad inferior */
-.inferior {
-
-  background-size: cover;
-  background-position: center;
-  color: white;
-  display: flex;
-}
-
-/* Contenedor de datos */
-.data-container {
-  height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  scale: 2; /* Escala aumentada para mejor visualización */
-}
-
-/* Estilos para los botones */
-.btn {
-  cursor: pointer;
-  position: relative;
-  padding: 10px 20px; /* Espacio interno */
-  background: transparent; /* Fondo transparente */
-  border: 2px solid white; /* Borde blanco */
-  color: white; /* Texto blanco */
-  font-size: 16px; /* Tamaño del texto */
-  border-top-right-radius: 10px;
-  border-bottom-left-radius: 10px;
-  transition: all 1s;
-  min-width: 150px; /* Ancho mínimo (opcional) */
-  text-align: center; /* Centra el texto */
-  margin: 5px; /* Espacio entre botones */
-}
-
-.btn:hover {
-  background: rgba(255, 255, 255, 0.2); /* Fondo semi-transparente al pasar el mouse */
-  border-top-right-radius: 0px;
-  border-bottom-left-radius: 0px;
-}
-
-.btn:after,
-.btn:before {
-  content: " ";
-  width: 10px;
-  height: 10px;
-  position: absolute;
-  border: 0px solid #fff;
-  transition: all 1s;
-}
-
-.btn:after {
-  top: -1px;
-  left: -1px;
-  border-top: 5px solid black;
-  border-left: 5px solid black;
-}
-
-.btn:before {
-  bottom: -1px;
-  right: -1px;
-  border-bottom: 5px solid black;
-  border-right: 5px solid black;
-}
-
-.btn:hover:before,
-.btn:hover:after {
-  width: 100%;
-  height: 100%;
-}
-
-.navbar {
-  max-width: none;
+/* Estilos para la imagen de fondo */
+.background-image {
+    background-image: url("ver.jpg"); /* Ruta de la imagen */
+    background-size: cover; /* Cubre todo el contenedor */
+    background-position: center; /* Centra la imagen */
+    background-repeat: no-repeat; /* Evita que la imagen se repita */
+    width: 100%; /* Ancho completo */
+    height: 100%; /* Altura completa */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: white; /* Color del texto */
+    text-align: center; /* Alinea el texto al centro */
+    padding: 20px; /* Espacio interno */
 }
