@@ -8,7 +8,7 @@
     position: relative; /* Necesario para posicionar el contenido */
 }
 
-/* Estilos para la imagen de fondo */
+/* Estilos imagen de fondo */
 .background-image {
     background-image: url("ver.jpg"); /* Ruta de la imagen */
     background-size: cover; /* Cubre todo el contenedor */
