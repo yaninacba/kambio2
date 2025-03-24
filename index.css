@@ -1,26 +1,67 @@
-.contenedor {
-    height: 100vh; /* Altura completa de la pantalla */
-    width: 100%; /* Ancho completo */
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    position: relative; /* Necesario para posicionar el contenido */
+body, html {
+  margin: 0;
+  padding: 0;
+  height: 100%;
 }
 
-/* Estilos imagen de fondo */
-.background-image {
-    background-image: url("ver.jpg"); /* Ruta de la imagen */
-    background-size: cover; /* Cubre todo el contenedor */
-    background-position: center; /* Centra la imagen */
-    background-repeat: no-repeat; /* Evita que la imagen se repita */
-    width: 100%; /* Ancho completo */
-    height: 100%; /* Altura completa */
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    color: white; /* Color del texto */
-    text-align: center; /* Alinea el texto al centro */
-    padding: 20px; /* Espacio interno */
+.contenedor {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+.mitad {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.superior {
+  background-color: white; /* Fondo blanco */
+}
+
+.inferior {
+  background-image: url("pinta.jpg"); /* Imagen de fondo */
+  background-size: 80% auto; /* Achica la imagen al 80% del ancho */
+  background-position: center; /* Centra la imagen */
+  background-repeat: no-repeat; /* Evita que la imagen se repita */
+  color: white;
+  display: flex;
+}
+
+.data-container {
+  height: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+
+.btn {
+  cursor: pointer;
+  position: relative;
+  padding: 10px 20px;
+  background: transparent;
+  border: 2px solid white;
+  color: white;
+  font-size: 16px;
+  border-top-right-radius: 10px;
+  border-bottom-left-radius: 10px;
+  transition: all 1s;
+  min-width: 150px;
+  text-align: center;
+  margin: 5px;
+}
+
+.btn:hover {
+  background: rgba(255, 255, 255, 0.2);
+  border-top-right-radius: 0px;
+  border-bottom-left-radius: 0px;
+}
+
+.navbar {
+  max-width: none;
+  width: 100%;
 }
