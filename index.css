@@ -8,7 +8,7 @@ body {
   justify-content: flex-end; /* Alinea el contenido al final (parte inferior) */
   align-items: center; /* Centra el contenido horizontalmente */
   background-image: url('ver.jpg'); /* Reemplaza con la ruta de tu imagen */
-  background-size: 60%; /* Reduce el tamaño de la imagen al 60% */
+  background-size: 70%; /* Reduce el tamaño de la imagen al 60% */
   background-position: center; /* Centra la imagen */
   background-repeat: no-repeat; /* Evita que la imagen se repita */
 }
