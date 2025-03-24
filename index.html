@@ -6,24 +6,48 @@
   <title>Formulario de Registro</title>
   <!-- Bootstrap CSS -->
   <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-  <link rel="stylesheet" href="index.css">
+  <style>
+    /* Estilos para la imagen de fondo */
+    body {
+      margin: 0;
+      padding: 0;
+      height: 100vh; /* Altura completa de la ventana */
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between; /* Distribuye el espacio entre el contenido y los botones */
+      background-image: url('ruta-de-tu-imagen.jpg'); /* Reemplaza con la ruta de tu imagen */
+      background-size: 60%; /* Reduce el tamaño de la imagen al 60% */
+      background-position: center; /* Centra la imagen */
+      background-repeat: no-repeat; /* Evita que la imagen se repita */
+    }
+
+    /* Estilos para el contenido */
+    .contenido {
+      text-align: center;
+      padding: 20px;
+    }
+
+    /* Estilos para los botones inferiores */
+    .botones-inferiores {
+      background-color: rgba(255, 255, 255, 0.8); /* Fondo semitransparente para los botones */
+      padding: 10px;
+      text-align: center;
+    }
+  </style>
 </head>
 <body>
-  <div class="container mt-5">
-    <div class="row justify-content-center">
-      <div class="col-md-6 text-center">
-        <h2 class="mb-4">Cambia de turno aquí</h2>
-        <div class="background-image">
-          <div class="botones-inferiores">
-            <div class="data container">
-              <button id="registrarBtn" class="btn btn-primary btn-block mb-3">Registrar cambio</button>
-            </div>
-            <div class="data container">
-              <button id="buscar" class="btn btn-secondary btn-block">Buscar cambio</button>
-            </div>
-          </div>
-        </div>
-      </div>
+  <!-- Contenido principal -->
+  <div class="contenido">
+    <h2>Cambia de turno aquí</h2>
+  </div>
+
+  <!-- Botones en la parte inferior -->
+  <div class="botones-inferiores">
+    <div class="data container">
+      <button id="registrarBtn" class="btn btn-primary btn-block mb-2">Registrar cambio</button>
+    </div>
+    <div class="data container">
+      <button id="buscar" class="btn btn-secondary btn-block">Buscar cambio</button>
     </div>
   </div>
 
@@ -46,3 +70,4 @@
   </script>
 </body>
 </html>
+
