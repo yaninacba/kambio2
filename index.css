@@ -37,7 +37,6 @@ body, html {
 
 /* Contenedor de datos */
 .data-container {
-  background: #ffebee; /* Fondo rosa claro */
   height: 100vh;
   display: flex;
   justify-content: center;
@@ -49,13 +48,25 @@ body, html {
 .btn {
   cursor: pointer;
   position: relative;
-  padding: 10px 20px;
-  background: white; /* Fondo blanco */
-  font-size: 28px;
+  padding: 10px 20px; /* Espacio interno */
+  background: transparent; /* Fondo transparente */
+  border: 2px solid white; /* Borde blanco */
+  color: white; /* Texto blanco */
+  font-size: 16px; /* Tamaño del texto */
   border-top-right-radius: 10px;
   border-bottom-left-radius: 10px;
   transition: all 1s;
+  min-width: 150px; /* Ancho mínimo (opcional) */
+  text-align: center; /* Centra el texto */
+  margin: 5px; /* Espacio entre botones */
 }
+
+.btn:hover {
+  background: rgba(255, 255, 255, 0.2); /* Fondo semi-transparente al pasar el mouse */
+  border-top-right-radius: 0px;
+  border-bottom-left-radius: 0px;
+}
+
 .btn:after,
 .btn:before {
   content: " ";
@@ -80,16 +91,12 @@ body, html {
   border-right: 5px solid black;
 }
 
-.btn:hover {
-  border-top-right-radius: 0px;
-  border-bottom-left-radius: 0px;
-}
-
 .btn:hover:before,
 .btn:hover:after {
   width: 100%;
   height: 100%;
 }
+
 .navbar {
   max-width: none;
 }
