@@ -1,24 +1,65 @@
- #container {
-            display: flex; /* Usa flexbox */
-            justify-content: center; /* Centra horizontalmente */
-            align-items: flex-start; /* alinea en parte superior */
-            height: 100vh; /* Toma el alto de la pantalla completa */
-          
-           
-           
-        }
-.background-image {
-    background-image: url("fondoapp.jpg"); /* Ruta de la imagen */
-    background-size: cover; /* Ajusta la imagen al tamaño del contenedor */
-    background-position: center; /* Centra la imagen */
-    background-repeat: no-repeat; /* Evita que la imagen se repita */
-    width: 100%; /* Ancho del contenedor */
-    height: 400px; /* Altura del contenedor (ajusta según tus necesidades) */
-    margin: 0 auto; /* Centra el contenedor horizontalmente en la página */
-    position: relative; /* Necesario si agregas contenido adicional */
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
 }
 
+.contenedor {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+}
 
+.mitad {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 24px;
+    padding: 20px;
+}
+
+.superior {
+   background-color: white; /* Fondo blanco */
+    background-size: cover;
+    background-position: center;
+}
+
+.inferior {
+    background-image: url("ruta-de-tu-imagen-inferior.jpg");
+    background-size: cover;
+    background-position: center;
+}
+
+.btn {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.btn:hover {
+    background-color: #0056b3;
+}
+
+@media (max-width: 768px) {
+    .mitad {
+        padding: 10px;
+    }
+
+    h1 {
+        font-size: 24px;
+    }
+
+    p {
+        font-size: 16px;
+    }
+}
 
 .btn{
 
