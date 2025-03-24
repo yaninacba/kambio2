@@ -7,63 +7,57 @@
   <!-- Bootstrap CSS -->
   <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" href="index.css">
-  
 </head>
 <body>
   <div class="contenedor">
+    <!-- Mitad superior -->
     <div class="mitad superior">
-<nav class="nav justify-content-center navbar navbar-dark bg-dark">
-  <ul class="nav">
-    <li class="nav-item">
-       <a class="nav-link" href="index.html">home</a>
-    </li>
-</ul>
-    <li class="nav-item">
-      <a class="nav-link" href="registro.html">Registrar un cambio</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" href="buscar.html">Buscar cambio</a>
-    </li>
-  </ul>
-</nav>
+      <nav class="navbar navbar-dark bg-dark justify-content-center">
+        <ul class="nav">
+          <li class="nav-item">
+            <a class="nav-link" href="index.html">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="registro.html">Registrar un cambio</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="buscar.html">Buscar cambio</a>
+          </li>
+        </ul>
+      </nav>
     </div>
-  
- <div class="mitad inferior">
 
-  <div class="background-image">
-      <h2 style="color:white;">Cambio de Horario</h2>
+    <!-- Mitad inferior -->
+    <div class="mitad inferior">
+      <div class="background-image">
+        <h2 style="color: white;">Cambio de Horario</h2>
         <br>
-    <div class="data container">
-        <span class="btn">Registrar cambio</span>
+        <div class="data container">
+          <button id="registrarBtn" class="btn btn-primary">Registrar cambio</button>
+        </div>
+        <div class="data container">
+          <button id="buscar" class="btn btn-primary">Buscar cambio</button>
+        </div>
       </div>
-    <div class="data container">
-        <span class="btn">Buscar cambio</span>
     </div>
-   </div>
-          <br>       
-
   </div>
-    </div>
-</div>
-   
-  <!-- Estilo-->
+
+  <!-- Scripts de Bootstrap -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
+  <!-- Script personalizado -->
   <script>
-    
     document.getElementById("registrarBtn").addEventListener("click", function() {
-       window.location.href = "registro.html";
+      window.location.href = "registro.html";
       console.log("Botón Registrar clickeado");
     });
+
     document.getElementById("buscar").addEventListener("click", function() {
-       window.location.href = "buscar.html";
-      console.log("Botón buscar clickeado ok");
+      window.location.href = "buscar.html";
+      console.log("Botón Buscar clickeado");
     });
-
- 
   </script>
-
 </body>
 </html>
