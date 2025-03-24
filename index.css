@@ -28,7 +28,7 @@ body, html {
 
 /* Mitad inferior */
 .inferior {
-  background-image: url("esteva.jpg"); /* Imagen de fondo */
+  background-image: url("pinta.jpg"); /* Imagen de fondo */
   background-size: cover;
   background-position: center;
   color: white;
@@ -89,4 +89,7 @@ body, html {
 .btn:hover:after {
   width: 100%;
   height: 100%;
+}
+.navbar {
+  max-width: none;
 }
