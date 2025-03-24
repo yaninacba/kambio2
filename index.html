@@ -12,19 +12,53 @@
   <div class="contenedor">
     <!-- Mitad superior -->
     <div class="mitad superior">
-      <nav class="navbar navbar-dark bg-dark border-bottom border-body" data-bs-theme="dark" justify-content-center">
-        <ul class="nav">
-          <li class="nav-item">
-            <a class="nav-link" href="index.html">Home</a>
+     
+     <nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <div class="container-fluid">
+    <ul class="navbar-nav d-flex flex-row">
+      <!-- Icons -->
+      <li class="nav-item me-3 me-lg-0">
+        <a class="nav-link" href="#">
+          <i class="fas fa-shopping-cart"></i>
+        </a>
+      </li>
+      <li class="nav-item me-3 me-lg-0">
+        <a class="nav-link" href="#">
+          <i class="fab fa-twitter"></i>
+        </a>
+      </li>
+      <!-- Icon dropdown -->
+      <li mdbDropdown class="nav-item dropdown">
+        <a
+          class="nav-link dropdown-toggle"
+          href="#"
+          id="navbarDropdownMenuLink"
+          role="button"
+          mdbDropdownToggle
+          aria-expanded="false"
+        >
+          <i class="fas fa-user"></i>
+        </a>
+        <ul
+          mdbDropdownMenu
+          class="dropdown-menu"
+          aria-labelledby="navbarDropdownMenuLink"
+        >
+          <li>
+            <a class="dropdown-item" href=""index.html"">Inicio</a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" href="registro.html">Registrar un cambio</a>
+          <li>
+            <a class="dropdown-item" href="registro.html">Registrar Cambio</a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" href="buscar.html">Buscar cambio</a>
+          <li><hr class="dropdown-divider" /></li>
+          <li>
+            <a class="dropdown-item" href="buscar.html">Buscar Cambio</a>
           </li>
         </ul>
-      </nav>
+      </li>
+    </ul>
+  </div>
+</nav>
     </div>
 
     <!-- Mitad inferior -->
