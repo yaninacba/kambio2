@@ -5,23 +5,18 @@ body {
   height: 100vh; /* Altura completa de la ventana */
   display: flex;
   flex-direction: column;
-  justify-content: flex-start; /* Puedes cambiar a 'center' si prefieres centrar el contenido */
+  justify-content: flex-end; /* Mueve los elementos hacia la parte inferior */
   align-items: center; /* Centra el contenido horizontalmente */
   background-image: url('ver.jpg'); /* Ruta de la imagen */
-
+  background-size: 70%; /* Ajusta la imagen al 70% de su tamaño original */
   background-position: center; /* Centra la imagen */
   background-repeat: no-repeat; /* Evita que la imagen se repita */
-  background-size: 70%;
 }
 
 /* Estilos para el contenido */
 .contenido {
   text-align: center;
-  flex: 1; /* Asegura que el contenido ocupe el espacio restante */
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-top: 20px; /* Espaciado superior opcional */
+  margin-bottom: 100px; /* Añadir espacio para que el título quede encima de los botones */
 }
 
 /* Estilos para los botones inferiores */
@@ -84,6 +79,7 @@ body {
   width: 100%;
   height: 100%;
 }
+
 h3 {
   margin-bottom: 20px; /* Controla el espacio entre el título y los botones */
 }
