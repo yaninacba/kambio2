@@ -10,23 +10,32 @@
        
 </head>
 <body>
-<nav class="navbar bg-primary" data-bs-theme="dark">
-  <ul class="nav justify-content-center">
-    <li class="nav-item">
-      <a class="nav-link active" aria-current="page" href="index.html">Principal</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" href="registro.html">Registrar cambio</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" href="buscar.html">Buscar cambio</a>
-    </li>
-  </ul> <!-- Falta cerrar esta etiqueta en tu código original -->
-</nav>
+ <!-- Navbar corregido -->
+  <nav class="navbar navbar-expand-lg bg-primary navbar-dark">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="index.html">TurnoMatch</a>
 
-  
-    
-  </ul>
+      <!-- Botón para menú colapsable en móviles -->
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+    <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
+      <ul class="navbar-nav text-center"> <!-- Centramos los ítems -->
+        <li class="nav-item">
+          <a class="nav-link active" href="index.html">Principal</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="registro.html">Registrar cambio</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="buscar.html">Buscar cambio</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
     
     <div id="inicio" class="d-flex flex-column align-items-center">   
     <h2>Cambios Vigentes</h2>
