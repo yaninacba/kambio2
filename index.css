@@ -88,5 +88,8 @@ h3 {
   body {
     background-size: 90%; /* Ajusta el tamaño en pantallas pequeñas */
   }
+  h3 {
+  margin-bottom: 20px; /* Controla el espacio entre el título y los botones */
+}
 }
 
