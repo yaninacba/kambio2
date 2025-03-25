@@ -87,9 +87,12 @@ h3 {
 @media (max-width: 768px) {
   body {
     background-size: 90%; /* Ajusta el tamaño en pantallas pequeñas */
+     display: flex;
+    justify-content: flex-start; /* Alinea los elementos al inicio del eje principal (por defecto es horizontal) */
+    align-items: flex-start;
   }
   h3 {
-  margin-bottom: 20px; /* Controla el espacio entre el título y los botones */
+  margin-bottom: 30px; /* Controla el espacio entre el título y los botones */
 }
 }
 
