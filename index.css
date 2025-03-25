@@ -5,10 +5,10 @@ body {
   height: 100vh; /* Altura completa de la ventana */
   display: flex;
   flex-direction: column;
-  justify-content: flex-end; /* Alinea el contenido al final (parte inferior) */
+  justify-content: flex-start; /* Alinea el contenido al final (parte inferior) */
   align-items: center; /* Centra el contenido horizontalmente */
   background-image: url('ver.jpg'); /* Reemplaza con la ruta de tu imagen */
-  background-size: 80%; /* Reduce el tamaño de la imagen al 60% */
+  background-size: 90%; /* Reduce el tamaño de la imagen al 60% */
   background-position: center; /* Centra la imagen */
   background-repeat: no-repeat; /* Evita que la imagen se repita */
 }
