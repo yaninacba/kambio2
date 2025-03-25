@@ -37,7 +37,8 @@ body {
   cursor: pointer;
   padding: 10px 20px;
   background: white;
-  font-size: 18px; /* Ajusté el tamaño para que sea más adecuado */
+  font-size: 25px; /* Ajusté el tamaño para que sea más adecuado */
+   font-family: 'Poppins', sans-serif; /* Usar la fuente Poppins */
   border-top-right-radius: 10px;
   border-bottom-left-radius: 10px;
   transition: all 1s;
