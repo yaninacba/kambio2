@@ -8,7 +8,7 @@ body {
   justify-content: flex-start; /* Puedes cambiar a 'center' si prefieres centrar el contenido */
   align-items: center; /* Centra el contenido horizontalmente */
   background-image: url('ver.jpg'); /* Ruta de la imagen */
-  background-size: cover; /* Asegura que la imagen cubra toda la pantalla */
+
   background-position: center; /* Centra la imagen */
   background-repeat: no-repeat; /* Evita que la imagen se repita */
   background-size: 70%;
