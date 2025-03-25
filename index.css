@@ -84,4 +84,6 @@ body {
   width: 100%;
   height: 100%;
 }
-
+h3 {
+  margin-bottom: 20px; /* Controla el espacio entre el título y los botones */
+}
