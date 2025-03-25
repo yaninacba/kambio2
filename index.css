@@ -84,3 +84,9 @@ body {
 h3 {
   margin-bottom: 10px; /* Controla el espacio entre el título y los botones */
 }
+@media (max-width: 768px) {
+  body {
+    background-size: 90%; /* Ajusta el tamaño en pantallas pequeñas */
+  }
+}
+
