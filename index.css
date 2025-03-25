@@ -11,6 +11,7 @@ body {
   background-size: cover; /* Asegura que la imagen cubra toda la pantalla */
   background-position: center; /* Centra la imagen */
   background-repeat: no-repeat; /* Evita que la imagen se repita */
+  background-size: 70%;
 }
 
 /* Estilos para el contenido */
