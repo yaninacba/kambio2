@@ -1,62 +1,109 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cambios cargados</title>
- 
-      <!-- Bootstrap 5 (Actualizado) -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-  
-     <script type="module" src="buscar.js"></script>
-     <link rel="stylesheet" href="buscar.css">
-       <script type="module" src="buscar.js"></script>
-</head>
-<body>
- <!-- Navbar corregido -->
-  <nav class="navbar navbar-expand-lg bg-primary navbar-dark">
-    <div class="container-fluid">
-      <a class="navbar-brand" href="index.html">TurnoMatch</a>
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.10.0/firebase-app.js";
+import { collection, query, where, getDocs, getFirestore, deleteDoc, doc } from "https://www.gstatic.com/firebasejs/10.10.0/firebase-firestore.js";
 
-      <!-- Botón para menú colapsable en móviles -->
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
+const firebaseConfig = {
+    apiKey: "AIzaSyDlLngo2i5bBqXrF7uWh9Rk7LBetyvHth0",
+    authDomain: "boris-f276f.firebaseapp.com",
+    projectId: "boris-f276f",
+    storageBucket: "boris-f276f.appspot.com",
+    messagingSenderId: "277241048439",
+    appId: "1:277241048439:web:c3c73d6263c6eeb5204572",
+    measurementId: "G-0EJS7NMRLK"
+};
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
 
-    <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
-      <ul class="navbar-nav text-center"> <!-- Centramos los ítems -->
-        <li class="nav-item">
-          <a class="nav-link active" href="index.html">Principal</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="registro.html">Registrar cambio</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="buscar.html">Buscar cambio</a>
-        </li>
-          <li class="nav-item"> <a class="nav-link" href="#" id="botonRAG">
-      <i class="fas fa-robot me-1"></i> Asistente IA
-    </a>
-  </li>
-      </ul>
-    </div>
-  </div>
-</nav>
-    
-    <div id="inicio" class="d-flex flex-column align-items-center">   
-    <h2>Cambios Vigentes</h2>
-       
-<button id="botonHfc"  type="button" class="btn btn-outline-primary">CONECTIVIDAD</button>
-<button id="botonXdls" type="button" class="btn btn-outline-primary">XDLS</button>
-<button id="botonFlow" type="button" class="btn btn-outline-primary">FLOW</button>
-<button id="botonMovil" type="button" class="btn btn-outline-primary">CATTV</button>
-</div>
+document.getElementById("botonHfc").addEventListener("click", function () {
+    mostrarHfc();
+    console.log("Botón mostrar clickeado");
+});
+document.getElementById("botonFlow").addEventListener("click", function () {
+    mostrarFlow();
+    console.log("Botón mostrar clickeado");
+});
+document.getElementById("botonMovil").addEventListener("click", function () {
+    mostrarMovil();
+    console.log("Botón mostrar clickeado");
+});
+document.getElementById("botonXdls").addEventListener("click", function () {
+    mostrarX();
+    console.log("Botón mostrar clickeado");
+});
 
-        </div>
-        <div id="datosContainer"></div>
-   
-        
-         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-</body>
-</html>
+async function mostrarHfc() {
+    mostrarDatos("conectividad");
+}
+
+async function mostrarFlow() {
+    mostrarDatos("flow");
+}
+
+async function mostrarMovil() {
+    mostrarDatos("cattv");
+}
+
+async function mostrarX() {
+    mostrarDatos("xdls");
+}
+
+async function mostrarDatos(isla) {
+    try {
+        const q = query(collection(db, "usuario"), where("isla", "==", isla));
+        const querySnapshot = await getDocs(q);
+
+        const datosContainer = document.getElementById('datosContainer');
+        datosContainer.innerHTML = ''; // Limpiar contenido previo
+        querySnapshot.forEach((doc) => {
+            const data = doc.data();
+            const datosDiv = document.createElement('div');
+            datosDiv.innerHTML = `
+                <p>Nombre: ${data.nombre}</p>
+                <p>Apellido: ${data.apellido}</p>
+                <p>Isla: ${data.isla}</p>
+                <p>Turno: ${data.turno}</p>
+                <p>Cambio por: ${data.cambiar}</p>
+                <p>Fecha: ${data.fecha}</p>
+            `;
+            datosDiv.classList.add('dato');
+            const confirmButton = document.createElement('button');
+            confirmButton.textContent = 'Confirmar';
+            confirmButton.classList.add('btn', 'btn-success');
+            confirmButton.type = 'button'; // Para asegurarse de que no sea un botón de envío de formulario
+            confirmButton.addEventListener('click', async () => {
+                const telefono = data.telefono;
+                if (telefono) {
+                    const mensajeConfirmacion = `¿Estás seguro de que deseas confirmar el cambio, ${data.cambiar}?`;
+                    const confirmarCambio = confirm(mensajeConfirmacion);
+                    if (confirmarCambio) {
+                        const mensaje = encodeURIComponent("Hola, confirmas el cambio para ?");
+                        const enlaceWhatsApp = `https://wa.me/${telefono}?text=${mensaje}`;
+                        window.open(enlaceWhatsApp, '_blank');
+                        setTimeout(async () => {
+                            await eliminarDocumento(doc.id, datosDiv);
+                        }, 2000);
+                    } else {
+                        console.log("La confirmación del cambio ha sido cancelada.");
+                    }
+                } else {
+                    console.error("El documento no contiene un número de teléfono válido.");
+                }
+            });
+            datosDiv.appendChild(confirmButton);
+            datosContainer.appendChild(datosDiv);
+        });
+    } catch (error) {
+        console.error("Error al recuperar datos:", error);
+        alert("Error al recuperar datos.");
+    }
+}
+
+async function eliminarDocumento(documentId, datosDiv) {
+    try {
+        await deleteDoc(doc(db, "usuario", documentId));
+        console.log("Documento eliminado con éxito");
+        const datosContainer = document.getElementById('datosContainer');
+        datosContainer.removeChild(datosDiv);
+    } catch (error) {
+        console.error("Error eliminando documento:", error);
+    }
+}
